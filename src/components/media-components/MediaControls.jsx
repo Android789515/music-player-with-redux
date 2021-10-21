@@ -36,6 +36,11 @@ function MediaControls(props) {
                         name='volume'
                         dispatch={props.dispatch}
                         media={props.media}
+                        alsoDoOnClick={() => {
+                            if (props.media.muted) {
+                                props.dispatch(toggleMute())
+                            }
+                        }}
                     />
                 </div>
                 <MediaControlBtn
@@ -71,8 +76,8 @@ function MediaControls(props) {
 
     const songTime = props.media.time
     return (
-        <>
-            <div className='media-controls'>
+        <div className='media-controls'>
+            <div className='media-control-btns'>
                 <MediaControlBtn name='rewind' handleMediaBtnClick={() =>
                     props.dispatch(updateTime(songTime - 5))
                 }/>
@@ -93,7 +98,7 @@ function MediaControls(props) {
                 dispatch={props.dispatch}
                 media={props.media}
             />
-        </>
+        </div>
     )
 }
 

@@ -2,21 +2,25 @@
 
 // This component is in a grid: main-styles.scss, .main-layout
 
-.media-component {
-  display: grid;
-  // row 1: media content
-  // row 2: media controls
-  // row 3: song bar
-  // Columns: spacing content spacing
-  grid-template: auto auto auto / minmax(1em, .25fr) auto minmax(1em, .25fr);
+.media-component,
+.media-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
+}
+
+.media-component {
   margin-bottom: 1em;
 }
 
-.media-component > * {
-  grid-column: 2 / -2;
-}
+//.media-component > * {
+//  margin: auto;
+//}
 
+.media-content {
+  //margin-top: 2em;
+}
 
 .cover-art {
   width: 75%;
@@ -27,15 +31,25 @@
   border-radius: 25%;
   //margin: auto auto 1em auto;
 }
-
-.song-info {
-  width: max-content;
-
-  margin: auto;
+@media (min-width: 236px) {
+  .cover-art {
+    width: 80%;
+  }
+}
+@media (min-width: 370px) {
+  .cover-art {
+    width: 85%;
+  }
+}
+@media (min-width: 470px) {
+  .cover-art {
+    width: 90%;
+  }
 }
 
-.song-info > * {
-  width: max-content;
+.song-info {
+  //width: 100%;
+  //margin: auto;
 }
 
 .song-title {
@@ -47,15 +61,6 @@
 }
 
 @media (min-width: $first-media-breakpoint) {
-  // Large screens - below
-  .media-component {
-    grid-template-rows: 1fr auto .5fr auto;
-    grid-template-columns: auto;
-  }
-
-  .media-component > * {
-    width: 45%;
-  }
 
   // Media content contains media info, controls, and bar
   .media-content {
@@ -74,10 +79,6 @@
     min-width: 103px;
 
     margin-left: 10%;
-  }
-
-  .song-info {
-    //width: 100%;
   }
 }
 

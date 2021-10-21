@@ -94,6 +94,10 @@ function BarComponent(props) {
                 setMouseDownOnBar(() => true)
                 toggleBarMovement(() => true)
                 handleBarDrag(event)
+
+                if (props.alsoDoOnClick) {
+                    props.alsoDoOnClick()
+                }
             }}
             onMouseUp={event => {
                 event.preventDefault()

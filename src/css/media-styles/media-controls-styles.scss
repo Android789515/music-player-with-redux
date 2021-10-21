@@ -2,17 +2,10 @@
 
 // This component is in a grid: media-player-styles.scss, .media-component
 
-.media-controls {
-  grid-row: 4;
-}
-
-.song-bar {
-  grid-row: 5;
-}
-
-.media-controls {
+.media-control-btns {
   display: grid;
   // Empty 1fr - to even things out
+  // On large screens the empty space will not be included
   grid-template-columns: 1fr repeat(4, 1fr);
   grid-column-gap: .5em;
   justify-content: center;
@@ -36,6 +29,7 @@
   background: $primary-accent-color;
 }
 
+// On large screens all buttons shift left
 .rewind-btn {
   grid-column: 2;
 }
