@@ -8,6 +8,7 @@ import AudioPlayer from './AudioPlayer'
 import MediaControls from './MediaControls'
 
 import fallBackImg from '../../img/cover-art-fallback.svg'
+import SongInfoComponent from './SongInfoComponent'
 
 function MediaComponent(props) {
     const media = useSelector(state => state['media'])
@@ -28,6 +29,8 @@ function MediaComponent(props) {
 
                     <p className='song-duration'>{currentSongTime}</p>
                 </div>
+
+                <SongInfoComponent />
             </section>
 
             <MediaControls media={media} dispatch={props.dispatch} />
