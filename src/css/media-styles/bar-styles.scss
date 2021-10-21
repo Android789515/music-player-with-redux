@@ -8,6 +8,7 @@
 
 .slider {
   background: $slider-color;
+  transition: width 50ms, height 50ms;
 }
 
 .bar:hover,
