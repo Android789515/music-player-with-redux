@@ -1,0 +1,70 @@
+@import 'src/css/variables';
+
+// This component is in a grid: media-player-styles.scss, .media-component
+
+.media-controls {
+  grid-row: 4;
+}
+
+.song-bar {
+  grid-row: 5;
+}
+
+.media-controls {
+  display: grid;
+  // Empty 1fr - to even things out
+  grid-template-columns: 1fr repeat(4, 1fr);
+  grid-column-gap: .5em;
+  justify-content: center;
+
+  //margin-top: 1em;
+  // Padding instead of margin so the background will block
+  // overflowing content from the library
+  padding-bottom: .5em;
+}
+
+.media-control-btn {
+  // Keep media controls below volume bar
+  grid-row: 2;
+
+  width: 100%;
+  max-width: 60px;
+}
+
+.media-control-btn:focus:not(.vol-control-btn),
+.media-control-btn:hover:not(.vol-control-btn) {
+  background: $primary-accent-color;
+}
+
+.rewind-btn {
+  grid-column: 2;
+}
+
+.play-btn,
+.pause-btn {
+  grid-column: 3;
+}
+
+.fast-forward-btn {
+  grid-column: 4;
+}
+
+.volume-bar-area,
+.vol-control-btn {
+  grid-column: 5;
+}
+
+.volume-bar-area {
+  grid-row: 1;
+}
+
+.vol-control-btn {
+  // Gives a little bit of space between it and the other media controls
+  margin-left: .25em;
+}
+
+// Song bar positioning
+//.song-bar {
+//  grid-row: 3;
+//  grid-column: 2 / -1;
+//}

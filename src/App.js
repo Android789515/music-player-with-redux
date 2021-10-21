@@ -1,25 +1,22 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+
+import './App.css'
+import './css/main-styles.scss'
+import MediaComponent from './components/media-components/MediaComponent'
+import LibraryComponent from './components/library-components/LibraryComponent'
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    const dispatch = useDispatch()
+    const queuedSong = useSelector(state => state['library'].queuedSong)
+
+    return (
+        <main className='main-layout'>
+            <MediaComponent queuedSong={queuedSong} dispatch={dispatch} />
+
+            <LibraryComponent dispatch={dispatch} />
+        </main>
+    )
 }
 
-export default App;
+export default App

@@ -1,0 +1,32 @@
+@import 'src/css/variables';
+
+.library {
+}
+
+.directory-names {
+  // Using grid instead of flexbox so I
+  // don't have to deal with sentinel
+  // value margins
+  display: grid;
+  // I use grid gap to achieve even spacing
+  grid-column-gap: 1em;
+
+  // Keep the grid cells from growing too large
+  // for no reason
+  width: max-content;
+
+  margin: 1em auto;
+}
+
+.directory-name {
+  font-weight: 700;
+
+  // Keep all directory names on one line
+  grid-row: 1;
+}
+
+.directory-name.active-directory {
+  padding-bottom: .25em;
+  // Todo - find a suitable color
+  border-bottom: solid $grayed-out 2px;
+}

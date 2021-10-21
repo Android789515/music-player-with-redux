@@ -1,0 +1,61 @@
+@import 'src/css/variables';
+
+.directory {
+  width: 90%;
+  max-width: $max-component-width-small-screens;
+
+  margin: auto;
+}
+
+.directory-entries {
+}
+
+.directory-entry {
+  // Generic grid
+  // each directory will style their
+  // entries different
+  display: grid;
+}
+
+.directory-entry > * {
+  margin: 0;
+}
+
+.songs-directory {
+  .directory-entries {
+
+  }
+
+  .directory-entry {
+    grid-template: 1fr auto 2px / auto 1fr;
+
+    margin-bottom: 1em;
+  }
+
+  .loading-song-entry {
+    pointer-events: none;
+    opacity: .5;
+  }
+
+  .song-entry-info {
+    grid-column: 1;
+  }
+
+  .song-entry-duration {
+    grid-row: 1;
+    grid-column: 2;
+
+    text-align: right;
+  }
+
+  .song-entry-artist {
+    margin-bottom: .25em;
+  }
+
+  .loading-slider {
+    grid-row: 3;
+    grid-column: span 2;
+
+    background: $bar-color;
+  }
+}
