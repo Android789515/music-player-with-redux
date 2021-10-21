@@ -29,7 +29,7 @@
 
   margin: 2em auto;
   border-radius: 25%;
-  //margin: auto auto 1em auto;
+  transition: width 250ms;
 }
 @media (min-width: 236px) {
   .cover-art {
