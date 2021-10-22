@@ -32,8 +32,9 @@ const LibraryComponent = props => {
             )
         })
 
-    const getSongEntries = (songs, doOnClick) => songs.map(song => (
+    const getSongEntries = (songs, doOnClick) => songs.map((song, index) => (
         <SongDirectoryEntry
+            key={index}
             song={song}
             doOnClick={() => doOnClick(song)}
             dispatch={props.dispatch}

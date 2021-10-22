@@ -6,7 +6,7 @@ function SliderComponent(props) {
         { width: props.sliderPercent + '%', height: '100%' }
 
     return (
-        <div className={`slider ${props.name}-slider`} style={percent} />
+        <div className={`slider ${props.name || 'generic'}-slider`} style={percent} />
     )
 }
 

@@ -7,16 +7,11 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-
 }
 
 .media-component {
   margin-bottom: 1em;
 }
-
-//.media-component > * {
-//  margin: auto;
-//}
 
 .media-content {
   //margin-top: 2em;
@@ -29,7 +24,7 @@
 
   margin: 2em auto;
   border-radius: 25%;
-  transition: width 250ms;
+  transition: width 250ms, margin-right 250ms;
 }
 @media (min-width: 236px) {
   .cover-art {
@@ -48,12 +43,20 @@
 }
 
 .song-info {
-  //width: 100%;
-  //margin: auto;
+  font-size: 1rem;
+
+  transition: font-size 250ms;
 }
 
 .song-title {
+  font-size: 1.5em;
+
   margin: 0;
+}
+
+.song-artist,
+.song-duration {
+  font-size: 1em;
 }
 
 .song-artist {
@@ -62,23 +65,63 @@
 
 @media (min-width: $first-media-breakpoint) {
 
+  .media-component {
+    justify-content: space-between;
+    align-items: flex-start;
+
+    width: 70%;
+
+    //margin: 0;
+  }
+
   // Media content contains media info, controls, and bar
   .media-content {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
+    flex-direction: row;
 
-    margin-top: 10%;
-    margin-left: 5%;
+    margin: auto 0 auto 5%;
   }
 
   .cover-art {
     margin: revert;
   }
   .cover-art {
-    min-width: 103px;
+    width: 45%;
+    // Max width at large screens
+    max-width: 167.95px;
 
-    margin-left: 10%;
+    margin-right: 1.5em;
+  }
+
+  .song-info {
+    font-size: .70em;
+  }
+
+  @media (min-width: $second-media-breakpoint) {
+    .song-info {
+      font-size: .75em;
+    }
+  }
+
+  @media (min-width: $third-media-breakpoint) {
+    .song-info {
+      font-size: .8em;
+    }
+  }
+
+  @media (min-width: $fourth-media-breakpoint) {
+    .song-info {
+      font-size: .9em;
+    }
+  }
+
+  @media (min-width: $fifth-media-breakpoint) {
+    .cover-art {
+      width: 50%;
+    }
+
+    .song-info {
+      font-size: 1rem;
+    }
   }
 }
 

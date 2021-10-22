@@ -62,3 +62,33 @@
 //  grid-row: 3;
 //  grid-column: 2 / -1;
 //}
+
+@media (min-width: $first-media-breakpoint) {
+  .media-controls {
+    width: 100%;
+  }
+
+  .media-control-btns {
+    grid-template-columns: repeat(4, 1fr);
+
+    max-width: max-content;
+  }
+
+  .rewind-btn {
+    grid-column: 1;
+  }
+
+  .play-btn,
+  .pause-btn {
+    grid-column: 2;
+  }
+
+  .fast-forward-btn {
+    grid-column: 3;
+  }
+
+  .volume-bar-area,
+  .vol-control-btn {
+    grid-column: 4;
+  }
+}

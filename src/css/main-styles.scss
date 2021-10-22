@@ -51,6 +51,7 @@ img {
   display: flex;
   flex-direction: column;
 
+  height: 100vh;
   max-height: 100vh;
 
   padding: 0 1em;
@@ -58,7 +59,8 @@ img {
 
 @media (min-width: $first-media-breakpoint) {
   .main-layout {
-
+    flex-direction: row;
+    //justify-content: space-between;
   }
 }
 
@@ -80,3 +82,8 @@ img {
 //  // Centers content in grid
 //  grid-column: 2 / - 2;
 //}
+
+.hidden {
+  visibility: hidden;
+  pointer-events: none;
+}

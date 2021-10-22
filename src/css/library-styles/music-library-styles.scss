@@ -30,3 +30,9 @@
   // Todo - find a suitable color
   border-bottom: solid $grayed-out 2px;
 }
+
+@media (min-width: $first-media-breakpoint) {
+  .library {
+    width: 30%;
+  }
+}
