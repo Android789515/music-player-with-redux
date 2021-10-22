@@ -10,8 +10,7 @@ const SongDirectoryEntry = props => {
     const media = useSelector(state => state['media'])
     const queuedSong = useSelector(state => state['library'].queuedSong)
     const doesQueuedSongMatchThisSong = queuedSong.id === props.song.id
-    const sliderValueOfSongTime = media.time / media.maxTime
-    // console.log(sliderValueOfSongTime)
+    const sliderValueOfSongTime = Math.round((media.time / media.maxTime) * 100)
 
     return (
         (
@@ -28,8 +27,11 @@ const SongDirectoryEntry = props => {
                 <p className='song-entry-artist song-entry-info'>{props.song.artist}</p>
                 <p className='song-entry-duration'>{getFormattedSongTime(props.song.duration)}</p>
 
-                {doesQueuedSongMatchThisSong &&
-                <SliderComponent orientation='horizontal' sliderPercent={sliderValueOfSongTime} />}
+                <SliderComponent
+                    name='mini-song-bar'
+                    orientation='horizontal'
+                    sliderPercent={(doesQueuedSongMatchThisSong && sliderValueOfSongTime) || 0}
+                />
             </DirectoryEntry>
         )
     )

@@ -10,12 +10,14 @@ export const uploadSongs = (props, updateUrlsToCleanUp) => {
 
     uploadedData.forEach((song, index) => {
         const songUrl = URL.createObjectURL(song)
-
         const audio = document.createElement('audio')
         audio.src = songUrl
 
         audio.onloadeddata = event => {
-            // getAllID3Tags(song)
+            // Start the index after the last song entry
+            const songs = store.getState().library.songs
+            index = index + songs.length
+
             getID3Tags(event, song, index, songUrl)
         }
         audio.load()
@@ -24,7 +26,7 @@ export const uploadSongs = (props, updateUrlsToCleanUp) => {
     })
 }
 
-function getID3Tags(event, song, index, songUrl) {
+function getID3Tags(event, song, idForSong, songUrl) {
     const audioDuration = event.target.duration
     const songTitleFallback = song.name.split('.mp3')[0]
 
@@ -35,7 +37,7 @@ function getID3Tags(event, song, index, songUrl) {
             onSuccess: metadata => {
                 const tags = metadata.tags
                 const formattedSong = {
-                    id: index,
+                    id: idForSong,
                     title: tags.title || songTitleFallback,
                     artist: tags.artist || 'Unknown Artist',
                     src: songUrl,
@@ -47,7 +49,7 @@ function getID3Tags(event, song, index, songUrl) {
                 console.error(error)
 
                 const formattedSong = {
-                    id: index,
+                    id: idForSong,
                     title: songTitleFallback,
                     artist: 'Unknown Artist',
                     src: songUrl,
