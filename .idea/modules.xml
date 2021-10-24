@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/music-player-redx.iml" filepath="$PROJECT_DIR$/.idea/music-player-redx.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/music-player-with-redux.iml" filepath="$PROJECT_DIR$/.idea/music-player-with-redux.iml" />
     </modules>
   </component>
 </project>
