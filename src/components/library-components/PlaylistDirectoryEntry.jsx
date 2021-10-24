@@ -4,12 +4,14 @@ import DirectoryEntry from './DirectoryEntry'
 const PlaylistDirectoryEntry = props => {
     return (
         <DirectoryEntry
-            entry={props.playlistInfo}
+            entry={props.playlist}
             className='btn directory-entry'
-            onClick={() => props.doOnClick()}
+            onClick={() => {
+                // Show songs in the playlist
+            }}
         >
-            <h4 className='playlist-entry-title'>{props.playlistInfo.title}</h4>
-            <p className='playlist-entry-song-count'>{props.songCount}</p>
+            <h4 className='playlist-entry-title'>{props.playlist.name}</h4>
+            <p className='playlist-entry-song-count'>{props.playlist.songs.length} songs</p>
         </DirectoryEntry>
     )
 }

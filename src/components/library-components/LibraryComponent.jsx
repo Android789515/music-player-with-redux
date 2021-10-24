@@ -8,6 +8,8 @@ import { directories } from './Directories'
 import Directories from './Directories'
 import CurrentDirectory from './CurrentDirectory'
 import SongDirectoryEntry from './SongDirectoryEntry'
+import CreatePlaylistModal from './CreatePlaylistModal'
+import PlaylistDirectoryEntry from './PlaylistDirectoryEntry'
 
 const LibraryComponent = props => {
     // Keeps track of what directory is open
@@ -21,14 +23,25 @@ const LibraryComponent = props => {
         ['playlists', playlists]
     ])
 
-    const getSongEntries = songs => songs.map((song, index) => {
-        return (
-            <SongDirectoryEntry
-                key={index}
-                song={song}
-                dispatch={props.dispatch}
-            />
-        )
+    const getEntries = entries => entries.map((entry, index) => {
+        console.log('entry', entry)
+        if (currentDirectory.name === 'playlists') {
+            return (
+                <PlaylistDirectoryEntry
+                    key={entry.id}
+                    playlist={entry}
+                    dispatch={props.dispatch}
+                />
+            )
+        } else {
+            return (
+                <SongDirectoryEntry
+                    key={entry.id}
+                    song={entry}
+                    dispatch={props.dispatch}
+                />
+            )
+        }
     })
 
     return (
@@ -40,11 +53,11 @@ const LibraryComponent = props => {
 
             <CurrentDirectory
                 name={currentDirectory.name}
-                getEntries={getSongEntries(musicLibrary.get(currentDirectory.name))}
+                getEntries={getEntries(musicLibrary.get(currentDirectory.name))}
                 addEntryText={currentDirectory.addEntryText}
                 handleAddEntryClick={currentDirectory.handleAddEntryClick}
                 hasInputComponent={currentDirectory.hasInputComponent}
-            />
+             />
         </section>
     )
 }

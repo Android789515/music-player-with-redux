@@ -15,6 +15,8 @@ export const directories = {
         name: 'playlists',
         addEntryText: 'Create Playlist',
         handleAddEntryClick: function() {
+            const createPlaylistModal = document.querySelector('.create-playlist-modal')
+            createPlaylistModal.classList.remove('hidden')
         },
         hasInputComponent: false
     }
@@ -23,13 +25,13 @@ export const directories = {
 const Directories = props => {
     const directoryNames = Object.keys(directories)
     return (
-        directoryNames.map(directoryName => {
+        directoryNames.map((directoryName, index) => {
             const modifierClass = directoryName === props.currentDirectory.name ?
                 'active-directory' : ''
             const capitalizedDirectoryName = directoryName.charAt(0).toUpperCase() + directoryName.slice(1)
 
             return (
-                <li onClick={() => {
+                <li key={index} onClick={() => {
                     props.setCurrentDirectory(() => directories[directoryName])
                 }}
                     className={`btn directory-name ${modifierClass}`.trim()}>

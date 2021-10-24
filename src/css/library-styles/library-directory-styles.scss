@@ -64,3 +64,19 @@
     grid-column: span 2;
   }
 }
+
+.playlists-directory {
+  .playlist-entry-title {
+    grid-column: 1;
+  }
+
+  .playlist-entry-song-count {
+    text-align: right;
+
+    grid-column: 2;
+  }
+}
+
+.playlists-directory > * {
+  grid-row: 1;
+}

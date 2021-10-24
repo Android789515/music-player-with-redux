@@ -6,6 +6,7 @@ import './css/main-styles.scss'
 import MediaComponent from './components/media-components/MediaComponent'
 import LibraryComponent from './components/library-components/LibraryComponent'
 import LibraryBtn from './components/library-components/LibraryBtn'
+import CreatePlaylistModal from './components/library-components/CreatePlaylistModal'
 
 function App() {
     const dispatch = useDispatch()
@@ -17,6 +18,8 @@ function App() {
 
             <LibraryBtn />
             <LibraryComponent dispatch={dispatch} />
+
+            <CreatePlaylistModal dispatch={dispatch} />
         </main>
     )
 }
