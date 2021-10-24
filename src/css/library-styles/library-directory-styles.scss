@@ -1,11 +1,9 @@
 @import 'src/css/variables';
 
 .directory {
-  overflow-y: auto;
-
   width: 91%;
   max-width: $max-component-width-small-screens;
-  max-height: 90%;
+  //max-height: 90%;
 
   // Very small padding on sides to keep the add (+) button from clipping
   //padding: 0 .05em;
@@ -13,6 +11,11 @@
 }
 
 .directory-entries {
+  overflow-y: auto;
+
+  max-height: 50vh;
+
+  padding-right: 1em;
 }
 
 .directory-entry {
