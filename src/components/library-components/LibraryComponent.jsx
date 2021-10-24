@@ -21,18 +21,16 @@ const LibraryComponent = props => {
         ['playlists', playlists]
     ])
 
-    const getSongEntries = (songs, doOnClick) => songs.map((song, index) => {
+    const getSongEntries = songs => songs.map((song, index) => {
         return (
             <SongDirectoryEntry
                 key={index}
                 song={song}
-                doOnClick={() => doOnClick(song)}
                 dispatch={props.dispatch}
             />
         )
     })
 
-    const currentEntries = musicLibrary.get(currentDirectory.name)
     return (
         <section className='library overlay-component'>
             <ul className='unstyled-ul directory-names'>
@@ -42,7 +40,7 @@ const LibraryComponent = props => {
 
             <CurrentDirectory
                 name={currentDirectory.name}
-                getEntries={getSongEntries(currentEntries, currentEntries.doOnClick)}
+                getEntries={getSongEntries(musicLibrary.get(currentDirectory.name))}
                 addEntryText={currentDirectory.addEntryText}
                 handleAddEntryClick={currentDirectory.handleAddEntryClick}
                 hasInputComponent={currentDirectory.hasInputComponent}

@@ -39,6 +39,11 @@
 }
 
 @media (min-width: $first-media-breakpoint) {
+  .library,
+  .library-panel-btn {
+    top: 10%;
+  }
+
   .library {
     $component-width: 40%;
     //color: #fff;
