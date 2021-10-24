@@ -3,120 +3,50 @@ import { useSelector } from 'react-redux'
 
 import '../../css/library-styles/music-library-styles.scss'
 
-import { addPlaylist, addSong, queueSong } from '../../reducers/librarySlice'
+import { directories } from './Directories'
 
-import Directory from './Directory'
-import SongUploader from './SongUploader'
+import Directories from './Directories'
+import CurrentDirectory from './CurrentDirectory'
 import SongDirectoryEntry from './SongDirectoryEntry'
-import PlaylistDirectoryEntry from './PlaylistDirectoryEntry'
-import AddEntryBtn from './AddEntryBtn'
-import LibraryBtn from './LibraryBtn'
 
 const LibraryComponent = props => {
     // Keeps track of what directory is open
-    const [ currentDirectory, setCurrentDirectory ] = useState('songs')
+    const [ currentDirectory, setCurrentDirectory ] = useState(directories.songs)
     // This is used for playlist directory
-    const [ customPlaylistEntries, setCustomPlaylistEntries ] = useState(undefined)
+    // const [ customPlaylistEntries, setCustomPlaylistEntries ] = useState(undefined)
     const songs = useSelector(state => state['library'].songs)
     const playlists = useSelector(state => state['library'].playlists)
+    const musicLibrary = new Map([
+        ['songs', songs],
+        ['playlists', playlists]
+    ])
 
-    // Make it configurable in the app
-    const directoryNames = ['playlists', 'songs']
-        .map((directoryName, index) => {
-            const modifierClass = directoryName === currentDirectory ?
-                'active-directory' : ''
-            return (
-                <li key={index} onClick={() => {
-                    setCustomPlaylistEntries(() => undefined)
-                    setCurrentDirectory(() => directoryName)
-                }}
-                    className={`btn directory-name ${modifierClass}`.trim()}>
-                    {directoryName.charAt(0).toUpperCase() + directoryName.slice(1)}
-                </li>
-            )
-        })
-
-    const getSongEntries = (songs, doOnClick) => songs.map((song, index) => (
-        <SongDirectoryEntry
-            key={index}
-            song={song}
-            doOnClick={() => doOnClick(song)}
-            dispatch={props.dispatch}
-        />
-    ))
-
-    const getPlaylistEntries = playlists => {
-        if (customPlaylistEntries) {
-            return customPlaylistEntries
-        } else {
-            return playlists.map(playlistValues => {
-                const playlistInfo = playlistValues[0]
-                const playlistSongs = playlistValues[1]
-                return (
-                    <PlaylistDirectoryEntry
-                        playlistInfo={playlistInfo}
-                        songCount={playlistSongs.length}
-                        doOnClick={() =>
-                            setCustomPlaylistEntries(getSongEntries(playlistSongs,
-                                    song => props.dispatch(queueSong(song))))}
-                        dispatch={props.dispatch}
-                    />
-                )
-            })
-        }
-    }
-
-    const songsDirectory = (
-        <Directory name='songs' entries={getSongEntries(songs, song => props.dispatch(queueSong(song)))}>
-            <AddEntryBtn
-                btnText='Add Song'
-                doOnClick={() => {
-                    const uploadSongInput = document.getElementById('upload-song')
-                    uploadSongInput.click()
-                }}
-                uploadInput={<SongUploader dispatch={props.dispatch} />}
+    const getSongEntries = (songs, doOnClick) => songs.map((song, index) => {
+        return (
+            <SongDirectoryEntry
+                key={index}
+                song={song}
+                doOnClick={() => doOnClick(song)}
+                dispatch={props.dispatch}
             />
-        </Directory>
-    )
+        )
+    })
 
-    const playlistsDirectory = (
-        <Directory
-            name='playlists'
-            entries={getPlaylistEntries(playlists)}
-        >
-            <AddEntryBtn btnText='Add Song to Playlist' doOnClick={() => {
-                setCustomPlaylistEntries(getSongEntries(songs, song => props.dispatch(addSong({
-                    to: 'playlist',
-                    song: song
-                }))))
-            }} />
-        </Directory>
-    )
-
-    const renderCurrentDirectory = () => {
-        switch (currentDirectory) {
-            case 'songs':
-                return songsDirectory
-
-            case 'playlists':
-                return playlistsDirectory
-
-            default:
-                return <Directory name='empty' />
-        }
-    }
+    const currentEntries = musicLibrary.get(currentDirectory.name)
     return (
         <section className='library overlay-component'>
             <ul className='unstyled-ul directory-names'>
-                {/* turn into component */}
-                {directoryNames}
+                <Directories currentDirectory={currentDirectory} setCurrentDirectory={setCurrentDirectory} />
             </ul>
 
 
-            {/* turn into component */}
-            {renderCurrentDirectory()}
-
-            {/* Playlist directory here */}
+            <CurrentDirectory
+                name={currentDirectory.name}
+                getEntries={getSongEntries(currentEntries, currentEntries.doOnClick)}
+                addEntryText={currentDirectory.addEntryText}
+                handleAddEntryClick={currentDirectory.handleAddEntryClick}
+                hasInputComponent={currentDirectory.hasInputComponent}
+            />
         </section>
     )
 }

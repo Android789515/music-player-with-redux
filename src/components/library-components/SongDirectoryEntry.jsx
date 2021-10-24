@@ -5,6 +5,7 @@ import { play, stop } from '../../reducers/mediaSlice'
 import { getFormattedSongTime } from '../../TimeFormatter'
 import DirectoryEntry from './DirectoryEntry'
 import SliderComponent from '../media-components/SliderComponent'
+import {queueSong} from '../../reducers/librarySlice'
 
 const SongDirectoryEntry = props => {
     const media = useSelector(state => state['media'])
@@ -19,7 +20,7 @@ const SongDirectoryEntry = props => {
                 className='btn directory-entry'
                 onClick={() => {
                     props.dispatch(stop())
-                    props.doOnClick()
+                    props.dispatch(queueSong(props.song))
                     props.dispatch(play())
                 }}
             >
