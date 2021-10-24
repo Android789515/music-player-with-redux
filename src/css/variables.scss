@@ -15,12 +15,18 @@ $bar-color: gray;
 $slider-color: #ff00c3;
 
 $grayed-out: rgba(0, 0, 0, 0.1);
+
+$overlay-component-bg: #fff;
 // =================================
 
 // Widths
-$first-media-breakpoint: 520px;
-$second-media-breakpoint: 600px;
-$third-media-breakpoint: 620px;
-$fourth-media-breakpoint: 650px;
-$fifth-media-breakpoint: 720px;
+$first-cover-art-breakpoint: 236px;
+$second-cover-art-breakpoint: 370px;
+$third-cover-art-breakpoint: 470px;
+
+$first-media-breakpoint: 620px;
+$second-media-breakpoint: 709px;
+//$third-media-breakpoint: 1290px;
+//$fourth-media-breakpoint: 1550px;
+//$fifth-media-breakpoint: 1400px;
 $max-component-width-small-screens: 386px;

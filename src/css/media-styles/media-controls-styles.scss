@@ -2,6 +2,9 @@
 
 // This component is in a grid: media-player-styles.scss, .media-component
 
+.media-controls {
+}
+
 .media-control-btns {
   display: grid;
   // Empty 1fr - to even things out
@@ -9,8 +12,6 @@
   grid-template-columns: 1fr repeat(4, 1fr);
   grid-column-gap: .5em;
   justify-content: center;
-
-  //margin-top: 1em;
   // Padding instead of margin so the background will block
   // overflowing content from the library
   padding-bottom: .5em;
@@ -57,15 +58,13 @@
   margin-left: .25em;
 }
 
-// Song bar positioning
-//.song-bar {
-//  grid-row: 3;
-//  grid-column: 2 / -1;
-//}
-
 @media (min-width: $first-media-breakpoint) {
   .media-controls {
-    width: 100%;
+    position: fixed;
+    //right: 1em;
+    bottom: 1em;
+
+    width: 96%;
   }
 
   .media-control-btns {

@@ -34,6 +34,7 @@ function MediaControls(props) {
                     <BarComponent
                         orientation='vertical'
                         name='volume'
+                        modifiers={['fading-component', 'invisible']}
                         dispatch={props.dispatch}
                         media={props.media}
                         alsoDoOnClick={() => {
@@ -60,9 +61,9 @@ function MediaControls(props) {
             event.target.classList.contains('volume-slider')
 
         if (isMouseOverVolumeControls) {
-            document.querySelector('.volume-bar').style.opacity = 1
+            document.querySelector('.volume-bar').classList.remove('invisible')
         } else {
-            document.querySelector('.volume-bar').style.opacity = 0
+            document.querySelector('.volume-bar').classList.add('invisible')
         }
     }
 
@@ -75,6 +76,7 @@ function MediaControls(props) {
     }, [])
 
     const songTime = props.media.time
+
     return (
         <div className='media-controls'>
             <div className='media-control-btns'>

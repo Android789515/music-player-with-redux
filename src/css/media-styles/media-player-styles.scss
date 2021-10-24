@@ -13,10 +13,6 @@
   margin-bottom: 1em;
 }
 
-.media-content {
-  //margin-top: 2em;
-}
-
 .cover-art {
   width: 75%;
   // Max width at small screens
@@ -26,17 +22,17 @@
   border-radius: 25%;
   transition: width 250ms, margin-right 250ms;
 }
-@media (min-width: 236px) {
+@media (min-width: $first-cover-art-breakpoint) {
   .cover-art {
     width: 80%;
   }
 }
-@media (min-width: 370px) {
+@media (min-width: $second-cover-art-breakpoint) {
   .cover-art {
     width: 85%;
   }
 }
-@media (min-width: 470px) {
+@media (min-width: $third-cover-art-breakpoint) {
   .cover-art {
     width: 90%;
   }
@@ -46,6 +42,13 @@
   font-size: 1rem;
 
   transition: font-size 250ms;
+}
+
+// Align the text to the center at very small screens
+@media (max-width: 375px) {
+  .song-info {
+    text-align: center;
+  }
 }
 
 .song-title {
@@ -69,14 +72,14 @@
     justify-content: space-between;
     align-items: flex-start;
 
-    width: 70%;
-
-    //margin: 0;
+    width: 100%;
   }
 
   // Media content contains media info, controls, and bar
   .media-content {
     flex-direction: row;
+
+    width: 55%;
 
     margin: auto 0 auto 5%;
   }
@@ -85,7 +88,6 @@
     margin: revert;
   }
   .cover-art {
-    width: 45%;
     // Max width at large screens
     max-width: 167.95px;
 
@@ -93,135 +95,12 @@
   }
 
   .song-info {
-    font-size: .70em;
-  }
-
-  @media (min-width: $second-media-breakpoint) {
-    .song-info {
-      font-size: .75em;
-    }
-  }
-
-  @media (min-width: $third-media-breakpoint) {
-    .song-info {
-      font-size: .8em;
-    }
-  }
-
-  @media (min-width: $fourth-media-breakpoint) {
-    .song-info {
-      font-size: .9em;
-    }
-  }
-
-  @media (min-width: $fifth-media-breakpoint) {
-    .cover-art {
-      width: 50%;
-    }
-
-    .song-info {
-      font-size: 1rem;
-    }
+    font-size: .85rem;
   }
 }
 
-// Large screens - below
-//.media-component {
-//  display: grid;
-//  grid-template-rows: 1fr auto .5fr auto;
-//}
-//
-//.media-component > * {
-//  width: 45%;
-//}
-//
-//// Media content contains media info, controls, and bar
-//.media-content {
-//  display: flex;
-//  justify-content: space-between;
-//  align-items: flex-end;
-//
-//  //width: 45%;
-//
-//  margin-top: 10%;
-//  margin-left: 5%;
-//}
-//
-//.cover-art {
-//  width: 70%;
-//  // Max width at small screens
-//  max-width: 203px;
-//
-//  margin-left: 10%;
-//  border-radius: 25%;
-//  //margin: auto auto 1em auto;
-//}
-//
-//.song-info > * {
-//  width: max-content;
-//}
-//
-//.song-title {
-//  margin: 0;
-//}
-//
-//.song-artist {
-//  margin-top: 0;
-//}
-
-//.media-component {
-//  // Keep media player at top of screen
-//  position: sticky;
-//  top: 0;
-//
-//  max-height: max-content;
-//
-//  background: #fff;
-//  // Adds nice little effect of items fading out
-//  // when scrolling
-//  box-shadow: 0 .5em 15px rgba(255, 255, 255, 0.8);
-//}
-//
-//.media-player > * {
-//  max-width: $max-component-width-small-screens;
-//
-//  margin: auto;
-//}
-//
-//.cover-art {
-//  width: 70%;
-//  // Max width at small screens
-//  max-width: 203px;
-//
-//  // Center img but keep a little extra space on bottom
-//  margin: auto auto 1em auto;
-//}
-//
-//.song-info > * {
-//  margin: 0;
-//}
-//
-//.song-info {
-//  display: grid;
-//  grid-template-columns: 3fr 1fr;
-//  align-items: baseline;
-//
-//  // Max width at small screens
-//  max-width: 296px;
-//
-//  margin: auto;
-//}
-//
-//.song-title,
-//.song-artist {
-//  grid-column: 1;
-//}
-//
-//.song-title {
-//  font-size: 1rem;
-//}
-//
-//.song-duration {
-//  grid-row: 1;
-//  grid-column: 2;
-//}
+@media (min-width: $second-media-breakpoint) {
+  .song-info {
+    font-size: 1rem;
+  }
+}

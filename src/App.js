@@ -5,6 +5,7 @@ import './App.css'
 import './css/main-styles.scss'
 import MediaComponent from './components/media-components/MediaComponent'
 import LibraryComponent from './components/library-components/LibraryComponent'
+import LibraryBtn from './components/library-components/LibraryBtn'
 
 function App() {
     const dispatch = useDispatch()
@@ -14,6 +15,7 @@ function App() {
         <main className='main-layout'>
             <MediaComponent queuedSong={queuedSong} dispatch={dispatch} />
 
+            <LibraryBtn />
             <LibraryComponent dispatch={dispatch} />
         </main>
     )

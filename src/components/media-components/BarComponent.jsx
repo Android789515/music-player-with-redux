@@ -85,9 +85,12 @@ function BarComponent(props) {
     const sliderPercent = props.orientation === 'vertical' ?
         props.media.volume * 100 : songTime
 
+    const allComponentClasses = `bar ${props.name}-bar ${
+        props.modifiers ? props.modifiers.join(' ') : ''
+    }`.trim()
     return (
         <div
-            className={`bar ${props.name}-bar`}
+            className={allComponentClasses}
             draggable={true}
             onMouseDown={event => {
                 event.preventDefault()

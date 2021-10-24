@@ -17,18 +17,14 @@
 }
 
 .song-bar {
-  //width: 100%;
   height: .6em;
 }
 
 .volume-bar {
-  opacity: 0;
-
   width: .5em;
   height: 2.2em;
 
   // Must rotate 180 degrees as the y axis
   // runs up -> down, not down -> up like you'd think
   transform: rotate(180deg);
-  transition: opacity 250ms;
 }

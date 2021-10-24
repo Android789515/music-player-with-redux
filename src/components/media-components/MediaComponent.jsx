@@ -28,26 +28,4 @@ function MediaComponent(props) {
     )
 }
 
-function getScaledCoverArtSize(queuedSong) {
-    const isSongQueued = queuedSong.src !== undefined
-    if (isSongQueued) {
-        const currentDocumentWidth = window.innerWidth
-        const firstMediaBreakpoint = currentDocumentWidth >= 520
-        const largeScreenSecondImageBreakpoint = currentDocumentWidth <= 720
-        console.log(currentDocumentWidth)
-
-        if (firstMediaBreakpoint && !largeScreenSecondImageBreakpoint) {
-            return '45%'
-        } else if (largeScreenSecondImageBreakpoint) {
-            return '50%'
-        }
-    } else {
-        // const originalImageWidth = document.querySelector('.cover-art').style.width
-        // return originalImageWidth
-
-        // Return original image width from the CSS
-        return '82.55%'
-    }
-}
-
 export default MediaComponent

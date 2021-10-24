@@ -10,6 +10,7 @@ import SongUploader from './SongUploader'
 import SongDirectoryEntry from './SongDirectoryEntry'
 import PlaylistDirectoryEntry from './PlaylistDirectoryEntry'
 import AddEntryBtn from './AddEntryBtn'
+import LibraryBtn from './LibraryBtn'
 
 const LibraryComponent = props => {
     const [ currentDirectory, setCurrentDirectory ] = useState('songs')
@@ -102,10 +103,18 @@ const LibraryComponent = props => {
         }
     }
     return (
-        <section className='library'>
+        <section className='library overlay-component'>
+            {/*<div className='library-btns'>*/}
+            {/*    <ul className='non-default-ul directory-names'>*/}
+            {/*        {directoryNames}*/}
+            {/*    </ul>*/}
+            {/*    /!*<LibraryBtn />*!/*/}
+            {/*</div>*/}
             <ul className='non-default-ul directory-names'>
                 {directoryNames}
             </ul>
+
+
             {renderCurrentDirectory()}
 
             {/* Playlist directory here */}

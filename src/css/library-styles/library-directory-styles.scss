@@ -1,9 +1,14 @@
 @import 'src/css/variables';
 
 .directory {
-  width: 90%;
-  max-width: $max-component-width-small-screens;
+  overflow-y: auto;
 
+  width: 91%;
+  max-width: $max-component-width-small-screens;
+  max-height: 90%;
+
+  // Very small padding on sides to keep the add (+) button from clipping
+  //padding: 0 .05em;
   margin: auto;
 }
 
@@ -23,7 +28,6 @@
 
 .songs-directory {
   .directory-entries {
-
   }
 
   .directory-entry {
@@ -56,11 +60,4 @@
     grid-row: 3;
     grid-column: span 2;
   }
-
-  //.loading-slider {
-  //  grid-row: 3;
-  //  grid-column: span 2;
-  //
-  //  background: $bar-color;
-  //}
 }
