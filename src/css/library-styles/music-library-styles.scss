@@ -1,6 +1,7 @@
 @import 'src/css/variables';
 
 .library {
+  //color: #fff;
 }
 
 .library-panel-btn {
@@ -40,6 +41,8 @@
 @media (min-width: $first-media-breakpoint) {
   .library {
     $component-width: 40%;
+    //color: #fff;
+
     position: fixed;
     right: -$component-width;
     z-index: 0;

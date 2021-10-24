@@ -56,8 +56,8 @@ img {
   height: 100vh;
   max-height: 100vh;
 
-  padding: 0 1em;
-  background: linear-gradient(to right, $primary-dark-color, $secondary-dark-color);
+  //padding: 0 1em;
+  //background: linear-gradient(to right, $primary-dark-color, $secondary-dark-color);
 }
 
 @media (min-width: $first-media-breakpoint) {

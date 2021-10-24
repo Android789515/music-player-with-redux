@@ -11,11 +11,13 @@ $primary-accent-color: #f0f0f0;
 $primary-dark-color: #0097fc;
 $secondary-dark-color: #0082d9;
 
-$bar-color: gray;
+//$bar-color: gray;
+$bar-color: #f0f0f0;
 $slider-color: #ff00c3;
 $purple-color: #c9149f;
 
-$grayed-out: rgba(0, 0, 0, 0.1);
+$grayed-out: rgba(0, 0, 0, .1);
+$grayed-out-light: rgba(255, 255, 255, .1);
 
 $overlay-component-bg: #fff;
 // =================================
