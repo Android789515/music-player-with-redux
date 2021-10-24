@@ -57,13 +57,16 @@ function BarComponent(props) {
 
         let sliderVal
         switch (props.name) {
+            // Make cases constant enums
             case 'song':
                 sliderVal = Math.floor((percentOfBarClicked / 100) * props.media.maxTime)
+                // Connect to redux
                 props.dispatch(updateTime(sliderVal))
                 break
 
             case 'volume':
                 sliderVal = percentOfBarClicked / 100
+                // Connect to redux
                 props.dispatch(setVolume(sliderVal))
                 break
 

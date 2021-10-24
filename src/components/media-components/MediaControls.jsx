@@ -82,16 +82,19 @@ function MediaControls(props) {
     return (
         <div className='media-controls overlay-component'>
             <div className='media-control-btns'>
+                                                                            {/* Give name to this */}
                 <MediaControlBtn name='rewind' isDark={btnTheme === 'dark'} handleMediaBtnClick={() =>
                     props.dispatch(updateTime(songTime - 5))
                 }/>
 
+                {/* Turn into component */}
                 {props.media.paused ? playBtn : pauseBtn}
 
                 <MediaControlBtn name='fast-forward' isDark={btnTheme === 'dark'} handleMediaBtnClick={() =>
                     props.dispatch(updateTime(songTime + 5))
                 }/>
 
+                {/* Turn into component */}
                 {renderVolumeBtn(props.media)}
             </div>
 

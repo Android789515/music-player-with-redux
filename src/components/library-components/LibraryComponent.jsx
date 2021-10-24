@@ -13,11 +13,14 @@ import AddEntryBtn from './AddEntryBtn'
 import LibraryBtn from './LibraryBtn'
 
 const LibraryComponent = props => {
+    // Keeps track of what directory is open
     const [ currentDirectory, setCurrentDirectory ] = useState('songs')
+    // This is used for playlist directory
     const [ customPlaylistEntries, setCustomPlaylistEntries ] = useState(undefined)
     const songs = useSelector(state => state['library'].songs)
     const playlists = useSelector(state => state['library'].playlists)
 
+    // Make it configurable in the app
     const directoryNames = ['playlists', 'songs']
         .map((directoryName, index) => {
             const modifierClass = directoryName === currentDirectory ?
@@ -104,17 +107,13 @@ const LibraryComponent = props => {
     }
     return (
         <section className='library overlay-component'>
-            {/*<div className='library-btns'>*/}
-            {/*    <ul className='non-default-ul directory-names'>*/}
-            {/*        {directoryNames}*/}
-            {/*    </ul>*/}
-            {/*    /!*<LibraryBtn />*!/*/}
-            {/*</div>*/}
-            <ul className='non-default-ul directory-names'>
+            <ul className='unstyled-ul directory-names'>
+                {/* turn into component */}
                 {directoryNames}
             </ul>
 
 
+            {/* turn into component */}
             {renderCurrentDirectory()}
 
             {/* Playlist directory here */}
