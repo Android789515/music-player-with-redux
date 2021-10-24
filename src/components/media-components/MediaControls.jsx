@@ -8,8 +8,9 @@ import MediaControlBtn from './MediaControlBtn'
 import BarComponent from './BarComponent'
 
 function MediaControls(props) {
-    const pauseBtn = <MediaControlBtn name='pause' handleMediaBtnClick={() => props.dispatch(pause())}/>
-    const playBtn = <MediaControlBtn name='play' handleMediaBtnClick={() => props.dispatch(play())}/>
+    const btnTheme = 'dark'
+    const pauseBtn = <MediaControlBtn name='pause' isDark={btnTheme === 'dark'} handleMediaBtnClick={() => props.dispatch(pause())}/>
+    const playBtn = <MediaControlBtn name='play' isDark={btnTheme === 'dark'} handleMediaBtnClick={() => props.dispatch(play())}/>
 
     // Volume button
     const renderVolumeBtn = media => {
@@ -46,6 +47,7 @@ function MediaControls(props) {
                 </div>
                 <MediaControlBtn
                     name={btnName}
+                    isDark={btnTheme === 'dark'}
                     unique={true}
                     handleMediaBtnClick={() => props.dispatch(toggleMute())}
                 />
@@ -80,13 +82,13 @@ function MediaControls(props) {
     return (
         <div className='media-controls'>
             <div className='media-control-btns'>
-                <MediaControlBtn name='rewind' handleMediaBtnClick={() =>
+                <MediaControlBtn name='rewind' isDark={btnTheme === 'dark'} handleMediaBtnClick={() =>
                     props.dispatch(updateTime(songTime - 5))
                 }/>
 
                 {props.media.paused ? playBtn : pauseBtn}
 
-                <MediaControlBtn name='fast-forward' handleMediaBtnClick={() =>
+                <MediaControlBtn name='fast-forward' isDark={btnTheme === 'dark'} handleMediaBtnClick={() =>
                     props.dispatch(updateTime(songTime + 5))
                 }/>
 
