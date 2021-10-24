@@ -28,7 +28,7 @@ export const uploadSongs = (props, updateUrlsToCleanUp) => {
 
 function getID3Tags(event, song, idForSong, songUrl) {
     const audioDuration = event.target.duration
-    const songTitleFallback = song.name.split('.mp3')[0]
+    const songTitleFallback = song.name.split('.')[0]
 
     const jsmediatags = require('jsmediatags')
     new jsmediatags.Reader(song)
