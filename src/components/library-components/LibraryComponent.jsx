@@ -15,7 +15,7 @@ const LibraryComponent = props => {
     // Keeps track of what directory is open
     const [ currentDirectory, setCurrentDirectory ] = useState(directories.songs)
     // This is used for playlist directory
-    // const [ customPlaylistEntries, setCustomPlaylistEntries ] = useState(undefined)
+    const [ customPlaylistEntries, setCustomPlaylistEntries ] = useState(undefined)
     const songs = useSelector(state => state['library'].songs)
     const playlists = useSelector(state => state['library'].playlists)
     const musicLibrary = new Map([
@@ -23,16 +23,20 @@ const LibraryComponent = props => {
         ['playlists', playlists]
     ])
 
-    const getEntries = entries => entries.map((entry, index) => {
-        console.log('entry', entry)
+    const getEntries = entries => entries.map(entry => {
         if (currentDirectory.name === 'playlists') {
-            return (
-                <PlaylistDirectoryEntry
-                    key={entry.id}
-                    playlist={entry}
-                    dispatch={props.dispatch}
-                />
-            )
+            if (customPlaylistEntries) {
+                return customPlaylistEntries
+            } else {
+                return (
+                    <PlaylistDirectoryEntry
+                        key={entry.id}
+                        playlist={entry}
+                        setCustomPlaylistEntries={setCustomPlaylistEntries}
+                        dispatch={props.dispatch}
+                    />
+                )
+            }
         } else {
             return (
                 <SongDirectoryEntry
@@ -47,14 +51,18 @@ const LibraryComponent = props => {
     return (
         <section className='library overlay-component'>
             <ul className='unstyled-ul directory-names'>
-                <Directories currentDirectory={currentDirectory} setCurrentDirectory={setCurrentDirectory} />
+                <Directories
+                    currentDirectory={currentDirectory}
+                    setCurrentDirectory={setCurrentDirectory}
+                    setCustomPlaylistEntries={setCustomPlaylistEntries}
+                />
             </ul>
 
 
             <CurrentDirectory
                 name={currentDirectory.name}
                 getEntries={getEntries(musicLibrary.get(currentDirectory.name))}
-                addEntryText={currentDirectory.addEntryText}
+                addEntryText={customPlaylistEntries ? 'Add Song to Playlist' : currentDirectory.addEntryText}
                 handleAddEntryClick={currentDirectory.handleAddEntryClick}
                 hasInputComponent={currentDirectory.hasInputComponent}
              />

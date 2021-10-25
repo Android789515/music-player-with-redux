@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 
+import store from '../../store'
 import { addPlaylist } from '../../reducers/librarySlice'
 
 const CreatePlaylistModal = props => {
@@ -8,24 +9,31 @@ const CreatePlaylistModal = props => {
     const hideModal = () => {
         const thisComponent = document.querySelector('.create-playlist-modal')
         thisComponent.classList.add('hidden')
+
+        updateModalText(() =>'')
     }
     const closeModalWhenEscPressed = event => {
         if (event.key === 'Escape') {
             hideModal()
-            document.body.removeEventListener('keydown', closeModalWhenEscPressed)
+            // Making sure this runs after the modal is hidden
+            setTimeout(() => {
+                document.body.removeEventListener('keydown', closeModalWhenEscPressed)
+            }, 1000)
         }
     }
 
     const submit = event => {
+        const playlists = store.getState().library.playlists
+
         if (event.key === 'Enter') {
             props.dispatch(addPlaylist({
-                id: 0,
+                id: playlists.length,
                 name: modalText,
                 songs: []
             }))
             hideModal()
         }
-        closeModalWhenEscPressed()
+        closeModalWhenEscPressed(event)
     }
 
     useEffect(() => document.body.addEventListener('keydown', closeModalWhenEscPressed), [])

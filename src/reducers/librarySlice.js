@@ -8,6 +8,7 @@ export const librarySlice = createSlice({
         // first items are an obj of id and values
         // and second are arrays of songs
         playlists: [],
+        currentPlaylist: undefined,
         queuedSong: {
             id: undefined,
             src: undefined,
