@@ -20,18 +20,18 @@ export const directories = {
         },
         hasInputComponent: false
     },
-    // playlistOpen: {
-    //     name: 'open-playlist',
-    //     addEntryText: 'Add Song to Playlist',
-    //     handleAddEntryClick: function() {
-    //
-    //     },
-    //     hasInputComponent: true
-    // }
+    playlistOpen: {
+        name: 'open-playlist',
+        addEntryText: 'Add Song to Playlist',
+        handleAddEntryClick: function() {
+
+        },
+        hasInputComponent: true
+    }
 }
 
 const Directories = props => {
-    const directoryNames = Object.keys(directories)
+    const directoryNames = Object.keys(directories).filter(directory => directory !== 'playlistOpen')
     return (
         directoryNames.map((directoryName, index) => {
             const modifierClass = directoryName === props.currentDirectory.name ?

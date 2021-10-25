@@ -8,7 +8,7 @@ export const librarySlice = createSlice({
         // first items are an obj of id and values
         // and second are arrays of songs
         playlists: [],
-        currentPlaylist: undefined,
+        openedPlaylist: undefined,
         queuedSong: {
             id: undefined,
             src: undefined,
@@ -28,7 +28,7 @@ export const librarySlice = createSlice({
                     return state
 
                 case 'playlist':
-                    const playlistId = action.payload.playListId
+                    const playlistId = action.payload.id
 
                     const updatedPlaylists = state.playlists.map(playlist => {
                         const playlistInfo = playlist[0]
@@ -47,7 +47,7 @@ export const librarySlice = createSlice({
                     return {...state, songs: state.songs.filter(song => song.id !== action.payload.song.id)}
 
                 case 'playlist':
-                    const playlistId = action.payload.playListId
+                    const playlistId = action.payload.id
 
                     const updatedPlaylists = state.playlists.filter(playlist => {
                         const playlistInfo = playlist[0]
@@ -62,12 +62,16 @@ export const librarySlice = createSlice({
             }
         },
 
+        queueSong: (state, action) => {
+            return {...state, queuedSong: {...action.payload}}
+        },
+
         addPlaylist: (state, action) => {
             return {...state, playlists: [...state.playlists, action.payload]}
         },
 
-        queueSong: (state, action) => {
-            return {...state, queuedSong: {...action.payload}}
+        openPlaylist: (state, action) => {
+            return {...state, openedPlaylist: action.payload}
         }
     }
 })

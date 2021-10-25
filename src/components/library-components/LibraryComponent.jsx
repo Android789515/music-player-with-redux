@@ -8,7 +8,6 @@ import { directories } from './Directories'
 import Directories from './Directories'
 import CurrentDirectory from './CurrentDirectory'
 import SongDirectoryEntry from './SongDirectoryEntry'
-import CreatePlaylistModal from './CreatePlaylistModal'
 import PlaylistDirectoryEntry from './PlaylistDirectoryEntry'
 
 const LibraryComponent = props => {
@@ -16,8 +15,9 @@ const LibraryComponent = props => {
     const [ currentDirectory, setCurrentDirectory ] = useState(directories.songs)
     // This is used for playlist directory
     const [ customPlaylistEntries, setCustomPlaylistEntries ] = useState(undefined)
-    const songs = useSelector(state => state['library'].songs)
-    const playlists = useSelector(state => state['library'].playlists)
+    const { songs, playlists, openedPlaylist } = useSelector(state => state['library'])
+    // const songs = useSelector(state => state['library'].songs)
+    // const playlists = useSelector(state => state['library'].playlists)
     const musicLibrary = new Map([
         ['songs', songs],
         ['playlists', playlists]
