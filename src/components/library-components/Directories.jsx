@@ -1,4 +1,5 @@
 import React from 'react'
+import {setOpenedPlaylist} from '../../reducers/librarySlice'
 
 // Make it configurable in the app
 export const directories = {
@@ -20,18 +21,19 @@ export const directories = {
         },
         hasInputComponent: false
     },
-    playlistOpen: {
-        name: 'open-playlist',
+    openedPlaylist: {
+        name: 'openedPlaylist',
         addEntryText: 'Add Song to Playlist',
         handleAddEntryClick: function() {
-
+            const uploadSongInput = document.getElementById('upload-song')
+            uploadSongInput.click()
         },
         hasInputComponent: true
     }
 }
 
 const Directories = props => {
-    const directoryNames = Object.keys(directories).filter(directory => directory !== 'playlistOpen')
+    const directoryNames = Object.keys(directories).filter(directory => directory !== 'openedPlaylist')
     return (
         directoryNames.map((directoryName, index) => {
             const modifierClass = directoryName === props.currentDirectory.name ?
@@ -40,7 +42,7 @@ const Directories = props => {
 
             return (
                 <li key={index} onClick={() => {
-                    props.setCustomPlaylistEntries(() => undefined)
+                    props.dispatch(setOpenedPlaylist(undefined))
                     props.setCurrentDirectory(() => directories[directoryName])
                 }}
                     className={`btn directory-name ${modifierClass}`.trim()}>

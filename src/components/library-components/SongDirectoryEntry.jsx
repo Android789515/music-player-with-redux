@@ -5,7 +5,7 @@ import { play, stop } from '../../reducers/mediaSlice'
 import { getFormattedSongTime } from '../../TimeFormatter'
 import DirectoryEntry from './DirectoryEntry'
 import SliderComponent from '../media-components/SliderComponent'
-import {queueSong} from '../../reducers/librarySlice'
+import { queueSong } from '../../reducers/librarySlice'
 
 const SongDirectoryEntry = props => {
     const media = useSelector(state => state['media'])

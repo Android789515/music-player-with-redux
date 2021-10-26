@@ -4,7 +4,7 @@ import { addSong } from '../../reducers/librarySlice'
 
 export const openUploadScreen = () => document.getElementById('upload-song').click()
 
-export const uploadSongs = (props, updateUrlsToCleanUp) => {
+export const uploadSongs = (uploadTo, props, updateUrlsToCleanUp) => {
     const uploader = document.getElementById('upload-song')
     const uploadedData = [...uploader.files]
 
@@ -18,7 +18,7 @@ export const uploadSongs = (props, updateUrlsToCleanUp) => {
             const songs = store.getState().library.songs
             index = index + songs.length
 
-            getID3Tags(event, song, index, songUrl)
+            getID3Tags(uploadTo, event, song, index, songUrl)
         }
         audio.load()
         audio.remove()
@@ -26,7 +26,7 @@ export const uploadSongs = (props, updateUrlsToCleanUp) => {
     })
 }
 
-function getID3Tags(event, song, idForSong, songUrl) {
+function getID3Tags(uploadTo, event, song, idForSong, songUrl) {
     const audioDuration = event.target.duration
     const songTitleFallback = song.name.split('.')[0]
 
@@ -43,7 +43,7 @@ function getID3Tags(event, song, idForSong, songUrl) {
                     src: songUrl,
                     duration: audioDuration
                 }
-                store.dispatch(addSong({ to: 'songs', song: formattedSong }))
+                store.dispatch(addSong({ to: uploadTo, song: formattedSong }))
             },
             onError: error => {
                 console.error(error)

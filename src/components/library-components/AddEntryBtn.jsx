@@ -11,9 +11,13 @@ const AddEntryBtn = props => {
             <button className='btn'>+</button>
             <p className={`add-entry-text`}>{props.btnText}</p>
 
-            {props.hasInputComponent && <SongUploader dispatch={props.dispatch} />}
+            {props.hasInputComponent && <SongUploader uploadTo={props.uploadTo} dispatch={props.dispatch} />}
         </div>
     )
+}
+
+AddEntryBtn.defaultProps = {
+    uploadTo: 'songs'
 }
 
 export default AddEntryBtn

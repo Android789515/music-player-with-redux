@@ -24,21 +24,26 @@ export const librarySlice = createSlice({
                 case 'songs':
                     return {...state, songs: [...state.songs, action.payload.song]}
 
-                default:
-                    return state
-
-                case 'playlist':
-                    const playlistId = action.payload.id
-
-                    const updatedPlaylists = state.playlists.map(playlist => {
-                        const playlistInfo = playlist[0]
-                        if (playlistInfo.id === playlistId) {
-                            return [...playlist[1], action.payload.song]
+                case 'openedPlaylist':
+                    const updatedPlaylists = [...state.playlists].map(playlist => {
+                        if (playlist.id === state.openedPlaylist.id) {
+                            return {
+                                ...playlist,
+                                songs: [...playlist.songs, action.payload.song]
+                            }
                         }
                         return playlist
                     })
 
-                    return {...state, playlists: updatedPlaylists}
+                    return {
+                        ...state,
+                        songs: [...state.songs, action.payload.song],
+                        playlists: updatedPlaylists,
+                        openedPlaylist: updatedPlaylists.find(playlist => playlist.id === state.openedPlaylist.id)
+                    }
+
+                default:
+                    return state
             }
         },
         removeSong: (state, action) => {
@@ -70,13 +75,13 @@ export const librarySlice = createSlice({
             return {...state, playlists: [...state.playlists, action.payload]}
         },
 
-        openPlaylist: (state, action) => {
+        setOpenedPlaylist: (state, action) => {
             return {...state, openedPlaylist: action.payload}
         }
     }
 })
 
-export const { addSong, removeSong, queueSong, addPlaylist } = librarySlice.actions
+export const { addSong, removeSong, queueSong, addPlaylist, setOpenedPlaylist } = librarySlice.actions
 
 export default librarySlice.reducer
 

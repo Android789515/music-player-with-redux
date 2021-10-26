@@ -6,6 +6,7 @@ import { openUploadScreen, uploadSongs } from './SongUploaderHelper'
 const SongUploader = props => {
     const [ urlsToCleanUp, updateUrlsToCleanUp ] = useState([])
 
+
     useEffect(() => {
         return () => {
             urlsToCleanUp.forEach(url => {
@@ -22,7 +23,7 @@ const SongUploader = props => {
             type='file'
             multiple
             onClick={openUploadScreen}
-            onChange={() => uploadSongs(props, updateUrlsToCleanUp)}
+            onChange={() => uploadSongs(props.uploadTo, props, updateUrlsToCleanUp)}
         />
     )
 }
