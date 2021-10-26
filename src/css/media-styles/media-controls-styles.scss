@@ -3,13 +3,14 @@
 // This component is in a grid: media-player-styles.scss, .media-component
 
 .media-controls {
+  width: 90%;
 }
 
 .media-control-btns {
   display: grid;
   // Empty 1fr - to even things out
   // On large screens the empty space will not be included
-  grid-template-columns: 1fr repeat(4, 1fr);
+  grid-template-columns: 1fr repeat(6, 1fr);
   grid-column-gap: .5em;
   justify-content: center;
   // Padding instead of margin so the background will block
@@ -31,22 +32,30 @@
 }
 
 // On large screens all buttons shift left
-.rewind-btn {
+.shuffle-btn {
   grid-column: 2;
+}
+
+.rewind-btn {
+  grid-column: 3;
 }
 
 .play-btn,
 .pause-btn {
-  grid-column: 3;
+  grid-column: 4;
 }
 
 .fast-forward-btn {
-  grid-column: 4;
+  grid-column: 5;
+}
+
+.loop-btn {
+  grid-column: 6;
 }
 
 .volume-bar-area,
 .vol-control-btn {
-  grid-column: 5;
+  grid-column: 7;
 }
 
 .volume-bar-area {
@@ -76,7 +85,7 @@
   }
 
   .media-control-btns {
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(6, 1fr);
 
     max-width: max-content;
 
@@ -84,21 +93,29 @@
     margin-left: 2%;
   }
 
-  .rewind-btn {
+  .shuffle-btn {
     grid-column: 1;
+  }
+
+  .rewind-btn {
+    grid-column: 2;
   }
 
   .play-btn,
   .pause-btn {
-    grid-column: 2;
+    grid-column: 3;
   }
 
   .fast-forward-btn {
-    grid-column: 3;
+    grid-column: 4;
+  }
+
+  .loop-btn {
+    grid-column: 5;
   }
 
   .volume-bar-area,
   .vol-control-btn {
-    grid-column: 4;
+    grid-column: 6;
   }
 }

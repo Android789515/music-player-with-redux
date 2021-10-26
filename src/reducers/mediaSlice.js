@@ -5,6 +5,8 @@ export const mediaSlice = createSlice({
         volume: .5,
         muted: false,
         paused: true,
+        loop: false,
+        shuffle: false,
         time: 0,
         maxTime: undefined
     },
@@ -17,9 +19,15 @@ export const mediaSlice = createSlice({
             return {...state, paused: true}
         },
         play: state => {
-            return {...state, paused: false}
+            return {...state, paused: false, time: state.time === state.maxTime ? 0 : state.time}
         },
 
+        toggleLoop: state => {
+            return {...state, loop: !state.loop}
+        },
+        toggleShuffle: state => {
+            return {...state, shuffle: !state.shuffle}
+        },
         toggleMute: state => {
             return {...state, muted: !state.muted}
         },
@@ -40,6 +48,16 @@ export const mediaSlice = createSlice({
     }
 })
 
-export const { stop, pause, play, setVolume, toggleMute, updateTime, setMaxTime } = mediaSlice.actions
+export const {
+    stop,
+    pause,
+    play,
+    setVolume,
+    toggleLoop,
+    toggleShuffle,
+    toggleMute,
+    updateTime,
+    setMaxTime
+} = mediaSlice.actions
 
 export default mediaSlice.reducer

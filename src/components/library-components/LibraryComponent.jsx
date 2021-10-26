@@ -7,15 +7,13 @@ import { directories } from './Directories'
 
 import Directories from './Directories'
 import CurrentDirectory from './CurrentDirectory'
-import SongDirectoryEntry from './SongDirectoryEntry'
-import PlaylistDirectoryEntry from './PlaylistDirectoryEntry'
 import DirectoryEntries from './DirectoryEntries'
 
 const LibraryComponent = props => {
     // Keeps track of what directory is open
     const [ currentDirectory, setCurrentDirectory ] = useState(directories.songs)
     const library = useSelector(state => state['library'])
-    const { songs, playlists, openedPlaylist } = library
+    const { openedPlaylist } = library
 
     return (
         <section className='library overlay-component'>

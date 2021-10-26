@@ -1,59 +1,18 @@
-import React, { useEffect } from 'react'
+import React, {useEffect, useState} from 'react'
 
 import '../../css/media-styles/media-controls-styles.scss'
 
-import { pause, play, toggleMute, updateTime } from '../../reducers/mediaSlice'
+import {pause, play, toggleLoop, toggleMute, toggleShuffle, updateTime} from '../../reducers/mediaSlice'
 
 import MediaControlBtn from './MediaControlBtn'
 import BarComponent from './BarComponent'
+import VolumeBtn from './VolumeBtn'
 
 function MediaControls(props) {
-    const btnTheme = 'dark'
+    const [ btnTheme, setBtnTheme ] = useState('dark')
     const pauseBtn = <MediaControlBtn name='pause' isDark={btnTheme === 'dark'} handleMediaBtnClick={() => props.dispatch(pause())}/>
     const playBtn = <MediaControlBtn name='play' isDark={btnTheme === 'dark'} handleMediaBtnClick={() => props.dispatch(play())}/>
 
-    // Volume button
-    const renderVolumeBtn = media => {
-        const lowVolume = media.volume > 0 && media.volume <= .3
-        const medVolume = media.volume > .3 && media.volume <= .6
-        const highVolume = media.volume > .6
-
-        let btnName
-        if (media.muted || media.volume === 0) {
-            btnName = 'muted'
-        } else if (lowVolume) {
-            btnName = 'low-vol'
-        } else if (medVolume) {
-            btnName = 'med-vol'
-        } else if (highVolume) {
-            btnName = 'high-vol'
-        }
-
-        return (
-            <>
-                <div className='volume-bar-area'>
-                    <BarComponent
-                        orientation='vertical'
-                        name='volume'
-                        modifiers={['fading-component', 'invisible']}
-                        dispatch={props.dispatch}
-                        media={props.media}
-                        alsoDoOnClick={() => {
-                            if (props.media.muted) {
-                                props.dispatch(toggleMute())
-                            }
-                        }}
-                    />
-                </div>
-                <MediaControlBtn
-                    name={btnName}
-                    isDark={btnTheme === 'dark'}
-                    unique={true}
-                    handleMediaBtnClick={() => props.dispatch(toggleMute())}
-                />
-            </>
-        )
-    }
     const toggleVolumeBarHidden = event => {
         if (event.target.classList === undefined) {
             return
@@ -78,24 +37,37 @@ function MediaControls(props) {
     }, [])
 
     const songTime = props.media.time
+    const rewind = () => props.dispatch(updateTime(songTime - 5))
+    const fastForward = () => props.dispatch(updateTime(songTime + 5))
 
     return (
         <div className='media-controls'>
             <div className='media-control-btns'>
-                                                                            {/* Give name to this */}
-                <MediaControlBtn name='rewind' isDark={btnTheme === 'dark'} handleMediaBtnClick={() =>
-                    props.dispatch(updateTime(songTime - 5))
-                }/>
+
+                <MediaControlBtn name='shuffle' isDark={btnTheme === 'dark'} handleMediaBtnClick={
+                    () => props.dispatch(toggleShuffle())
+                } />
+
+                <MediaControlBtn
+                    name='rewind'
+                    isDark={btnTheme === 'dark'}
+                    handleMediaBtnClick={rewind}
+                />
 
                 {/* Turn into component */}
                 {props.media.paused ? playBtn : pauseBtn}
 
-                <MediaControlBtn name='fast-forward' isDark={btnTheme === 'dark'} handleMediaBtnClick={() =>
-                    props.dispatch(updateTime(songTime + 5))
-                }/>
+                <MediaControlBtn
+                    name='fast-forward'
+                    isDark={btnTheme === 'dark'}
+                    handleMediaBtnClick={fastForward}
+                />
 
-                {/* Turn into component */}
-                {renderVolumeBtn(props.media)}
+                <MediaControlBtn name='loop' isDark={btnTheme === 'dark'} handleMediaBtnClick={
+                    () => props.dispatch(toggleLoop())
+                } />
+
+                <VolumeBtn media={props.media} btnTheme={btnTheme} dispatch={props.dispatch} />
             </div>
 
 

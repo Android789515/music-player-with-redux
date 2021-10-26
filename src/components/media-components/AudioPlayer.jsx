@@ -1,6 +1,8 @@
 import React, { useEffect } from 'react'
 
-import { pause, updateTime, setMaxTime } from '../../reducers/mediaSlice'
+import {pause, updateTime, setMaxTime, play} from '../../reducers/mediaSlice'
+import {queueSong} from '../../reducers/librarySlice'
+import {useSelector} from 'react-redux'
 
 function AudioPlayer(props) {
     const loadSong = audio => {
@@ -27,6 +29,12 @@ function AudioPlayer(props) {
             }
             audio.onended = () => {
                 props.dispatch(pause())
+
+                if (props.media.shuffle) {
+
+                } else if (props.media.loop) {
+                    props.dispatch(play())
+                }
             }
         }
     }
@@ -35,7 +43,7 @@ function AudioPlayer(props) {
         const audio = document.getElementById('audio')
         loadSong(audio, props.media.volume)
 
-    }, [props.media.paused, props.media.time, props.media.volume])
+    }, [props.media.paused, props.media.time, props.media.volume, props.media.loop, props.media.shuffle])
 
     return <audio id='audio' muted={props.media.muted} src={props.queuedSong.src} />
 }
