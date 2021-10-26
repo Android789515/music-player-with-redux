@@ -3,9 +3,9 @@ import { useSelector } from 'react-redux'
 
 import '../../css/library-styles/music-library-styles.scss'
 
-import { directories } from './Directories'
+import { directories } from './DirectoryList'
 
-import Directories from './Directories'
+import DirectoryList from './DirectoryList'
 import CurrentDirectory from './CurrentDirectory'
 import DirectoryEntries from './DirectoryEntries'
 
@@ -18,7 +18,7 @@ const LibraryComponent = props => {
     return (
         <section className='library overlay-component'>
             <ul className='unstyled-ul directory-names'>
-                <Directories
+                <DirectoryList
                     currentDirectory={currentDirectory}
                     setCurrentDirectory={setCurrentDirectory}
                     dispatch={props.dispatch}

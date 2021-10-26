@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { directories } from './Directories'
+import { directories } from './DirectoryList'
 import { setOpenedPlaylist } from '../../reducers/librarySlice'
 
 import DirectoryEntry from './DirectoryEntry'

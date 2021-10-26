@@ -1,51 +1,70 @@
 import React, { useEffect } from 'react'
 
-import {pause, updateTime, setMaxTime, play} from '../../reducers/mediaSlice'
-import {queueSong} from '../../reducers/librarySlice'
-import {useSelector} from 'react-redux'
+import { pause, play, updateTime, setMaxTime } from '../../reducers/mediaSlice'
 
 function AudioPlayer(props) {
-    const loadSong = audio => {
-        if (audio.src) {
-            audio.volume = props.media.volume
-            props.dispatch(setMaxTime(props.queuedSong.duration))
 
-            if (props.media.paused) {
-                audio.pause()
-            } else {
-                audio.play()
-            }
+    const loadAudio = audio => {
+        audio.volume = props.media.volume
+        props.dispatch(setMaxTime(props.queuedSong.duration))
 
-            audio.ontimeupdate = event => {
-                const audioElement = event.target
-                const timeFastForwarded = props.media.time > audioElement.currentTime
-                const timeRewound = props.media.time + 1 < audioElement.currentTime
+        audio.play()
+    }
 
-                if (timeFastForwarded || timeRewound) {
-                    audioElement.currentTime = props.media.time
-                } else {
-                    props.dispatch(updateTime(audioElement.currentTime))
-                }
-            }
-            audio.onended = () => {
-                props.dispatch(pause())
+    const determineSongTime = event => {
+        const audio = event.target
+        const timeFastForwarded = props.media.time > audio.currentTime
+        const timeRewound = props.media.time + 1 < audio.currentTime
 
-                if (props.media.shuffle) {
-
-                } else if (props.media.loop) {
-                    props.dispatch(play())
-                }
-            }
+        if (timeFastForwarded || timeRewound) {
+            audio.currentTime = props.media.time
+        } else {
+            props.dispatch(updateTime(audio.currentTime))
         }
     }
 
-    useEffect(() => {
+    const handleAudioEnd = () => {
+        props.dispatch(pause())
+    }
+
+    useEffect( () => {
         const audio = document.getElementById('audio')
-        loadSong(audio, props.media.volume)
+        const shouldLoadAudio = props.queuedSong.src !== undefined
+        shouldLoadAudio && loadAudio(audio)
+    }, [props.queuedSong.src])
 
-    }, [props.media.paused, props.media.time, props.media.volume, props.media.loop, props.media.shuffle])
+    useEffect( () => {
+        const audio = document.getElementById('audio')
+        if (props.media.paused) {
+            audio.pause()
+        } else {
+            audio.play()
+        }
+    }, [props.media.paused])
 
-    return <audio id='audio' muted={props.media.muted} src={props.queuedSong.src} />
+    useEffect( () => {
+        const audio = document.getElementById('audio')
+        audio.volume = props.media.volume
+    }, [props.media.volume])
+
+
+    // Loop
+    // useEffect( () => {
+    //
+    // }, [])
+
+    // Shuffle
+    // useEffect( () => {
+    //
+    // }, [])
+
+    return <audio
+        id='audio'
+        muted={props.media.muted}
+        src={props.queuedSong.src}
+        onTimeUpdate={determineSongTime}
+        onEnded={handleAudioEnd}
+    />
 }
 
 export default AudioPlayer

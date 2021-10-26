@@ -32,7 +32,7 @@ export const directories = {
     }
 }
 
-const Directories = props => {
+const DirectoryList = props => {
     const directoryNames = Object.keys(directories).filter(directory => directory !== 'openedPlaylist')
     return (
         directoryNames.map((directoryName, index) => {
@@ -53,4 +53,4 @@ const Directories = props => {
     )
 }
 
-export default Directories
+export default DirectoryList
