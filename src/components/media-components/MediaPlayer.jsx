@@ -17,11 +17,15 @@ function MediaPlayer() {
     const isSongQueued = queuedSong.src !== undefined
 
     return (
-        <section className='media-component'>
+        <section className='media-player'>
             <AudioPlayer queuedSong={queuedSong} media={media} dispatch={dispatch}/>
 
             <section className='media-content'>
-                <img className={`cover-art ${isSongQueued ? '' : 'hidden'}`.trim()} src={fallBackImg} alt="" />
+                <img
+                    className={`cover-art ${isSongQueued ? '' : 'hidden'}`.trim()}
+                    src={fallBackImg}
+                    alt='Song cover art'
+                />
 
                 <SongInfoComponent queuedSong={queuedSong} media={media}/>
             </section>

@@ -1,21 +1,16 @@
 import React from 'react'
 
 function MediaControlBtn(props) {
-    const { name, unique, isDark, handleMediaBtnClick } = props
-    const buttonTheme = isDark ? 'dark' : 'light'
+    const { name, isVolumeBtn, btnTheme, handleMediaBtnClick } = props
 
     let className
     let src
-    if (unique) {
-        const isVolBtn = 'muted' || name.split('-').at(-1) === 'vol'
-
-        if (isVolBtn) {
-            className = `btn media-control-btn vol-control-btn ${name}-btn ${buttonTheme}-btn`
-            src = require(`../../img/${buttonTheme}-btns/vol-btns/${name}-btn.svg`).default
-        }
+    if (isVolumeBtn) {
+        className = `btn media-control-btn vol-control-btn ${name}-btn ${btnTheme}-btn`
+        src = require(`../../img/${btnTheme}-btns/vol-btns/${name}-btn.svg`).default
     } else {
-        className = `btn media-control-btn ${name}-btn ${isDark ? 'dark-btn' : 'light-btn'}`
-        src = require(`../../img/${buttonTheme}-btns/media-btns/${name}-btn.svg`).default
+        className = `btn media-control-btn ${name}-btn ${btnTheme}-btn`
+        src = require(`../../img/${btnTheme}-btns/media-btns/${name}-btn.svg`).default
     }
 
     return (
@@ -30,7 +25,7 @@ function MediaControlBtn(props) {
 }
 
 MediaControlBtn.defaultProps = {
-    isDark: true
+    btnTheme: 'dark'
 }
 
 export default MediaControlBtn

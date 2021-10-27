@@ -2,14 +2,14 @@
 
 // This component is in a grid: main-styles.scss, .main-layout
 
-.media-component,
+.media-player,
 .media-content {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.media-component {
+.media-player {
   //color: #fff;
 
   margin-bottom: 1em;
@@ -70,7 +70,7 @@
 
 @media (min-width: $first-media-breakpoint) {
 
-  .media-component {
+  .media-player {
     justify-content: space-between;
     align-items: flex-start;
 

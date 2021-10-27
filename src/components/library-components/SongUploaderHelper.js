@@ -2,11 +2,11 @@ import store from '../../store'
 
 import { addSong } from '../../reducers/librarySlice'
 
-export const openUploadScreen = () => document.getElementById('upload-song').click()
+// export const openUploadScreen = () => document.getElementById('upload-song').click()
 
 export const uploadSongs = (uploadTo, props, updateUrlsToCleanUp) => {
     const uploader = document.getElementById('upload-song')
-    const uploadedData = [...uploader.files]
+    const uploadedData = [ ...uploader.files ]
 
     uploadedData.forEach((song, index) => {
         const songUrl = URL.createObjectURL(song)
@@ -22,7 +22,7 @@ export const uploadSongs = (uploadTo, props, updateUrlsToCleanUp) => {
         }
         audio.load()
         audio.remove()
-        updateUrlsToCleanUp(originalUrls => [...originalUrls, songUrl])
+        updateUrlsToCleanUp(originalUrls => [ ...originalUrls, songUrl ])
     })
 }
 
@@ -32,7 +32,7 @@ function getID3Tags(uploadTo, event, song, idForSong, songUrl) {
 
     const jsmediatags = require('jsmediatags')
     new jsmediatags.Reader(song)
-        .setTagsToRead(['title', 'artist'])
+        .setTagsToRead([ 'title', 'artist' ])
         .read({
             onSuccess: metadata => {
                 const tags = metadata.tags
@@ -58,6 +58,19 @@ function getID3Tags(uploadTo, event, song, idForSong, songUrl) {
                 store.dispatch(addSong({ to: 'songs', song: formattedSong }))
             }
         })
+}
+
+const uploadSong = (songData, uploadTo, tags = {}) => {
+    const songTitleFallback = songData.name.split('.')[0]
+    const formattedSong = {
+        id: songData.id,
+        title: tags.title || songTitleFallback,
+        artist: tags.artist || 'Unknown Artist',
+        src: songData.url,
+        duration: songData.duration
+    }
+
+    store.dispatch(addSong({ to: uploadTo, song: formattedSong }))
 }
 
 function getAllID3Tags(song) {

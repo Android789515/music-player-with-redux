@@ -6,14 +6,13 @@ import { openUploadScreen, uploadSongs } from './SongUploaderHelper'
 const SongUploader = props => {
     const [ urlsToCleanUp, updateUrlsToCleanUp ] = useState([])
 
-
+    // Might want to change this for when data will eventually be saved
     useEffect(() => {
         return () => {
             urlsToCleanUp.forEach(url => {
                 URL.revokeObjectURL(url)
             })
         }
-        // eslint-disable-next-line
     }, [])
 
     return (
@@ -22,7 +21,7 @@ const SongUploader = props => {
             style={{ display: 'none' }}
             type='file'
             multiple
-            onClick={openUploadScreen}
+            // onClick={openUploadScreen}
             onChange={() => uploadSongs(props.uploadTo, props, updateUrlsToCleanUp)}
         />
     )

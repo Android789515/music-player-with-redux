@@ -1,5 +1,6 @@
 import React from 'react'
-import {setOpenedPlaylist} from '../../reducers/librarySlice'
+
+import { setOpenedPlaylist } from '../../reducers/librarySlice'
 
 // Make it configurable in the app
 export const directories = {
@@ -18,6 +19,8 @@ export const directories = {
         handleAddEntryClick: function() {
             const createPlaylistModal = document.querySelector('.create-playlist-modal')
             createPlaylistModal.classList.remove('hidden')
+            const modalInput = document.querySelector('#create-playlist-input')
+            modalInput.focus()
         },
         hasInputComponent: false
     },
@@ -33,9 +36,10 @@ export const directories = {
 }
 
 const DirectoryList = props => {
-    const directoryNames = Object.keys(directories).filter(directory => directory !== 'openedPlaylist')
+    // Don't render the directory name: openedPlaylist
+    const directoryNamesToRender = Object.keys(directories).filter(directory => directory !== 'openedPlaylist')
     return (
-        directoryNames.map((directoryName, index) => {
+        directoryNamesToRender.map((directoryName, index) => {
             const modifierClass = directoryName === props.currentDirectory.name ?
                 'active-directory' : ''
             const capitalizedDirectoryName = directoryName.charAt(0).toUpperCase() + directoryName.slice(1)

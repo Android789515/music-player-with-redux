@@ -1,18 +1,6 @@
 import React, { useState } from 'react'
 
-const LibraryBtn = () => {
-    const [libraryOpen, setLibraryOpen] = useState(false)
-
-    return (
-        <button
-            className={`btn ${libraryOpen ? 'close' : 'open'}-library-btn library-panel-btn`}
-            onClick={() => toggleShowLibrary(setLibraryOpen)}>
-            {libraryOpen ? '⛌' : '☰'}
-        </button>
-    )
-}
-
-function toggleShowLibrary(setLibraryOpen) {
+const showOrHideLibrary = setLibraryOpen => {
     setLibraryOpen(prevOpenState => {
         const newOpenState = !prevOpenState
         const willLibraryBeOpen = newOpenState === true
@@ -26,6 +14,18 @@ function toggleShowLibrary(setLibraryOpen) {
 
         return newOpenState
     })
+}
+
+const LibraryBtn = () => {
+    const [ isLibraryOpen, setIsLibraryOpen ] = useState(false)
+
+    return (
+        <button
+            className={`btn ${isLibraryOpen ? 'close' : 'open'}-library-btn library-panel-btn`}
+            onClick={() => showOrHideLibrary(setIsLibraryOpen)}>
+            {isLibraryOpen ? '⛌' : '☰'}
+        </button>
+    )
 }
 
 export default LibraryBtn

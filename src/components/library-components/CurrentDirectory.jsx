@@ -1,6 +1,7 @@
 import React from 'react'
 
-import Directory from './Directory'
+import '../../css/library-styles/library-directory-styles.scss'
+
 import AddEntryBtn from './AddEntryBtn'
 
 const CurrentDirectory = props => {

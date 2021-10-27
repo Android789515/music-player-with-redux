@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 
-import { pause, play, updateTime, setMaxTime } from '../../reducers/mediaSlice'
+import { pause, updateTime, setMaxTime } from '../../reducers/mediaSlice'
 
 function AudioPlayer(props) {
 

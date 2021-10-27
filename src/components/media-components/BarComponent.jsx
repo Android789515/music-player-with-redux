@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, {useEffect, useState} from 'react'
 
 import '../../css/media-styles/bar-styles.scss'
 
@@ -7,20 +7,31 @@ import { setVolume, updateTime } from '../../reducers/mediaSlice'
 import SliderComponent from './SliderComponent'
 
 function BarComponent(props) {
-    const [moveBar, toggleBarMovement] = useState(false)
-    const [mouseDownOnBar, setMouseDownOnBar] = useState(false)
+    const [ canMoveBar, toggleBarMovement ] = useState(false)
+    const [ isMouseDownOnBar, setMouseDownOnBar ] = useState(false)
 
-    const setEventTargetToBar = event => {
+    const validBars = {
+        _SONG: 'song',
+        _VOLUME: 'volume'
+    }
+
+    const getBarElementOfClickedBar = event => {
         if (!event.target.classList.contains(`${props.name}-bar`)) {
             event.target = event.target.parentElement
         }
+
+        return event.target
     }
 
     const setBarPercent = (pos, size) => {
-        if (props.orientation === 'vertical') {
-            return Math.round( (pos / size) * 10) * 10
-        } else {
-            return Math.round( (pos / size) * 100)
+        switch (props.name) {
+            case validBars._SONG:
+                return Math.round( (pos / size) * 100)
+            case validBars._VOLUME:
+                return Math.round( (pos / size) * 10) * 10
+
+            default:
+                return Math.round( (pos / size) * 100)
         }
     }
 
@@ -40,31 +51,32 @@ function BarComponent(props) {
         event.preventDefault()
         const isBarVertical = props.orientation === 'vertical'
 
-        setEventTargetToBar(event)
+        const bar = getBarElementOfClickedBar(event)
 
-        const barSize = isBarVertical ? event.target.clientHeight : event.target.clientWidth
+        const barSize = isBarVertical ? bar.clientHeight : bar.clientWidth
 
-        const posClicked = isBarVertical ? event.clientY : event.clientX
-        const relativePos = isBarVertical ?
+        // Margins screw with this so the posOfBar must be subtracted
+        // from the rawPos
+        const rawPosClickedInBar = isBarVertical ? event.clientY : event.clientX
+        const posOfBar = isBarVertical ?
             event.target.getBoundingClientRect().bottom :
             event.target.getBoundingClientRect().left
 
         // calculatedPos accurately calculates where in the actual bar was clicked
         // regardless of margin
-        const calculatedPos = isBarVertical ? relativePos - posClicked : posClicked - relativePos
+        const calculatedPos = isBarVertical ? posOfBar - rawPosClickedInBar : rawPosClickedInBar - posOfBar
 
         const percentOfBarClicked = formatBarPercent(setBarPercent(calculatedPos, barSize))
 
         let sliderVal
         switch (props.name) {
-            // Make cases constant enums
-            case 'song':
+            case validBars._SONG:
                 sliderVal = Math.floor((percentOfBarClicked / 100) * props.media.maxTime)
                 // Connect to redux
                 props.dispatch(updateTime(sliderVal))
                 break
 
-            case 'volume':
+            case validBars._VOLUME:
                 sliderVal = percentOfBarClicked / 100
                 // Connect to redux
                 props.dispatch(setVolume(sliderVal))
@@ -80,13 +92,28 @@ function BarComponent(props) {
         document.body.removeEventListener('mouseup', disableBarMovement)
     }
 
-    document.body.addEventListener('mouseup', disableBarMovement)
+    useEffect(() => {
+        document.body.addEventListener('mouseup', disableBarMovement)
+        return () => {
+            document.body.removeEventListener('mouseup', disableBarMovement)
+        }
+    }, [])
 
-    const songTime = props.media.time > 0 ?
-        (props.media.time / props.media.maxTime) * 100 : 0
+    const getSliderPercent = () => {
+        switch (props.name) {
+            case validBars._SONG:
+                const songTime = props.media.time > 0 ?
+                    (props.media.time / props.media.maxTime) * 100 : 0
+                return songTime
 
-    const sliderPercent = props.orientation === 'vertical' ?
-        props.media.volume * 100 : songTime
+            case validBars._VOLUME:
+                return props.media.volume * 100
+
+            default: // slider will default to val of 0 if undefined
+                return
+        }
+    }
+    const sliderPercent = getSliderPercent()
 
     const allComponentClasses = `bar ${props.name}-bar ${
         props.modifiers ? props.modifiers.join(' ') : ''
@@ -110,7 +137,7 @@ function BarComponent(props) {
                 disableBarMovement()
             }}
             onMouseMove={event => {
-                if (moveBar || mouseDownOnBar) {
+                if (canMoveBar || isMouseDownOnBar) {
                     handleBarDrag(event)
                 }
             }}
