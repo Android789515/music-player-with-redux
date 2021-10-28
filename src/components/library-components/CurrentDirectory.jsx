@@ -5,6 +5,7 @@ import '../../css/library-styles/library-directory-styles.scss'
 import AddEntryBtn from './AddEntryBtn'
 
 const CurrentDirectory = props => {
+
     const classFormattedName = props.name.split('').reduce((formattedName, char) => {
         return `${formattedName}${/[A-Z]/.test(char) ? '-' + char.toLowerCase() : char}`
     }, '')
