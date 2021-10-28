@@ -1,11 +1,12 @@
 import React from 'react'
+import { v4 as uuidv4 } from 'uuid'
 
 import { setOpenedPlaylist } from '../../reducers/librarySlice'
 
 // Make it configurable in the app
 export const directories = {
     songs: {
-        name: 'songs',
+        name: 'Songs',
         addEntryText: 'Upload Song',
         handleAddEntryClick: function() {
             const uploadSongInput = document.getElementById('upload-song')
@@ -14,7 +15,7 @@ export const directories = {
         hasInputComponent: true
     },
     playlists: {
-        name: 'playlists',
+        name: 'Playlists',
         addEntryText: 'Create Playlist',
         handleAddEntryClick: function() {
             const createPlaylistModal = document.querySelector('.create-playlist-modal')
@@ -36,16 +37,16 @@ export const directories = {
 }
 
 const DirectoryList = props => {
-    // Don't render the directory name: openedPlaylist
-    const directoryNamesToRender = Object.keys(directories).filter(directory => directory !== 'openedPlaylist')
+    const directoryNamesToRender = Object.keys(directories)
     return (
-        directoryNamesToRender.map((directoryName, index) => {
+        directoryNamesToRender.map(directoryName => {
             const modifierClass = directoryName === props.currentDirectory.name ?
                 'active-directory' : ''
             const capitalizedDirectoryName = directoryName.charAt(0).toUpperCase() + directoryName.slice(1)
 
+            const uniqueKey = uuidv4()
             return (
-                <li key={index} onClick={() => {
+                <li key={uniqueKey} onClick={() => {
                     props.dispatch(setOpenedPlaylist(undefined))
                     props.setCurrentDirectory(() => directories[directoryName])
                 }}

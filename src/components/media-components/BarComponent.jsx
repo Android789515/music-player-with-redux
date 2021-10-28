@@ -86,6 +86,7 @@ function BarComponent(props) {
                 break
         }
     }
+
     const disableBarMovement = () => {
         setMouseDownOnBar(() => false)
         toggleBarMovement(() => false)
