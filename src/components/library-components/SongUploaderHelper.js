@@ -1,84 +1,61 @@
 import store from '../../store'
+import jsmediatags from 'jsmediatags'
+import { v4 as uuidv4 } from 'uuid'
 
 import { addSong } from '../../reducers/librarySlice'
 
-// export const openUploadScreen = () => document.getElementById('upload-song').click()
-
-export const uploadSongs = (uploadTo, props, updateUrlsToCleanUp) => {
-    const uploader = document.getElementById('upload-song')
-    const uploadedData = [ ...uploader.files ]
-
-    uploadedData.forEach((song, index) => {
-        const songUrl = URL.createObjectURL(song)
-        const audio = document.createElement('audio')
-        audio.src = songUrl
-
-        audio.onloadeddata = event => {
-            // Start the index after the last song entry
-            const songs = store.getState().library.songs
-            index = index + songs.length
-
-            getID3Tags(uploadTo, event, song, index, songUrl)
-        }
-        audio.load()
-        audio.remove()
-        updateUrlsToCleanUp(originalUrls => [ ...originalUrls, songUrl ])
+export const uploadSong = (location, song) => {
+    createSongObject(song).then(songObj => {
+        store.dispatch(addSong({ to: location, song: songObj}))
     })
 }
 
-function getID3Tags(uploadTo, event, song, idForSong, songUrl) {
-    const audioDuration = event.target.duration
+const createSongObject = async song => {
+    const tags = await getSongTags(song)
+    const id = uuidv4()
+    const url = URL.createObjectURL(song)
+    const duration = await getSongDuration(song, url).then(duration => duration)
+
+    return {
+        id: id,
+        title: createSongTitle(song, tags),
+        artist: tags.artist || 'Unknown Artist',
+        src: url,
+        duration: duration
+    }
+}
+
+const getSongTags = song => {
+    const songReader = new jsmediatags.Reader(song)
+        .setTagsToRead([ 'title', 'artist' ])
+    const getTags = new Promise((resolve, reject) => {
+        songReader.read({
+            onSuccess: data => resolve(data.tags),
+            onError: error => reject(error)
+        })
+    })
+    return getTags.then(tags => tags)
+}
+
+const createSongTitle = (song, tags) => {
     const songTitleFallback = song.name.split('.')[0]
 
-    const jsmediatags = require('jsmediatags')
-    new jsmediatags.Reader(song)
-        .setTagsToRead([ 'title', 'artist' ])
-        .read({
-            onSuccess: metadata => {
-                const tags = metadata.tags
-                const formattedSong = {
-                    id: idForSong,
-                    title: tags.title || songTitleFallback,
-                    artist: tags.artist || 'Unknown Artist',
-                    src: songUrl,
-                    duration: audioDuration
-                }
-                store.dispatch(addSong({ to: uploadTo, song: formattedSong }))
-            },
-            onError: error => {
-                console.error(error)
-
-                const formattedSong = {
-                    id: idForSong,
-                    title: songTitleFallback,
-                    artist: 'Unknown Artist',
-                    src: songUrl,
-                    duration: audioDuration
-                }
-                store.dispatch(addSong({ to: 'songs', song: formattedSong }))
-            }
-        })
+    return tags.title || songTitleFallback
 }
 
-const uploadSong = (songData, uploadTo, tags = {}) => {
-    const songTitleFallback = songData.name.split('.')[0]
-    const formattedSong = {
-        id: songData.id,
-        title: tags.title || songTitleFallback,
-        artist: tags.artist || 'Unknown Artist',
-        src: songData.url,
-        duration: songData.duration
-    }
+const getSongDuration = async (song, url) => {
+    const tempAudio = new Audio(url)
+    tempAudio.preload = 'metadata'
 
-    store.dispatch(addSong({ to: uploadTo, song: formattedSong }))
+    tempAudio.addEventListener('loadedmetadata', loadSongMetadata)
+    await tempAudio.play()
+
+    tempAudio.pause()
+    tempAudio.removeEventListener('loadedmetadata', loadSongMetadata)
+
+    return tempAudio.songDuration
 }
 
-function getAllID3Tags(song) {
-    const jsmediatags = require('jsmediatags')
-    jsmediatags.read(song, {
-        onSuccess: metadata => {
-            console.log(metadata)
-        },
-        onError: error => console.error(error)
-    })
+const loadSongMetadata = event => {
+    event.target.songDuration = event.target.duration
 }

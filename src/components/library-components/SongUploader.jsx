@@ -1,19 +1,16 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 
-import { openUploadScreen, uploadSongs } from './SongUploaderHelper'
+import { uploadSong } from './SongUploaderHelper'
 
 // Component
 const SongUploader = props => {
-    const [ urlsToCleanUp, updateUrlsToCleanUp ] = useState([])
 
-    // Might want to change this for when data will eventually be saved
-    useEffect(() => {
-        return () => {
-            urlsToCleanUp.forEach(url => {
-                URL.revokeObjectURL(url)
-            })
-        }
-    }, [])
+    const uploadSongs = event => {
+        const uploader = event.target
+        const uploadedData = [ ...uploader.files ]
+
+        uploadedData.forEach(song => uploadSong(props.uploadTo, song))
+    }
 
     return (
         <input
@@ -21,8 +18,7 @@ const SongUploader = props => {
             style={{ display: 'none' }}
             type='file'
             multiple
-            // onClick={openUploadScreen}
-            onChange={() => uploadSongs(props.uploadTo, props, updateUrlsToCleanUp)}
+            onChange={uploadSongs}
         />
     )
 }
