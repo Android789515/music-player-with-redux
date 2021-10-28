@@ -68,6 +68,8 @@
 
 .playlists-directory {
   .playlist-entry-title {
+    word-break: break-word;
+
     grid-column: 1;
   }
 

@@ -4,22 +4,18 @@ export const librarySlice = createSlice({
     name: 'library',
     initialState: {
         songs: [],
-        // Playlist is an array containing arrays where
-        // first items are an obj of id and values
-        // and second are arrays of songs
-        playlists: [],
-        openedPlaylist: {
-            id: undefined,
-            name: undefined,
-            songs: []
-        },
         queuedSong: {
             id: undefined,
             src: undefined,
             title: undefined,
             artist: undefined,
             duration: undefined
-        }
+        },
+        // Playlist is an array containing arrays where
+        // first items are an obj of id and values
+        // and second are arrays of songs
+        playlists: [],
+        openedPlaylist: undefined
     },
 
     reducers: {

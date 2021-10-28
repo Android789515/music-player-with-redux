@@ -17,24 +17,21 @@ const LibraryComponent = props => {
 
     return (
         <section className='library overlay-component'>
-            <ul className='unstyled-ul directory-names'>
-                <DirectoryList
-                    currentDirectory={currentDirectory}
-                    setCurrentDirectory={setCurrentDirectory}
-                    dispatch={props.dispatch}
-                />
-            </ul>
-
+            <DirectoryList
+                currentDirectory={currentDirectory}
+                setCurrentDirectory={setCurrentDirectory}
+                dispatch={props.dispatch}
+            />
 
             <CurrentDirectory
-                name={currentDirectory.name}
+                identifier={currentDirectory.identifier}
                 addEntryText={openedPlaylist ? 'Add Song to Playlist' : currentDirectory.addEntryText}
                 handleAddEntryClick={currentDirectory.handleAddEntryClick}
                 hasInputComponent={openedPlaylist ? true : currentDirectory.hasInputComponent}
             >
                 <DirectoryEntries
-                    entries={library[currentDirectory.name]}
-                    directoryName={currentDirectory.name}
+                    entries={library[currentDirectory.identifier]}
+                    directoryIdentifier={currentDirectory.identifier}
                     setCurrentDirectory={setCurrentDirectory}
                     dispatch={props.dispatch}
                 >

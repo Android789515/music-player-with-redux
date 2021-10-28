@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { v4 as uuidv4 } from 'uuid'
 
 import store from '../../store'
@@ -8,17 +8,9 @@ const capitalize = string => string.charAt(0).toUpperCase() + string.slice(1)
 
 // Make it configurable in the app
 export const directories = {
-    songs: {
-        name: 'songs',
-        addEntryText: 'Upload Song',
-        handleAddEntryClick: function() {
-            const uploadSongInput = document.getElementById('upload-song')
-            uploadSongInput.click()
-        },
-        hasInputComponent: true
-    },
     playlists: {
-        name: 'playlists',
+        identifier: 'playlists',
+        name: 'Playlists',
         addEntryText: 'Create Playlist',
         handleAddEntryClick: function() {
             const createPlaylistModal = document.querySelector('.create-playlist-modal')
@@ -28,8 +20,19 @@ export const directories = {
         },
         hasInputComponent: false
     },
+    songs: {
+        identifier: 'songs',
+        name: 'Songs',
+        addEntryText: 'Upload Song',
+        handleAddEntryClick: function() {
+            const uploadSongInput = document.getElementById('upload-song')
+            uploadSongInput.click()
+        },
+        hasInputComponent: true
+    },
     openedPlaylist: {
-        name: store.getState().library.openedPlaylist.name,
+        identifier: 'openedPlaylist',
+        name: undefined,
         addEntryText: 'Add Song to Playlist',
         handleAddEntryClick: function() {
             const uploadSongInput = document.getElementById('upload-song')
@@ -39,38 +42,59 @@ export const directories = {
     }
 }
 
-const createDirectoryName = identifier => {
+const renderDirectoryName = identifier => {
     const name = directories[identifier].name
-    console.log(store.getState().library)
-    if (identifier !== 'openedPlaylist') {
-        return capitalize(name)
+    if (identifier !== directories.openedPlaylist.identifier) {
+        return name
     } else {
-        const isPlaylistOpen = store.getState().library.openedPlaylist.name !== undefined
+        const isPlaylistOpen = store.getState().library.openedPlaylist !== undefined
         if (isPlaylistOpen) {
-            return name
+            return `↪ ${name}`
         }
     }
 }
 
 const DirectoryList = props => {
-    const directoryNamesToRender = Object.keys(directories)
-    return (
-        directoryNamesToRender.map(directoryIdentifier => {
-            const modifierClass = directoryIdentifier === props.currentDirectory.name ?
-                'active-directory' : ''
-            const directoryName = createDirectoryName(directoryIdentifier)
+    const { currentDirectory } = props
+    const directoryNamesToRender = Object.values(directories)
 
-            const uniqueKey = uuidv4()
-            return (
+    const directoryNames = directoryNamesToRender.map(directory => {
+        const getClassModifiers = identifier => {
+            const isDirectoryCurrent = identifier === currentDirectory.identifier
+            const isDirectoryOpenedPlaylist = identifier === directories.openedPlaylist.identifier
+
+            let modifiers = ''
+            if (isDirectoryCurrent) {
+                modifiers = `${modifiers} active-directory`
+            }
+
+            if (isDirectoryOpenedPlaylist) {
+                modifiers = `${modifiers} opened-playlist`
+            }
+
+            return modifiers.trim()
+        }
+
+        const modifierClasses = getClassModifiers(directory.identifier)
+
+        const uniqueKey = uuidv4()
+        return (
+            <>
                 <li key={uniqueKey} onClick={() => {
                     props.dispatch(setOpenedPlaylist(undefined))
-                    props.setCurrentDirectory(() => directories[directoryIdentifier])
+                    props.setCurrentDirectory(() => directory)
                 }}
-                    className={`btn directory-name ${modifierClass}`.trim()}>
-                    {directoryName}
+                    className={`btn directory-name ${modifierClasses}`.trim()}>
+                    {renderDirectoryName(directory.identifier)}
                 </li>
-            )
-        })
+            </>
+        )
+    })
+
+    return (
+        <ul className='unstyled-ul directory-names'>
+            {directoryNames}
+        </ul>
     )
 }
 

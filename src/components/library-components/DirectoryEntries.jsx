@@ -5,7 +5,7 @@ import PlaylistDirectoryEntry from './PlaylistDirectoryEntry'
 
 const DirectoryEntries = props => {
 
-    switch (props.directoryName) {
+    switch (props.directoryIdentifier) {
         case 'songs':
             return props.entries.map(song => (
                 <SongDirectoryEntry key={song.id} song={song} dispatch={props.dispatch} />

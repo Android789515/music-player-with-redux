@@ -6,7 +6,7 @@ import AddEntryBtn from './AddEntryBtn'
 
 const CurrentDirectory = props => {
 
-    const classFormattedName = props.name.split('').reduce((formattedName, char) => {
+    const classFormattedName = props.identifier.split('').reduce((formattedName, char) => {
         return `${formattedName}${/[A-Z]/.test(char) ? '-' + char.toLowerCase() : char}`
     }, '')
 
@@ -19,7 +19,7 @@ const CurrentDirectory = props => {
             <AddEntryBtn
                 btnText={props.addEntryText}
                 doOnClick={props.handleAddEntryClick}
-                uploadTo={props.name}
+                uploadTo={props.identifier}
                 hasInputComponent={props.hasInputComponent}
             />
         </div>
