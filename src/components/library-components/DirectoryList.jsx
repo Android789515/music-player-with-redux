@@ -3,6 +3,8 @@ import { v4 as uuidv4 } from 'uuid'
 
 import { setOpenedPlaylist } from '../../reducers/librarySlice'
 
+const getCapitalizedString = string => string.charAt(0).toUpperCase() + string.slice(1)
+
 // Make it configurable in the app
 export const directories = {
     songs: {
@@ -39,16 +41,17 @@ export const directories = {
 const DirectoryList = props => {
     const directoryNamesToRender = Object.keys(directories)
     return (
-        directoryNamesToRender.map(directoryName => {
-            const modifierClass = directoryName === props.currentDirectory.name ?
+        directoryNamesToRender.map(directoryIdentifier => {
+            const modifierClass = directoryIdentifier === props.currentDirectory.name ?
                 'active-directory' : ''
-            const capitalizedDirectoryName = directoryName.charAt(0).toUpperCase() + directoryName.slice(1)
+            const directoryName = directories[directoryIdentifier].name
+            const capitalizedDirectoryName = getCapitalizedString(directoryName)
 
             const uniqueKey = uuidv4()
             return (
                 <li key={uniqueKey} onClick={() => {
                     props.dispatch(setOpenedPlaylist(undefined))
-                    props.setCurrentDirectory(() => directories[directoryName])
+                    props.setCurrentDirectory(() => directories[directoryIdentifier])
                 }}
                     className={`btn directory-name ${modifierClass}`.trim()}>
                     {capitalizedDirectoryName}
