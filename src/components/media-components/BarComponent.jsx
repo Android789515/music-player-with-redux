@@ -94,10 +94,8 @@ function BarComponent(props) {
     }
 
     useEffect(() => {
-        document.body.addEventListener('mouseup', disableBarMovement)
-        return () => {
-            document.body.removeEventListener('mouseup', disableBarMovement)
-        }
+        // Must be an arrow function to work properly, for some reason
+        document.body.addEventListener('mouseup', () => disableBarMovement())
     }, [])
 
     const getSliderPercent = () => {
