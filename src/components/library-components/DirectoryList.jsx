@@ -8,6 +8,16 @@ const capitalize = string => string.charAt(0).toUpperCase() + string.slice(1)
 
 // Make it configurable in the app
 export const directories = {
+    songs: {
+        identifier: 'songs',
+        name: 'Songs',
+        addEntryText: 'Upload Song',
+        handleAddEntryClick: function() {
+            const uploadSongInput = document.getElementById('upload-song')
+            uploadSongInput.click()
+        },
+        hasInputComponent: true
+    },
     playlists: {
         identifier: 'playlists',
         name: 'Playlists',
@@ -20,19 +30,8 @@ export const directories = {
         },
         hasInputComponent: false
     },
-    songs: {
-        identifier: 'songs',
-        name: 'Songs',
-        addEntryText: 'Upload Song',
-        handleAddEntryClick: function() {
-            const uploadSongInput = document.getElementById('upload-song')
-            uploadSongInput.click()
-        },
-        hasInputComponent: true
-    },
     openedPlaylist: {
         identifier: 'openedPlaylist',
-        name: undefined,
         addEntryText: 'Add Song to Playlist',
         handleAddEntryClick: function() {
             const uploadSongInput = document.getElementById('upload-song')
@@ -43,13 +42,14 @@ export const directories = {
 }
 
 const renderDirectoryName = identifier => {
-    const name = directories[identifier].name
+
     if (identifier !== directories.openedPlaylist.identifier) {
-        return name
+        return directories[identifier].name
     } else {
-        const isPlaylistOpen = store.getState().library.openedPlaylist !== undefined
+        const openedPlaylist = store.getState().library.openedPlaylist
+        const isPlaylistOpen = openedPlaylist !== undefined
         if (isPlaylistOpen) {
-            return `↪ ${name}`
+            return openedPlaylist.name
         }
     }
 }
@@ -79,15 +79,16 @@ const DirectoryList = props => {
 
         const uniqueKey = uuidv4()
         return (
-            <>
-                <li key={uniqueKey} onClick={() => {
+            <li key={uniqueKey} onClick={() => {
+                const isDirectoryOpenDirectory = directory.identifier === directories.openedPlaylist.identifier
+                if (!isDirectoryOpenDirectory) {
                     props.dispatch(setOpenedPlaylist(undefined))
-                    props.setCurrentDirectory(() => directory)
-                }}
-                    className={`btn directory-name ${modifierClasses}`.trim()}>
-                    {renderDirectoryName(directory.identifier)}
-                </li>
-            </>
+                }
+                props.setCurrentDirectory(() => directory)
+            }}
+                className={`btn directory-name ${modifierClasses}`.trim()}>
+                {renderDirectoryName(directory.identifier)}
+            </li>
         )
     })
 

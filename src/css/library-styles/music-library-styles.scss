@@ -1,7 +1,9 @@
 @import 'src/css/variables';
 
 .library {
-  //color: #fff;
+  display: grid;
+  grid-template-rows: auto 1fr;
+  grid-row-gap: 1em;
 }
 
 .library-panel-btn {
@@ -15,11 +17,13 @@
   grid-row-gap: 1em;
   grid-column-gap: 1em;
 
-  // Keep the grid cells from growing too large
-  // for no reason
-  width: max-content;
+  //margin: 1em auto;
+  margin: 0 auto;
+}
 
-  margin: 1em auto;
+.directory-names > * {
+  // Keep the grid cells from growing too large
+  width: max-content;
 }
 
 .directory-name {
@@ -29,22 +33,36 @@
   grid-row: 1;
 }
 
-.directory-name.active-directory {
+.directory-name:first-child {
+  margin-left: auto;
+}
+
+.directory-name.active-directory:not(.opened-playlist) {
   padding-bottom: .25em;
-  // Todo - find a suitable color
   border-bottom: solid $grayed-out 2px;
 }
 
+.opened-playlist.active-directory:before {
+  content: '↪';
+
+  margin-right: .25em;
+}
+
 .opened-playlist {
+  text-align: center;
+  word-break: break-word;
+
   grid-row: 2;
   grid-column: span 2;
+
+  width: initial;
 }
 
 .create-playlist-modal {
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 2;
+  z-index: 4;
 
   width: 100vw;
   height: 100vh;
@@ -83,13 +101,13 @@
 
     position: fixed;
     right: -$component-width;
-    z-index: 0;
+    z-index: 2;
 
     width: $component-width;
     max-width: 320px;
-    height: 80%;
-// TODO - remove or figure something out with this
-    border-radius: 5% 0 0 5%;
+    //height: 80%;
+
+    padding: 1em 2em;
 
     transition: right 500ms;
   }
@@ -98,7 +116,7 @@
     display: block;
     position: fixed;
     right: 2%;
-    z-index: 1;
+    z-index: 3;
   }
 
   .open-library-btn {

@@ -3,19 +3,24 @@
 .directory {
   width: 91%;
   max-width: $max-component-width-small-screens;
-  //max-height: 90%;
 
-  // Very small padding on sides to keep the add (+) button from clipping
-  //padding: 0 .05em;
+  padding: 0 .5em;
   margin: auto;
+  border: solid;
+  border-radius: 15px;
 }
 
 .directory-entries {
   overflow-y: auto;
 
-  max-height: 50vh;
+  max-height: 35vh;
 
   padding-right: 1em;
+}
+@media (min-width: 700px) {
+  .directory-entries {
+    max-height: 45vh;
+  }
 }
 
 .directory-entry {
@@ -23,6 +28,7 @@
   // each directory will style their
   // entries different
   display: grid;
+  grid-column-gap: 1em;
 }
 
 .directory-entry > * {
@@ -67,6 +73,11 @@
 }
 
 .playlists-directory {
+  .directory-entry:not(.directory-entry:first-child) {
+    padding-top: .25em;
+    margin-top: .5em;
+  }
+
   .playlist-entry-title {
     word-break: break-word;
 

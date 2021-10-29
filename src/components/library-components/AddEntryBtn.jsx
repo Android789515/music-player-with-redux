@@ -6,7 +6,7 @@ import SongUploader from './SongUploader'
 
 const AddEntryBtn = props => {
     return (
-        <div className='btn add-entry-section overlay-component' onClick={() => {
+        <div className='btn add-entry-section' onClick={() => {
             props.doOnClick()
         }}>
             <button className='btn'>+</button>

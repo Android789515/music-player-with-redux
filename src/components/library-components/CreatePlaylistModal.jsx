@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 
 import store from '../../store'
-import { directories } from './DirectoryList'
 import { addPlaylist } from '../../reducers/librarySlice'
 
 const CreatePlaylistModal = props => {
@@ -28,7 +27,6 @@ const CreatePlaylistModal = props => {
                 name: modalText,
                 songs: []
             }))
-            directories.openedPlaylist.name = modalText
             hideModal()
         }
         closeModalWhenEscPressed(event)

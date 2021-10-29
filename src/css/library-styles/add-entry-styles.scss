@@ -1,21 +1,15 @@
 @import 'src/css/variables';
 
 .add-entry-section {
-  //position: absolute;
-  //bottom: -5%;
-
   display: flex;
   justify-content: space-between;
   align-items: center;
-
-  //width: 91%;
 
   padding: 0 .25em;
   border-top: solid 2px $grayed-out;
 
   .btn {
     font-weight: 700;
-    //color: #fff;
 
     padding: .125em .35em;
 
@@ -33,13 +27,3 @@
 .add-entry-section:active .btn {
   transform: scale(1.05);
 }
-
-//@media (min-width: $first-media-breakpoint) {
-//  .add-entry-section {
-//    .btn {
-//      color: #000;
-//
-//      border-color: #000;
-//    }
-//  }
-//}

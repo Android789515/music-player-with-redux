@@ -30,7 +30,7 @@ function MediaPlayer() {
                 <SongInfoComponent queuedSong={queuedSong} media={media}/>
             </section>
 
-            <MediaControls media={media} dispatch={dispatch}/>
+            {isSongQueued && <MediaControls media={media} dispatch={dispatch}/>}
         </section>
     )
 }

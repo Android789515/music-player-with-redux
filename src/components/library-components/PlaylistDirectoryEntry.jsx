@@ -14,14 +14,8 @@ const PlaylistDirectoryEntry = props => {
             onClick={() => {
                 // Show songs in the playlist
                 props.dispatch(setOpenedPlaylist(props.playlist))
+
                 props.setCurrentDirectory(() => directories.openedPlaylist)
-                // props.setCustomPlaylistEntries(props.playlist.songs.map(song => {
-                //     return <SongDirectoryEntry
-                //         key={song.id}
-                //         song={song}
-                //         dispatch={props.dispatch}
-                //     />
-                // }))
             }}
         >
             <h4 className='playlist-entry-title'>{props.playlist.name}</h4>
