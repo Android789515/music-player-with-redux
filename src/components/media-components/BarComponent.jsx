@@ -68,16 +68,20 @@ function BarComponent(props) {
 
         const percentOfBarClicked = formatBarPercent(setBarPercent(calculatedPos, barSize))
 
+        setSliderVal(percentOfBarClicked)
+    }
+
+    const setSliderVal = percent => {
         let sliderVal
         switch (props.name) {
             case validBars._SONG:
-                sliderVal = Math.floor((percentOfBarClicked / 100) * props.media.maxTime)
+                sliderVal = Math.floor((percent / 100) * props.media.maxTime)
                 // Connect to redux
                 props.dispatch(updateTime(sliderVal))
                 break
 
             case validBars._VOLUME:
-                sliderVal = percentOfBarClicked / 100
+                sliderVal = percent / 100
                 // Connect to redux
                 props.dispatch(setVolume(sliderVal))
                 break
