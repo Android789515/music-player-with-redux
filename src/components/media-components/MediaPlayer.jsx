@@ -23,7 +23,7 @@ function MediaPlayer() {
             <section className='media-content'>
                 <img
                     className={`cover-art ${isSongQueued ? '' : 'hidden'}`.trim()}
-                    src={fallBackImg}
+                    src={queuedSong.coverArt || fallBackImg}
                     alt='Song cover art'
                 />
 

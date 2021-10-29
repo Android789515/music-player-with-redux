@@ -7,6 +7,7 @@ export const librarySlice = createSlice({
         queuedSong: {
             id: undefined,
             src: undefined,
+            coverArt: undefined,
             title: undefined,
             artist: undefined,
             duration: undefined

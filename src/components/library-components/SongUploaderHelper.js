@@ -14,6 +14,7 @@ const createSongObject = async song => {
     const tags = await getSongTags(song)
     const id = uuidv4()
     const url = URL.createObjectURL(song)
+    const coverArt = tags.picture && decodeSongPicture(tags.picture)
     const duration = await getSongDuration(song, url).then(duration => duration)
 
     return {
@@ -21,13 +22,14 @@ const createSongObject = async song => {
         title: createSongTitle(song, tags),
         artist: tags.artist || 'Unknown Artist',
         src: url,
+        coverArt: coverArt,
         duration: duration
     }
 }
 
 const getSongTags = song => {
     const songReader = new jsmediatags.Reader(song)
-        .setTagsToRead([ 'title', 'artist' ])
+        .setTagsToRead([ 'title', 'artist', 'picture' ])
     const getTags = new Promise((resolve, reject) => {
         songReader.read({
             onSuccess: data => resolve(data.tags),
@@ -41,6 +43,13 @@ const createSongTitle = (song, tags) => {
     const songTitleFallback = song.name.split('.')[0]
 
     return tags.title || songTitleFallback
+}
+
+const decodeSongPicture = picture => {
+    const { data, format } = picture
+    const base64String = data.reduce((result, byte) => result + String.fromCharCode(byte),'')
+
+    return `data:${format};base64,${window.btoa(base64String)}`
 }
 
 const getSongDuration = async (song, url) => {

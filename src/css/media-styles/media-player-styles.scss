@@ -16,9 +16,13 @@
 }
 
 .cover-art {
-  width: 75%;
-  // Max width at small screens
-  max-width: 203px;
+  $image-size: 167.95px;
+  object-fit: cover;
+
+  min-width: $image-size;
+  max-width: $image-size;
+  min-height: $image-size;
+  max-height: $image-size;
 
   margin: 2em auto;
   border-radius: 25%;
