@@ -36,7 +36,9 @@ const getSongTags = song => {
             onError: error => reject(error)
         })
     })
-    return getTags.then(tags => tags)
+    // return an empty object if no tag reader could be provided
+    // that way properties such as title aren't read from an undefined value
+    return getTags.then(tags => tags).catch(() => { return {} })
 }
 
 const createSongTitle = (song, tags) => {
