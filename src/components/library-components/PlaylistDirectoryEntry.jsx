@@ -2,7 +2,6 @@ import React from 'react'
 
 import { directories } from './DirectoryList'
 import { setOpenedPlaylist } from '../../reducers/librarySlice'
-import renamePlaylistBtn from '../../img/dark-btns/rename.svg'
 
 import DirectoryEntry from './generic-components/DirectoryEntry'
 
