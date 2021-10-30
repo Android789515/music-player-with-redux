@@ -4,7 +4,8 @@ import { pause, updateTime, setMaxTime } from '../../reducers/mediaSlice'
 
 function AudioPlayer(props) {
 
-    const loadAudio = audio => {
+    const loadAudio = event => {
+        const audio = event.target
         audio.volume = props.media.volume
         props.dispatch(setMaxTime(props.queuedSong.duration))
 
@@ -26,12 +27,6 @@ function AudioPlayer(props) {
     const handleAudioEnd = () => {
         props.dispatch(pause())
     }
-
-    useEffect( () => {
-        const audio = document.getElementById('audio')
-        const shouldLoadAudio = props.queuedSong.src !== undefined
-        shouldLoadAudio && loadAudio(audio)
-    }, [props.queuedSong.src])
 
     useEffect( () => {
         const audio = document.getElementById('audio')
@@ -62,6 +57,7 @@ function AudioPlayer(props) {
         id='audio'
         muted={props.media.muted}
         src={props.queuedSong.src}
+        onLoadedMetadata={loadAudio}
         onTimeUpdate={determineSongTime}
         onEnded={handleAudioEnd}
     />
