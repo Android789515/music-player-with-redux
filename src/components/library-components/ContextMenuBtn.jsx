@@ -8,7 +8,6 @@ const ContextMenuBtn = props => {
             className='context-menu-btn overlay-component'
             src={contextMenuBtn}
             alt='Context menu button'
-
         />
     )
 }
