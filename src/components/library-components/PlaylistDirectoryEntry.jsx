@@ -12,16 +12,12 @@ const PlaylistDirectoryEntry = props => {
         const name = props.playlist.name
         const isNameTooLong = name.length > maxCharLenAsEntry
 
-        if (isNameTooLong) {
-            const cutName = name.split('').reduce((result, char, index) => {
-                const shouldKeepLetter = index <= 20
-                return result + (shouldKeepLetter ? char : '')
-            }, '')
+        const cutName = name.split('').reduce((result, char, index) => {
+            const shouldKeepLetter = index <= 20
+            return result + (shouldKeepLetter ? char : '')
+        }, '')
 
-            return cutName + '...'
-        } else {
-            return name
-        }
+        return isNameTooLong ? cutName + '...' : name
     }
 
     return (
