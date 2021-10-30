@@ -1,6 +1,6 @@
 import React from 'react'
 
-import '../../css/library-styles/library-directory-styles.scss'
+import '../../../css/library-styles/library-directory-styles.scss'
 
 const Directory = props => {
     return (

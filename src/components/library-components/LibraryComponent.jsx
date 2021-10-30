@@ -7,7 +7,7 @@ import { directories } from './DirectoryList'
 
 import DirectoryList from './DirectoryList'
 import CurrentDirectory from './CurrentDirectory'
-import DirectoryEntries from './DirectoryEntries'
+import DirectoryEntries from './generic-components/DirectoryEntries'
 
 const LibraryComponent = props => {
     // Keeps track of what directory is open

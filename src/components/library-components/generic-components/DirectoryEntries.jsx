@@ -1,7 +1,7 @@
 import React from 'react'
 
-import SongDirectoryEntry from './SongDirectoryEntry'
-import PlaylistDirectoryEntry from './PlaylistDirectoryEntry'
+import SongDirectoryEntry from '../SongDirectoryEntry'
+import PlaylistDirectoryEntry from '../PlaylistDirectoryEntry'
 
 const DirectoryEntries = props => {
 

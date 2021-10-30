@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux'
 
 import { play, stop } from '../../reducers/mediaSlice'
 import { getFormattedSongTime } from '../../TimeFormatter'
-import DirectoryEntry from './DirectoryEntry'
+import DirectoryEntry from './generic-components/DirectoryEntry'
 import SliderComponent from '../media-components/SliderComponent'
 import { queueSong } from '../../reducers/librarySlice'
 

@@ -35,15 +35,45 @@
   margin: 0;
 }
 
+.context-menu-btn {
+  visibility: hidden;
+
+  display: inline-block;
+
+  $btnSize: 30px;
+  width: $btnSize;
+  height: $btnSize;
+
+  margin-left: auto;
+
+  border-radius: 25%;
+  box-shadow: -3px 0 5px #fff;
+}
+
+.directory-entry:hover {
+  .context-menu-btn {
+    visibility: visible;
+  }
+
+  .context-menu-btn:hover {
+    background: lightgray;
+  }
+}
+
 .songs-directory,
 .opened-playlist-directory {
   .directory-entries {
   }
 
   .directory-entry {
-    grid-template: 1fr auto 2px / auto 1fr;
+    grid-template: 1fr auto 2px / auto .5fr;
 
     margin-bottom: 1em;
+  }
+
+  .context-menu-btn-area,
+  .song-entry-title {
+    grid-row: 1;
   }
 
   .loading-song-entry {
@@ -51,8 +81,13 @@
     opacity: .5;
   }
 
-  .song-entry-info {
+  .song-entry-info,
+  .context-menu-btn {
     grid-column: 1;
+  }
+
+  .context-menu-btn {
+    grid-row: 1;
   }
 
   .song-entry-duration {
@@ -63,6 +98,8 @@
   }
 
   .song-entry-artist {
+    grid-row: 2;
+
     margin-bottom: .25em;
   }
 
@@ -96,22 +133,6 @@
     text-align: right;
 
     grid-column: 2;
-  }
-
-  .rename-playlist-btn {
-    visibility: hidden;
-
-    margin-left: auto;
-
-    //background: rgba(255, 255, 255, 0.8);
-    border-radius: 25%;
-    box-shadow: -3px 0 5px #fff;
-  }
-
-  .directory-entry:hover {
-    .rename-playlist-btn {
-      visibility: visible;
-    }
   }
 }
 
