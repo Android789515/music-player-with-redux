@@ -3,4 +3,5 @@
 * ###Cleanup
 
 * ###Implement planned features
-* ####Show song loading status
+* #### Remove songs and playlists
+* #### Rename playlists
