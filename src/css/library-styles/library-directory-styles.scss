@@ -73,21 +73,37 @@
 }
 
 .playlists-directory {
+  .directory-entry {
+    align-items: baseline;
+  }
+
   .directory-entry:not(.directory-entry:first-child) {
     padding-top: .25em;
     margin-top: .5em;
   }
 
+  .playlist-entry-title,
+  .rename-playlist-btn {
+    grid-row: 1;
+    grid-column: 1;
+  }
+
   .playlist-entry-title {
     word-break: break-word;
-
-    grid-column: 1;
   }
 
   .playlist-entry-song-count {
     text-align: right;
 
     grid-column: 2;
+  }
+
+  .rename-playlist-btn {
+    margin-left: auto;
+
+    //background: rgba(255, 255, 255, 0.8);
+    border-radius: 25%;
+    box-shadow: -3px 0 5px #fff;
   }
 }
 

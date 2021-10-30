@@ -27,9 +27,9 @@ const VolumeBtn = props => {
         // Leave commented until it is determined
         // with certainty that having it commented
         // produces no bugs or errors
-        // if (event.target.classList === undefined) {
-        //     return
-        // }
+        if (event.target.classList === undefined) {
+            return
+        }
         const isMouseOverVolumeControls = event.target.classList.contains('vol-control-btn') ||
             event.target.classList.contains('volume-bar-area') || event.target.classList.contains('volume-bar') ||
             event.target.classList.contains('volume-slider')
