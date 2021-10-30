@@ -10,7 +10,10 @@ const ContextMenu = props => {
 
     if (props.shouldShow) {
         return (
-            <ul className='unstyled-ul context-menu hard-rounded-corners'>
+            <ul
+                className='unstyled-ul context-menu hard-rounded-corners'
+                onClick={props.openContextMenu}
+            >
                 {contextMenuList}
             </ul>
         )

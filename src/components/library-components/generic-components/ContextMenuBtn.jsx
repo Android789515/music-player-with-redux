@@ -15,10 +15,11 @@ const ContextMenuBtn = props => {
     const closeContextMenu = event => {
         event.stopPropagation()
 
-        const contextMenu = document.querySelector('.context-menu')
-        const didClickOnContextMenu = event.target.contains(contextMenu)
+        const didClickOnContextMenu = event.target.classList.contains('context-menu')
+        const didClickOnContextMenuOption = event.target.classList.contains('.context-menu-option')
+        const didClickInContextMenu = didClickOnContextMenu || didClickOnContextMenuOption
 
-        !didClickOnContextMenu && showContextMenu(() => false)
+        !didClickInContextMenu && showContextMenu(() => false)
     }
 
     useEffect(() => {
@@ -40,7 +41,7 @@ const ContextMenuBtn = props => {
                 onClick={openContextMenu}
             />
 
-            <ContextMenu shouldShow={shouldShowContextMenu} />
+            <ContextMenu shouldShow={shouldShowContextMenu} openContextMenu={openContextMenu} />
         </>
     )
 }
