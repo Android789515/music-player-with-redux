@@ -99,11 +99,19 @@
   }
 
   .rename-playlist-btn {
+    visibility: hidden;
+
     margin-left: auto;
 
     //background: rgba(255, 255, 255, 0.8);
     border-radius: 25%;
     box-shadow: -3px 0 5px #fff;
+  }
+
+  .directory-entry:hover {
+    .rename-playlist-btn {
+      visibility: visible;
+    }
   }
 }
 
