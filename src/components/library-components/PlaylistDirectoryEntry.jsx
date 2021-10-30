@@ -5,9 +5,25 @@ import { setOpenedPlaylist } from '../../reducers/librarySlice'
 import renamePlaylistBtn from '../../img/dark-btns/rename.svg'
 
 import DirectoryEntry from './DirectoryEntry'
-import SongDirectoryEntry from './SongDirectoryEntry'
 
 const PlaylistDirectoryEntry = props => {
+    const cutPlaylistName = () => {
+        const maxCharLenAsEntry = 20
+        const name = props.playlist.name
+        const isNameTooLong = name.length > maxCharLenAsEntry
+
+        if (isNameTooLong) {
+            const cutName = name.split('').reduce((result, char, index) => {
+                const shouldKeepLetter = index <= 20
+                return result + (shouldKeepLetter ? char : '')
+            }, '')
+
+            return cutName + '...'
+        } else {
+            return name
+        }
+    }
+
     return (
         <DirectoryEntry
             entry={props.playlist}
@@ -19,7 +35,7 @@ const PlaylistDirectoryEntry = props => {
                 props.setCurrentDirectory(() => directories.openedPlaylist)
             }}
         >
-            <h4 className='playlist-entry-title'>{props.playlist.name}</h4>
+            <h4 className='playlist-entry-title'>{cutPlaylistName()}</h4>
             <p className='playlist-entry-song-count'>{props.playlist.songs.length} songs</p>
             <img className='rename-playlist-btn overlay-component' src={renamePlaylistBtn} alt='Rename playlist button' />
         </DirectoryEntry>
