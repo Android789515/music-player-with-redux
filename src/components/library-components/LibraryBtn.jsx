@@ -1,5 +1,8 @@
 import React, { useState } from 'react'
 
+import libraryBtn from '../../img/dark-btns/library.svg'
+import closeBtn from '../../img/dark-btns/close.svg'
+
 const showOrHideLibrary = setLibraryOpen => {
     setLibraryOpen(prevOpenState => {
         const newOpenState = !prevOpenState
@@ -20,11 +23,12 @@ const LibraryBtn = () => {
     const [ isLibraryOpen, setIsLibraryOpen ] = useState(false)
 
     return (
-        <button
+        <img
             className={`btn ${isLibraryOpen ? 'close' : 'open'}-library-btn library-panel-btn`}
-            onClick={() => showOrHideLibrary(setIsLibraryOpen)}>
-            {isLibraryOpen ? '⛌' : '☰'}
-        </button>
+            onClick={() => showOrHideLibrary(setIsLibraryOpen)}
+            src={isLibraryOpen ? closeBtn : libraryBtn}
+            alt={isLibraryOpen ? 'Close library button' : 'Open library button'}
+        />
     )
 }
 

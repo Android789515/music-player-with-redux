@@ -9,7 +9,7 @@
 .library-panel-btn {
   display: none;
 
-  background: none;
+  //background: none;
 }
 
 .directory-names {
@@ -116,16 +116,36 @@
     display: block;
     position: fixed;
     right: 2%;
-    z-index: 3;
   }
 
+  //.open-library-btn {
+  //  font-size: 2.5rem;
+  //}
+  //
+  //.close-library-btn {
+  //  // Ah, perfect
+  //  font-size: 2.297rem;
+  //}
+  $libraryButtonMinSize: 30px;
+  $libraryButtonMultiplier: 2;
   .open-library-btn {
-    font-size: 2.5rem;
+    min-width: $libraryButtonMinSize * $libraryButtonMultiplier;
+    min-height: $libraryButtonMinSize * $libraryButtonMultiplier;
+    max-width: $libraryButtonMinSize * $libraryButtonMultiplier;
+    max-height: $libraryButtonMinSize * $libraryButtonMultiplier;
+
+    top: 15%;
+    right: 5%;
   }
 
   .close-library-btn {
-    // Ah, perfect
-    font-size: 2.297rem;
+    // Keeps the close button above the library and the open button behind it
+    z-index: 3;
+
+    min-width: $libraryButtonMinSize;
+    min-height: $libraryButtonMinSize;
+    max-width: $libraryButtonMinSize;
+    max-height: $libraryButtonMinSize;
   }
 
   .library-open {
