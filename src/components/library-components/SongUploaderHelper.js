@@ -54,14 +54,23 @@ const decodeSongPicture = picture => {
     return `data:${format};base64,${window.btoa(base64String)}`
 }
 
+// Annoying but a nice work around to grab audio
+// duration and save it
+const forceAudioLoad = async audio => {
+    audio.volume = 0
+    await audio.play()
+
+    audio.pause()
+}
+
 const getSongDuration = async (song, url) => {
     const tempAudio = new Audio(url)
     tempAudio.preload = 'metadata'
 
     tempAudio.addEventListener('loadedmetadata', loadSongMetadata)
-    await tempAudio.play()
-
-    tempAudio.pause()
+    // Force the audio to load and gain access to
+    // the duration
+    await forceAudioLoad(tempAudio)
     tempAudio.removeEventListener('loadedmetadata', loadSongMetadata)
 
     return tempAudio.songDuration
