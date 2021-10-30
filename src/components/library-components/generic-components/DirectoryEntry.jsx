@@ -1,5 +1,5 @@
 import React from 'react'
-import ContextMenuBtn from '../ContextMenuBtn'
+import ContextMenuBtn from './ContextMenuBtn'
 
 const DirectoryEntry = props => {
     const { entry, ...neededProps } = props

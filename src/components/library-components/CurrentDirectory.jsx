@@ -11,7 +11,7 @@ const CurrentDirectory = props => {
     }, '')
 
     return (
-        <div className={`directory ${classFormattedName}-directory`}>
+        <div className={`directory ${classFormattedName}-directory hard-rounded-corners`}>
             <ul className='unstyled-ul directory-entries'>
                 {props.children}
             </ul>

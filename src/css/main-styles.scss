@@ -72,6 +72,14 @@ img {
   }
 }
 
+.soft-rounded-corners {
+  border-radius: 25%;
+}
+
+.hard-rounded-corners {
+  border-radius: 15px;
+}
+
 .hidden {
   visibility: hidden;
   pointer-events: none;

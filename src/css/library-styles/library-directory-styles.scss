@@ -7,7 +7,6 @@
   padding: 0 .5em;
   margin: auto;
   border: solid;
-  border-radius: 15px;
 }
 
 .directory-entries {
@@ -46,7 +45,6 @@
 
   margin-left: auto;
 
-  border-radius: 25%;
   box-shadow: -3px 0 5px #fff;
 }
 
@@ -56,8 +54,29 @@
   }
 
   .context-menu-btn:hover {
-    background: lightgray;
+    background: #f0f0f0;
   }
+}
+
+.context-menu {
+  position: relative;
+  top: 35%;
+
+  width: 50%;
+
+  padding: .5em .75em;
+  margin-left: 35%;
+
+  background: #f0f0f0;
+}
+
+.context-menu > *:hover {
+  background: $grayed-out;
+}
+
+.context-menu-option {
+  padding: .2em .4em;
+  border-radius: 5px;
 }
 
 .songs-directory,
@@ -72,6 +91,7 @@
   }
 
   .context-menu-btn-area,
+  .context-menu,
   .song-entry-title {
     grid-row: 1;
   }
@@ -82,7 +102,8 @@
   }
 
   .song-entry-info,
-  .context-menu-btn {
+  .context-menu-btn,
+  .context-menu {
     grid-column: 1;
   }
 

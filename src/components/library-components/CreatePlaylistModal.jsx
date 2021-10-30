@@ -42,7 +42,7 @@ const CreatePlaylistModal = props => {
 
     return (
         <div className='create-playlist-modal hidden'>
-            <label className='create-playlist-prompt'>
+            <label className='create-playlist-prompt hard-rounded-corners'>
                 Enter a playlist name:
                 <input
                     id='create-playlist-input'

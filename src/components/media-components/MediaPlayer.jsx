@@ -22,7 +22,7 @@ function MediaPlayer() {
 
             <section className='media-content'>
                 <img
-                    className={`cover-art ${isSongQueued ? '' : 'hidden'}`.trim()}
+                    className={`cover-art soft-rounded-corners ${isSongQueued ? '' : 'hidden'}`.trim()}
                     src={queuedSong.coverArt || fallBackImg}
                     alt='Song cover art'
                 />
