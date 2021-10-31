@@ -1,17 +1,42 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
 
-import { play, stop } from '../../reducers/mediaSlice'
+import { directories } from './DirectoryList'
 import { getFormattedSongTime } from '../../TimeFormatter'
+import { play, stop } from '../../reducers/mediaSlice'
+import { queueSong, removeSong, unqueueSong } from '../../reducers/librarySlice'
+
 import DirectoryEntry from './generic-components/DirectoryEntry'
 import SliderComponent from '../media-components/SliderComponent'
-import { queueSong } from '../../reducers/librarySlice'
 
 const SongDirectoryEntry = props => {
     const media = useSelector(state => state['media'])
     const queuedSong = useSelector(state => state['library'].queuedSong)
     const doesQueuedSongMatchThisSong = queuedSong.id === props.song.id
     const sliderValueOfSongTime = Math.round((media.time / media.maxTime) * 100)
+
+    const deleteEntry = event => {
+        event.target.removeEventListener('deleterequest', deleteEntry)
+        props.dispatch(stop())
+        props.dispatch(unqueueSong())
+        const parentDirectory = getParentDirectory(event)
+        if (parentDirectory === directories.songs.identifier) {
+            URL.revokeObjectURL(props.song.src)
+        }
+
+        props.dispatch(removeSong({from: parentDirectory, songId: props.song.id}))
+    }
+
+    const getParentDirectory = event => {
+        const parentDirectory = event.target.closest('.directory')
+        const directoryChecks = new Map([
+            [parentDirectory.className.indexOf('songs'), 'songs'],
+            [parentDirectory.className.indexOf('opened-playlist'), 'openedPlaylist']
+        ])
+        const directoryMatch = [...directoryChecks.entries()].find( ([check]) => check !== -1).at(-1)
+
+        return directoryMatch
+    }
 
     return (
         (
@@ -23,6 +48,7 @@ const SongDirectoryEntry = props => {
                     props.dispatch(queueSong(props.song))
                     props.dispatch(play())
                 }}
+                deleteEntry={deleteEntry}
                 contextoptions={['queue', 'delete']}
             >
                 <h4 className='song-entry-title song-entry-info'>{props.song.title}</h4>

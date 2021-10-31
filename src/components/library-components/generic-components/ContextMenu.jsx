@@ -15,21 +15,22 @@ const ContextMenu = props => {
         event.stopPropagation()
 
         const optionClicked = event.target.textContent.toLowerCase()
+        const closestEntry = event.target.closest('.directory-entry')
+        props.closeContextMenu(event)
+
         switch (optionClicked) {
             case allContextMenuOptions.queue:
             case allContextMenuOptions.open:
-                const closestEntry = event.target.closest('.directory-entry')
                 props.closeContextMenu(event)
                 closestEntry.click()
                 break
 
             case allContextMenuOptions.delete:
-                const directory = event.target.closest('.directory')
-
+                const deleteRequest = new Event('deleterequest')
+                closestEntry.dispatchEvent(deleteRequest)
                 break
 
             default:
-                props.closeContextMenu(event)
                 return
         }
     }

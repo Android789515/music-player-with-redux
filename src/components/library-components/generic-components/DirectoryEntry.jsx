@@ -1,21 +1,17 @@
-import React from 'react'
+import React, { useEffect, useRef } from 'react'
 import ContextMenuBtn from './ContextMenuBtn'
 
 const DirectoryEntry = props => {
-    const { entry, ...neededProps } = props
+    const { entry, deleteEntry, ...neededProps } = props
 
-    const deleteEntry = () => {
-        // First open the modal and prompt user if they are sure
-        // that they want to delete the entry
+    const directoryEntryRef = useRef(undefined)
 
-        // If no, close the modal and do nothing
-        // Else if yes, delete the entry with the method passed down thru
-        // props; because this is a generic component which is rendered from
-        // more specific directory entry components
-    }
+    useEffect(() => {
+        directoryEntryRef.current.addEventListener('deleterequest', deleteEntry)
+    }, [])
 
     return (
-        <li key={entry.id} {...neededProps}>
+        <li key={entry.id} entryid={entry.id} {...neededProps} ref={directoryEntryRef}>
             {props.children}
 
             <ContextMenuBtn contextoptions={props.contextoptions} />

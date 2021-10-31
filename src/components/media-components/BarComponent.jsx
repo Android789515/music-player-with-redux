@@ -15,6 +15,11 @@ function BarComponent(props) {
         _VOLUME: 'volume'
     }
 
+    const orientations = {
+        _VERTICAL: 'vertical',
+        _HORIZONTAL: 'horizontal'
+    }
+
     const getBarElementOfClickedBar = event => {
         if (!event.target.classList.contains(`${props.name}-bar`)) {
             event.target = event.target.parentElement
@@ -49,7 +54,8 @@ function BarComponent(props) {
 
     const handleBarDrag = event => {
         event.preventDefault()
-        const isBarVertical = props.orientation === 'vertical'
+
+        const isBarVertical = props.orientation === orientations._VERTICAL
 
         const bar = getBarElementOfClickedBar(event)
 
@@ -58,9 +64,8 @@ function BarComponent(props) {
         // Margins screw with this so the posOfBar must be subtracted
         // from the rawPos
         const rawPosClickedInBar = isBarVertical ? event.clientY : event.clientX
-        const posOfBar = isBarVertical ?
-            event.target.getBoundingClientRect().bottom :
-            event.target.getBoundingClientRect().left
+        const barBoundingRect = event.target.getBoundingClientRect()
+        const posOfBar = isBarVertical ? barBoundingRect.bottom : barBoundingRect.left
 
         // calculatedPos accurately calculates where in the actual bar was clicked
         // regardless of margin
@@ -144,6 +149,8 @@ function BarComponent(props) {
                     handleBarDrag(event)
                 }
             }}
+            onMouseEnter={props.onMouseEnter}
+            onMouseLeave={props.onMouseLeave}
         >
             <SliderComponent
                 orientation={props.orientation}

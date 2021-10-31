@@ -19,7 +19,9 @@ const ContextMenuBtn = props => {
         const didClickOnContextMenuOption = event.target.classList.contains('.context-menu-option')
         const didClickInContextMenu = didClickOnContextMenu || didClickOnContextMenuOption
 
-        !didClickInContextMenu && showContextMenu(false)
+        if (!didClickInContextMenu) {
+            showContextMenu(false)
+        }
     }
 
     useEffect(() => {

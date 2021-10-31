@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useState } from 'react'
 
 import { toggleMute } from '../../reducers/mediaSlice'
 
@@ -23,41 +23,21 @@ const VolumeBtn = props => {
         btnName = 'high-vol'
     }
 
-    const toggleVolumeBarHidden = event => {
-        // Leave commented until it is determined
-        // with certainty that having it commented
-        // produces no bugs or errors
-        if (event.target.classList === undefined) {
-            return
-        }
-        const isMouseOverVolumeControls = event.target.classList.contains('vol-control-btn') ||
-            event.target.classList.contains('volume-bar-area') || event.target.classList.contains('volume-bar') ||
-            event.target.classList.contains('volume-slider')
-
-        if (isMouseOverVolumeControls) {
-            document.querySelector('.volume-bar').classList.remove('invisible')
-        } else {
-            document.querySelector('.volume-bar').classList.add('invisible')
-        }
-    }
-
-    useEffect(() => {
-        document.body.addEventListener('mousemove', toggleVolumeBarHidden)
-
-        return () => {
-            window.removeEventListener('mousemove', toggleVolumeBarHidden)
-        }
-    }, [])
+    const [ isVolumeBarHidden, setIsVolumeBarHidden ] = useState(true)
 
     return (
         <>
-            <div className='volume-bar-area'>
+            <div
+                className='volume-bar-area'
+            >
                 <BarComponent
                     orientation='vertical'
                     name='volume'
-                    modifiers={['fading-component', 'invisible']}
+                    modifiers={['fading-component', `${isVolumeBarHidden ? 'invisible' : '' }`.trim()]}
                     dispatch={props.dispatch}
                     media={props.media}
+                    onMouseEnter={() => setIsVolumeBarHidden(false)}
+                    onMouseLeave={() => setIsVolumeBarHidden(true)}
                     alsoDoOnClick={() => {
                         if (muted) {
                             props.dispatch(toggleMute())
@@ -70,6 +50,8 @@ const VolumeBtn = props => {
                 btnTheme={props.btnTheme}
                 isVolumeBtn={true}
                 handleMediaBtnClick={() => props.dispatch(toggleMute())}
+                onMouseEnter={() => setIsVolumeBarHidden(false)}
+                onMouseLeave={() => setIsVolumeBarHidden(true)}
             />
         </>
     )

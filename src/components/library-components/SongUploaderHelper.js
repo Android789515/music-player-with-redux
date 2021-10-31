@@ -4,10 +4,10 @@ import { v4 as uuidv4 } from 'uuid'
 
 import { addSong } from '../../reducers/librarySlice'
 
-export const uploadSong = (location, song) => {
-    createSongObject(song).then(songObj => {
-        store.dispatch(addSong({ to: location, song: songObj}))
-    })
+export const uploadSong = async (location, song) => {
+    const songObj = await createSongObject(song)
+
+    store.dispatch(addSong({ to: location, song: songObj}))
 }
 
 const createSongObject = async song => {

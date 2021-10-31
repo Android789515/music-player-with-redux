@@ -50,18 +50,24 @@ export const librarySlice = createSlice({
         removeSong: (state, action) => {
             switch (action.payload.from) {
                 case 'songs':
-                    return {...state, songs: state.songs.filter(song => song.id !== action.payload.song.id)}
+                    return {...state, songs: state.songs.filter(song => song.id !== action.payload.songId)}
 
-                case 'playlist':
-                    const playlistId = action.payload.id
-
-                    const updatedPlaylists = state.playlists.filter(playlist => {
-                        const playlistInfo = playlist[0]
-
-                        return playlistInfo.id !== playlistId
+                case 'openedPlaylist':
+                    const updatedPlaylists = [...state.playlists].map(playlist => {
+                        if (playlist.id === state.openedPlaylist.id) {
+                            return {
+                                ...playlist,
+                                songs: playlist.songs.filter(song => song.id !== action.payload.songId)
+                            }
+                        }
+                        return playlist
                     })
 
-                    return {...state, playlists: updatedPlaylists}
+                    return {
+                        ...state,
+                        playlists: updatedPlaylists,
+                        openedPlaylist: updatedPlaylists.find(playlist => playlist.id === state.openedPlaylist.id)
+                    }
 
                 default:
                     return state
@@ -70,6 +76,12 @@ export const librarySlice = createSlice({
 
         queueSong: (state, action) => {
             return {...state, queuedSong: {...action.payload}}
+        },
+        unqueueSong: state => {
+            const unqueuedSong = {...state.queuedSong}
+            Object.keys(unqueuedSong).forEach(key => unqueuedSong[key] = undefined)
+
+            return {...state, queuedSong: unqueuedSong}
         },
 
         addPlaylist: (state, action) => {
@@ -82,28 +94,13 @@ export const librarySlice = createSlice({
     }
 })
 
-export const { addSong, removeSong, queueSong, addPlaylist, setOpenedPlaylist } = librarySlice.actions
+export const {
+    addSong,
+    removeSong,
+    queueSong,
+    unqueueSong,
+    addPlaylist,
+    setOpenedPlaylist
+} = librarySlice.actions
 
 export default librarySlice.reducer
-
-// example playlist array
-// playlists: [
-//     [{ id: 0, title: 'Classic' },
-//         [{
-//             id: 0,
-//             src: TakeOnMe,
-//             title: 'Take on Me',
-//             artist: 'Aha',
-//             duration: 227
-//         }]
-//     ],
-//     [{ id: 1, title: 'Rock' },
-//         [{
-//             id: 0,
-//             src: SummerOf69,
-//             title: `Summer of '69`,
-//             artist: 'Bryan Adams',
-//             duration: undefined
-//         }]
-//     ]
-// ]

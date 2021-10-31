@@ -20,6 +20,8 @@ function MediaControlBtn(props) {
             src={src}
             alt={name}
             onClick={handleMediaBtnClick}
+            onMouseEnter={props.onMouseEnter}
+            onMouseLeave={props.onMouseLeave}
         />
     )
 }

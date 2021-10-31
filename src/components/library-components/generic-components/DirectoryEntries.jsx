@@ -8,7 +8,11 @@ const DirectoryEntries = props => {
     switch (props.directoryIdentifier) {
         case 'songs':
             return props.entries.map(song => (
-                <SongDirectoryEntry key={song.id} song={song} dispatch={props.dispatch} />
+                <SongDirectoryEntry
+                    key={song.id}
+                    song={song}
+                    dispatch={props.dispatch}
+                />
             ))
         case 'playlists':
             return props.entries.map(playlist => (
@@ -21,7 +25,11 @@ const DirectoryEntries = props => {
             ))
         case 'openedPlaylist':
             return props.entries.songs.map(song => (
-                <SongDirectoryEntry key={song.id} song={song} dispatch={props.dispatch} />
+                <SongDirectoryEntry
+                    key={song.id}
+                    song={song}
+                    dispatch={props.dispatch}
+                />
             ))
 
         default:

@@ -13,11 +13,13 @@ const CreatePlaylistModal = props => {
         if (event.key === 'Enter') {
             const isValidName = modalText.trim()
 
-            isValidName && props.dispatch(addPlaylist({
-                id: playlists.length,
-                name: modalText,
-                songs: []
-            }))
+            if (isValidName) {
+                props.dispatch(addPlaylist({
+                    id: playlists.length,
+                    name: modalText,
+                    songs: []
+                }))
+            }
             updateModalText(() =>'')
         }
     }

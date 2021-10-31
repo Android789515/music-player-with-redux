@@ -26,11 +26,16 @@ const PlaylistDirectoryEntry = props => {
         props.setCurrentDirectory(() => directories.openedPlaylist)
     }
 
+    const deleteEntry = event => {
+        event.target.removeEventListener('deleterequest', deleteEntry)
+    }
+
     return (
         <DirectoryEntry
             entry={props.playlist}
             className='btn directory-entry'
             onClick={openPlaylist}
+            deleteEntry={deleteEntry}
             contextoptions={['open', 'rename', 'delete']}
         >
             <h4 className='playlist-entry-title'>{cutPlaylistName()}</h4>

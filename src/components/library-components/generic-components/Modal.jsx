@@ -9,11 +9,13 @@ const Modal = props => {
     }
 
     const closeModalWhen = event => {
-        if (props.closeWhen) {
-            props.closeWhen(event) && hideModal()
+        if (props.closeWhen && props.closeWhen(event)) {
+            hideModal()
         }
 
-        event.key === 'Escape' && hideModal()
+        if (event.key === 'Escape') {
+            hideModal()
+        }
     }
 
 
@@ -26,7 +28,7 @@ const Modal = props => {
     }, [])
 
     return (
-        <div className='modal hidden'>
+        <div className="modal hidden">
             {props.children}
         </div>
     )

@@ -1,0 +1,1 @@
+export const deleteRequest = new Event('deleterequest')
