@@ -4,22 +4,47 @@ import { v4 as uuidv4 } from 'uuid'
 const capitalize = string => string.charAt(0).toUpperCase() + string.slice(1)
 
 const ContextMenu = props => {
-    const allContextMenuOptions = [
-        'queue',
-        'open',
-        'rename',
-        'delete'
-    ]
+    const allContextMenuOptions = {
+        queue: 'queue',
+        open: 'open',
+        rename: 'rename',
+        delete: 'delete'
+    }
 
-    const contextMenuList = props.contextOptions.map(option => {
+    const handleContextOptionClick = event => {
+        const optionClicked = event.target.textContent.toLowerCase()
+        switch (optionClicked) {
+            case allContextMenuOptions.queue || allContextMenuOptions.open:
+                const closestEntry = event.target.closest('.directory-entry')
+                closestEntry.click()
+                props.closeContextMenu(event)
+                break
+
+            case allContextMenuOptions.delete:
+                const directory = event.target.closest('.directory')
+                break
+
+            default:
+                return
+        }
+    }
+
+    const contextMenuList = props.contextoptions.map(option => {
         const uuid = uuidv4()
-        return <li key={uuid} className='context-menu-option'>{capitalize(option)}</li>
+        return (
+            <li
+                key={uuid}
+                className="context-menu-option"
+                onClick={handleContextOptionClick}
+            >
+                {capitalize(option)}</li>
+        )
     })
 
     if (props.shouldShow) {
         return (
             <ul
-                className='unstyled-ul context-menu hard-rounded-corners'
+                className="unstyled-ul context-menu hard-rounded-corners"
                 onClick={props.openContextMenu}
             >
                 {contextMenuList}

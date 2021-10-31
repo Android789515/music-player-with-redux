@@ -44,7 +44,8 @@ const ContextMenuBtn = props => {
             <ContextMenu
                 shouldShow={shouldShowContextMenu}
                 openContextMenu={openContextMenu}
-                contextOptions={props.contextOptions}
+                closeContextMenu={closeContextMenu}
+                contextoptions={props.contextoptions}
             />
         </>
     )
