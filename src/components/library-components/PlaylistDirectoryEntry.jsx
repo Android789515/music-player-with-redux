@@ -31,7 +31,7 @@ const PlaylistDirectoryEntry = props => {
             entry={props.playlist}
             className='btn directory-entry'
             onClick={openPlaylist}
-            contextOptions={['rename', 'delete']}
+            contextOptions={['open', 'rename', 'delete']}
         >
             <h4 className='playlist-entry-title'>{cutPlaylistName()}</h4>
             <p className='playlist-entry-song-count'>{props.playlist.songs.length} songs</p>

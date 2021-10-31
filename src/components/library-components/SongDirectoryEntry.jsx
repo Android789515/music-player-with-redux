@@ -23,7 +23,7 @@ const SongDirectoryEntry = props => {
                     props.dispatch(queueSong(props.song))
                     props.dispatch(play())
                 }}
-                contextOptions={['delete']}
+                contextOptions={['queue', 'delete']}
             >
                 <h4 className='song-entry-title song-entry-info'>{props.song.title}</h4>
                 <p className='song-entry-artist song-entry-info'>{props.song.artist}</p>
