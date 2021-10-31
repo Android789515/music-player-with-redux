@@ -4,8 +4,6 @@ import { v4 as uuidv4 } from 'uuid'
 import store from '../../store'
 import { setOpenedPlaylist } from '../../reducers/librarySlice'
 
-const capitalize = string => string.charAt(0).toUpperCase() + string.slice(1)
-
 // Make it configurable in the app
 export const directories = {
     songs: {
@@ -23,7 +21,7 @@ export const directories = {
         name: 'Playlists',
         addEntryText: 'Create Playlist',
         handleAddEntryClick: function() {
-            const createPlaylistModal = document.querySelector('.create-playlist-modal')
+            const createPlaylistModal = document.querySelector('.modal')
             createPlaylistModal.classList.remove('hidden')
             const modalInput = document.querySelector('#create-playlist-input')
             modalInput.focus()

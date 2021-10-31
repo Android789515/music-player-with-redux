@@ -3,9 +3,11 @@ import React from 'react'
 import '../../css/library-styles/library-directory-styles.scss'
 
 import AddEntryBtn from './AddEntryBtn'
+import { directories } from './DirectoryList'
+import CreatePlaylistModal from './modals/CreatePlaylistModal'
 
 const CurrentDirectory = props => {
-
+    const isDirectoryPlaylists = props.identifier === directories.playlists.identifier
     const classFormattedName = props.identifier.split('').reduce((formattedName, char) => {
         return `${formattedName}${/[A-Z]/.test(char) ? '-' + char.toLowerCase() : char}`
     }, '')
@@ -22,6 +24,8 @@ const CurrentDirectory = props => {
                 uploadTo={props.identifier}
                 hasInputComponent={props.hasInputComponent}
             />
+
+            {isDirectoryPlaylists && <CreatePlaylistModal dispatch={props.dispatch} />}
         </div>
     )
 }

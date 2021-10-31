@@ -58,7 +58,7 @@
   width: initial;
 }
 
-.create-playlist-modal {
+.modal {
   position: fixed;
   top: 0;
   left: 0;
@@ -68,20 +68,20 @@
   height: 100vh;
 
   background: rgba(200, 200, 200, .9);
+}
 
-  .create-playlist-prompt {
-    position: fixed;
-    top: 50%;
-    right: 35%;
-    bottom: 50%;
-    left: 35%;
+.create-playlist-prompt {
+  position: fixed;
+  top: 50%;
+  right: 35%;
+  bottom: 50%;
+  left: 35%;
 
-    width: max-content;
-    height: max-content;
+  width: max-content;
+  height: max-content;
 
-    padding: 1em 2em;
-    background: #fff;
-  }
+  padding: 1em 2em;
+  background: #fff;
 
   #create-playlist-input {
     display: block;

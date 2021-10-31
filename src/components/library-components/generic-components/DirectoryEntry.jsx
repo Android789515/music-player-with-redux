@@ -8,7 +8,7 @@ const DirectoryEntry = props => {
         <li key={entry.id} {...neededProps}>
             {props.children}
 
-            <ContextMenuBtn />
+            <ContextMenuBtn contextOptions={props.contextOptions} />
         </li>
     )
 }
