@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 
+// Modal renders a special prompt component that will vary
 const Modal = props => {
 
     const hideModal = () => {

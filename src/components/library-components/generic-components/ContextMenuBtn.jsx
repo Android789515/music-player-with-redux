@@ -4,12 +4,12 @@ import contextMenuBtn from '../../../img/dark-btns/context.svg'
 import ContextMenu from './ContextMenu'
 
 const ContextMenuBtn = props => {
-    const [ shouldShowContextMenu, showContextMenu ] = useState(undefined)
+    const [ shouldShowContextMenu, showContextMenu ] = useState(false)
 
     const openContextMenu = event => {
         event.stopPropagation()
 
-        showContextMenu(() => true)
+        showContextMenu(true)
     }
 
     const closeContextMenu = event => {
@@ -19,25 +19,14 @@ const ContextMenuBtn = props => {
         const didClickOnContextMenuOption = event.target.classList.contains('.context-menu-option')
         const didClickInContextMenu = didClickOnContextMenu || didClickOnContextMenuOption
 
-        !didClickInContextMenu && showContextMenu(() => false)
+        !didClickInContextMenu && showContextMenu(false)
     }
 
     useEffect(() => {
-        const isFirstRender = shouldShowContextMenu === undefined
+        document.body.addEventListener('click', closeContextMenu)
 
-        if (shouldShowContextMenu) {
-            console.log('listener added')
-            document.body.addEventListener('click', closeContextMenu)
-        } else if (!isFirstRender) {
-            console.log('listener removed')
-            document.removeEventListener('click', closeContextMenu)
-        }
-
-        return () => {
-            console.log('listener removed and component unmounted')
-            document.removeEventListener('click', closeContextMenu)
-        }
-    }, [shouldShowContextMenu])
+        return () => document.body.removeEventListener('click', closeContextMenu)
+    }, [])
 
     return (
         <>

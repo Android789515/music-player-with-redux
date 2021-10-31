@@ -25,9 +25,11 @@ const ContextMenu = props => {
 
             case allContextMenuOptions.delete:
                 const directory = event.target.closest('.directory')
+
                 break
 
             default:
+                props.closeContextMenu(event)
                 return
         }
     }
