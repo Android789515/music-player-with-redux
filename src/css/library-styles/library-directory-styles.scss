@@ -133,7 +133,7 @@
 
 .playlists-directory {
   .directory-entry {
-    align-items: baseline;
+    grid-template-columns: auto .25fr;
   }
 
   .directory-entry:not(.directory-entry:first-child) {
@@ -142,7 +142,7 @@
   }
 
   .playlist-entry-title,
-  .rename-playlist-btn {
+  .context-menu-btn {
     grid-row: 1;
     grid-column: 1;
   }
