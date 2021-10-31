@@ -26,8 +26,15 @@ const ContextMenuBtn = props => {
         const isFirstRender = shouldShowContextMenu === undefined
 
         if (shouldShowContextMenu) {
+            console.log('listener added')
             document.body.addEventListener('click', closeContextMenu)
         } else if (!isFirstRender) {
+            console.log('listener removed')
+            document.removeEventListener('click', closeContextMenu)
+        }
+
+        return () => {
+            console.log('listener removed and component unmounted')
             document.removeEventListener('click', closeContextMenu)
         }
     }, [shouldShowContextMenu])
