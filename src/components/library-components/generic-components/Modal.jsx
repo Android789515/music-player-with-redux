@@ -1,5 +1,7 @@
 import React, { useEffect } from 'react'
 
+import '../../../css/modal-styles.scss'
+
 // Modal renders a special prompt component that will vary
 const Modal = props => {
 

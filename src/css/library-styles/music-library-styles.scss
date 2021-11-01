@@ -58,36 +58,6 @@
   width: initial;
 }
 
-.modal {
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 4;
-
-  width: 100vw;
-  height: 100vh;
-
-  background: rgba(200, 200, 200, .9);
-}
-
-.create-playlist-prompt {
-  position: fixed;
-  top: 50%;
-  right: 35%;
-  bottom: 50%;
-  left: 35%;
-
-  width: max-content;
-  height: max-content;
-
-  padding: 1em 2em;
-  background: #fff;
-
-  #create-playlist-input {
-    display: block;
-  }
-}
-
 @media (min-width: $first-media-breakpoint) {
   .library,
   .library-panel-btn {
@@ -113,17 +83,9 @@
   .library-panel-btn {
     display: block;
     position: fixed;
-    right: 2%;
+    //right: -5%;
   }
 
-  //.open-library-btn {
-  //  font-size: 2.5rem;
-  //}
-  //
-  //.close-library-btn {
-  //  // Ah, perfect
-  //  font-size: 2.297rem;
-  //}
   $libraryButtonMinSize: 30px;
   $libraryButtonMultiplier: 2;
   .open-library-btn {
@@ -137,6 +99,7 @@
   }
 
   .close-library-btn {
+    right: 2%;
     // Keeps the close button above the library and the open button behind it
     z-index: 3;
 

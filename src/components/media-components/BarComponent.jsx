@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react'
+import React, { useEffect, useState } from 'react'
 
 import '../../css/media-styles/bar-styles.scss'
 
@@ -24,19 +24,14 @@ function BarComponent(props) {
         if (!event.target.classList.contains(`${props.name}-bar`)) {
             event.target = event.target.parentElement
         }
-
         return event.target
     }
 
     const setBarPercent = (pos, size) => {
-        switch (props.name) {
-            case validBars._SONG:
-                return Math.round( (pos / size) * 100)
-            case validBars._VOLUME:
-                return Math.round( (pos / size) * 10) * 10
-
-            default:
-                return Math.round( (pos / size) * 100)
+        if (props.name === validBars._VOLUME) {
+            return Math.round( (pos / size) * 10) * 10
+        } else {
+            return (pos / size) * 100
         }
     }
 
@@ -80,7 +75,10 @@ function BarComponent(props) {
         let sliderVal
         switch (props.name) {
             case validBars._SONG:
-                sliderVal = Math.floor((percent / 100) * props.media.maxTime)
+                // Prevents bug where the song audio will not play
+                // possibly due to the song time being set to a number
+                // with 15 decimal places
+                sliderVal = ((percent / 100) * props.media.maxTime).toFixed(1)
                 // Connect to redux
                 props.dispatch(updateTime(sliderVal))
                 break

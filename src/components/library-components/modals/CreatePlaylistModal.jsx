@@ -1,7 +1,9 @@
 import React, { useState } from 'react'
 
+import '../../../css/modal-styles.scss'
 import store from '../../../store'
 import { addPlaylist } from '../../../reducers/librarySlice'
+
 import Modal from '../generic-components/Modal'
 
 const CreatePlaylistModal = props => {

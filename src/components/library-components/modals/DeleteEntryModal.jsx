@@ -1,5 +1,7 @@
 import React from 'react'
 
+import '../../../css/modal-styles.scss'
+
 import Modal from '../generic-components/Modal'
 
 const DeleteEntryModal = props => {
