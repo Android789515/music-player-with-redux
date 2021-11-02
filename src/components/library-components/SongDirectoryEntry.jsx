@@ -8,6 +8,8 @@ import { queueSong, removeSong, unqueueSong } from '../../reducers/librarySlice'
 
 import DirectoryEntry from './generic-components/DirectoryEntry'
 import SliderComponent from '../media-components/SliderComponent'
+import { openModal, setModalContent } from '../../reducers/modalSlice'
+import DeleteEntryModal from './modals/DeleteEntryModal'
 
 const SongDirectoryEntry = props => {
     const media = useSelector(state => state['media'])
@@ -18,15 +20,28 @@ const SongDirectoryEntry = props => {
     const deleteEntry = event => {
         event.target.removeEventListener('deleterequest', deleteEntry)
 
+        const validAnswers = { _YES: 'yes', _NO: 'no' }
+        // ask if sure they want to delete
+        const userAnswer = renderDeleteEntryModal().then(userAnswer => userAnswer)
 
-        props.dispatch(stop())
-        props.dispatch(unqueueSong())
-        const parentDirectory = getParentDirectory(event)
-        if (parentDirectory === directories.songs.identifier) {
-            URL.revokeObjectURL(props.song.src)
+        // if yes then execute below
+        if (userAnswer === validAnswers._YES) {
+            if (queuedSong.id === props.song.id) {
+                props.dispatch(stop())
+                props.dispatch(unqueueSong())
+            }
+
+            const parentDirectory = getParentDirectory(event)
+            if (parentDirectory === directories.songs.identifier) {
+                URL.revokeObjectURL(props.song.src)
+            }
+            props.dispatch(removeSong({from: parentDirectory, songId: props.song.id}))
         }
+    }
 
-        props.dispatch(removeSong({from: parentDirectory, songId: props.song.id}))
+    const renderDeleteEntryModal = async () => {
+        await props.dispatch(setModalContent(<DeleteEntryModal entryName={props.song.title} />))
+        props.dispatch(openModal())
     }
 
     const getParentDirectory = event => {

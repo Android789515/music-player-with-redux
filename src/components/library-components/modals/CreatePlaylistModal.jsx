@@ -27,7 +27,7 @@ const CreatePlaylistModal = () => {
     }
 
     return (
-        <label className='create-playlist-modal hard-rounded-corners'>
+        <label className='create-playlist-modal modal-content hard-rounded-corners'>
             Enter a playlist name:
             <input
                 id='create-playlist-input'

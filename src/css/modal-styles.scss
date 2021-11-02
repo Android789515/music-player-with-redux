@@ -14,14 +14,50 @@
   height: 100vh;
 
   background: rgba(200, 200, 200, .9);
+
+  .btn,
+  .modal-btn-bg {
+  }
+
+  .btn {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #fff;
+
+    display: inline-block;
+
+    padding: .75em 2.5em;
+    background: $primary-dark-color;
+
+    transform: translateY(-4px);
+    transition: transform 20ms;
+  }
+
+  .btn:focus,
+  .btn:hover {
+  }
+
+  .btn:active {
+    transform: translateY(1px);
+  }
+
+  .modal-btn-bg {
+    padding: 0;
+    background: none;
+    border: none;
+
+    background: #0074c2;
+  }
+}
+
+.modal-content {
+  padding: 1em 2em;
+  background: #fff;
 }
 
 .create-playlist-modal {
   width: max-content;
   height: max-content;
-
-  padding: 1em 2em;
-  background: #fff;
 
   #create-playlist-input {
     display: block;
@@ -31,4 +67,16 @@
 .delete-entry-modal {
   display: grid;
   grid-template: auto auto / 1fr 1fr;
+  grid-gap: 1em;
+
+  max-width: 700px;
+
+  h2 {
+    grid-row: 1;
+    grid-column: span 2;
+  }
+
+  p {
+    justify-self: center;
+  }
 }
