@@ -25,8 +25,9 @@ const LibraryComponent = props => {
 
             <CurrentDirectory
                 identifier={currentDirectory.identifier}
-                addEntryText={openedPlaylist ? 'Add Song to Playlist' : currentDirectory.addEntryText}
-                handleAddEntryClick={currentDirectory.handleAddEntryClick}
+                addEntryText={openedPlaylist ?
+                    'Add Song to Playlist' :
+                    currentDirectory.addEntryText}
                 hasInputComponent={openedPlaylist ? true : currentDirectory.hasInputComponent}
                 dispatch={props.dispatch}
             >

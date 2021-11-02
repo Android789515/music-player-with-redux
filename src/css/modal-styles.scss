@@ -16,7 +16,7 @@
   background: rgba(200, 200, 200, .9);
 }
 
-.create-playlist-prompt {
+.create-playlist-modal {
   width: max-content;
   height: max-content;
 
@@ -26,4 +26,9 @@
   #create-playlist-input {
     display: block;
   }
+}
+
+.delete-entry-modal {
+  display: grid;
+  grid-template: auto auto / 1fr 1fr;
 }

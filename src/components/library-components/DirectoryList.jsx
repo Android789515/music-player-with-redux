@@ -4,6 +4,7 @@ import { v4 as uuidv4 } from 'uuid'
 import store from '../../store'
 import { setOpenedPlaylist } from '../../reducers/librarySlice'
 
+
 // Make it configurable in the app
 export const directories = {
     songs: {
@@ -16,12 +17,6 @@ export const directories = {
         identifier: 'playlists',
         name: 'Playlists',
         addEntryText: 'Create Playlist',
-        handleAddEntryClick: () => {
-            const createPlaylistModal = document.querySelector('.modal')
-            createPlaylistModal.classList.remove('hidden')
-            const modalInput = document.querySelector('#create-playlist-input')
-            modalInput.focus()
-        },
         hasInputComponent: false
     },
     openedPlaylist: {

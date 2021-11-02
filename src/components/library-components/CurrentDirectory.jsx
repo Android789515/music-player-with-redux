@@ -17,9 +17,9 @@ const CurrentDirectory = props => {
 
             <AddEntryBtn
                 btnText={props.addEntryText}
-                doOnClick={props.handleAddEntryClick}
                 uploadTo={props.identifier}
                 hasInputComponent={props.hasInputComponent}
+                dispatch={props.dispatch}
             />
         </div>
     )

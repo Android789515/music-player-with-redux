@@ -1,20 +1,22 @@
 import React, { useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 
 import '../../../css/modal-styles.scss'
-import store from '../../../store'
+
 import { addPlaylist } from '../../../reducers/librarySlice'
 
-const CreatePlaylistModal = props => {
+const CreatePlaylistModal = () => {
     const [ modalText, updateModalText ] = useState('')
 
-    const submit = event => {
-        const playlists = store.getState().library.playlists
+    const dispatch = useDispatch()
+    const playlists = useSelector(state => state['library'].playlists)
 
+    const submit = event => {
         if (event.key === 'Enter') {
             const isValidName = modalText.trim()
 
             if (isValidName) {
-                props.dispatch(addPlaylist({
+                dispatch(addPlaylist({
                     id: playlists.length,
                     name: modalText,
                     songs: []
@@ -24,11 +26,8 @@ const CreatePlaylistModal = props => {
         }
     }
 
-    const closeWhen = event => event.key === 'Enter'
-
     return (
-        // closeWhen={closeWhen}
-        <label className='create-playlist-prompt hard-rounded-corners'>
+        <label className='create-playlist-modal hard-rounded-corners'>
             Enter a playlist name:
             <input
                 id='create-playlist-input'

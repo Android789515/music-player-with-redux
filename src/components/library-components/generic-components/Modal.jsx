@@ -1,13 +1,12 @@
 import React, { useEffect } from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 
 import '../../../css/modal-styles.scss'
-import store from '../../../store'
 import { closeModal } from '../../../reducers/modalSlice'
 
 // Modal renders a special prompt component that will vary
-const Modal = props => {
-    const modal = store.getState().modal
+const Modal = () => {
+    const modal = useSelector(state => state['modal'])
     const dispatch = useDispatch()
 
     const handleKeyDown = ({ key }) => {
@@ -15,6 +14,12 @@ const Modal = props => {
             dispatch(closeModal())
         }
     }
+
+    useEffect(() => {
+        document.body.addEventListener('keydown', handleKeyDown)
+
+        return () => document.body.removeEventListener('keydown', handleKeyDown)
+    }, [])
 
     return (
         <div

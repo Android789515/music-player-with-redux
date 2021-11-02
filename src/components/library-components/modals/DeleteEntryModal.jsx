@@ -7,6 +7,7 @@ import Modal from '../generic-components/Modal'
 const DeleteEntryModal = props => {
     return (
         <div className='delete-entry-prompt'>
+            <h2>Are you sure you would like to delete {props.entryName}?</h2>
             {/* Overall styling
                     I think I might use grid for this
                     2 rows / 2 cols
