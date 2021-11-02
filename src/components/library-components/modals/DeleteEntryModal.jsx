@@ -6,9 +6,8 @@ import Modal from '../generic-components/Modal'
 
 const DeleteEntryModal = props => {
     return (
-        <Modal>
-            <div className='delete-entry-prompt'>
-                {/* Overall styling
+        <div className='delete-entry-prompt'>
+            {/* Overall styling
                     I think I might use grid for this
                     2 rows / 2 cols
 
@@ -18,11 +17,10 @@ const DeleteEntryModal = props => {
                     no button on second row second col
                  */}
 
-                {/* Big h2 saying: "Are you sure you want to delete?" */}
+            {/* Big h2 saying: "Are you sure you want to delete?" */}
 
-                {/* Yes/No buttons */}
-            </div>
-        </Modal>
+            {/* Yes/No buttons */}
+        </div>
     )
 }
 

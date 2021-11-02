@@ -7,7 +7,10 @@ const DirectoryEntry = props => {
     const directoryEntryRef = useRef(undefined)
 
     useEffect(() => {
-        directoryEntryRef.current.addEventListener('deleterequest', deleteEntry)
+        const directoryEntry = directoryEntryRef.current
+        directoryEntry.addEventListener('deleterequest', deleteEntry)
+
+        return () => directoryEntry.removeEventListener('deleterequest', deleteEntry)
     }, [])
 
     return (

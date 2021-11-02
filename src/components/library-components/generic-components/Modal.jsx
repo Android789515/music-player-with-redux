@@ -1,37 +1,27 @@
 import React, { useEffect } from 'react'
+import { useDispatch } from 'react-redux'
 
 import '../../../css/modal-styles.scss'
+import store from '../../../store'
+import { closeModal } from '../../../reducers/modalSlice'
 
 // Modal renders a special prompt component that will vary
 const Modal = props => {
+    const modal = store.getState().modal
+    const dispatch = useDispatch()
 
-    const hideModal = () => {
-        const thisComponent = document.querySelector('.modal')
-        thisComponent.classList.add('hidden')
-    }
-
-    const closeModalWhen = event => {
-        if (props.closeWhen && props.closeWhen(event)) {
-            hideModal()
-        }
-
-        if (event.key === 'Escape') {
-            hideModal()
+    const handleKeyDown = ({ key }) => {
+        if (key === 'Escape' || key === 'Enter') {
+            dispatch(closeModal())
         }
     }
-
-
-    useEffect(() => {
-        document.body.addEventListener('keydown', closeModalWhen)
-
-        return () => {
-            document.body.removeEventListener('keydown', closeModalWhen)
-        }
-    }, [])
 
     return (
-        <div className="modal hidden">
-            {props.children}
+        <div
+            className={`modal ${modal.isOpen ? '' : 'hidden'}`.trim()}
+            onKeyDown={handleKeyDown}
+        >
+            {modal.modalContent}
         </div>
     )
 }

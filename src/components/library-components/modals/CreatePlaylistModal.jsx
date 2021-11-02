@@ -4,8 +4,6 @@ import '../../../css/modal-styles.scss'
 import store from '../../../store'
 import { addPlaylist } from '../../../reducers/librarySlice'
 
-import Modal from '../generic-components/Modal'
-
 const CreatePlaylistModal = props => {
     const [ modalText, updateModalText ] = useState('')
 
@@ -29,18 +27,17 @@ const CreatePlaylistModal = props => {
     const closeWhen = event => event.key === 'Enter'
 
     return (
-        <Modal closeWhen={closeWhen}>
-            <label className='create-playlist-prompt hard-rounded-corners'>
-                Enter a playlist name:
-                <input
-                    id='create-playlist-input'
-                    type='text'
-                    onChange={event => updateModalText(() => event.target.value)}
-                    value={modalText}
-                    onKeyPress={submit}
-                />
-            </label>
-        </Modal>
+        // closeWhen={closeWhen}
+        <label className='create-playlist-prompt hard-rounded-corners'>
+            Enter a playlist name:
+            <input
+                id='create-playlist-input'
+                type='text'
+                onChange={event => updateModalText(() => event.target.value)}
+                value={modalText}
+                onKeyPress={submit}
+            />
+        </label>
     )
 }
 

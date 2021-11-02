@@ -19,6 +19,7 @@ const SongUploader = props => {
             type='file'
             multiple
             onChange={uploadSongs}
+            ref={props.uploaderRef}
         />
     )
 }

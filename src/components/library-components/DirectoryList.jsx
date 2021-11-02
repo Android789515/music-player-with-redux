@@ -10,17 +10,13 @@ export const directories = {
         identifier: 'songs',
         name: 'Songs',
         addEntryText: 'Upload Song',
-        handleAddEntryClick: function() {
-            const uploadSongInput = document.getElementById('upload-song')
-            uploadSongInput.click()
-        },
         hasInputComponent: true
     },
     playlists: {
         identifier: 'playlists',
         name: 'Playlists',
         addEntryText: 'Create Playlist',
-        handleAddEntryClick: function() {
+        handleAddEntryClick: () => {
             const createPlaylistModal = document.querySelector('.modal')
             createPlaylistModal.classList.remove('hidden')
             const modalInput = document.querySelector('#create-playlist-input')
@@ -31,10 +27,6 @@ export const directories = {
     openedPlaylist: {
         identifier: 'openedPlaylist',
         addEntryText: 'Add Song to Playlist',
-        handleAddEntryClick: function() {
-            const uploadSongInput = document.getElementById('upload-song')
-            uploadSongInput.click()
-        },
         hasInputComponent: true
     }
 }
