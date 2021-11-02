@@ -17,6 +17,8 @@ const SongDirectoryEntry = props => {
 
     const deleteEntry = event => {
         event.target.removeEventListener('deleterequest', deleteEntry)
+
+
         props.dispatch(stop())
         props.dispatch(unqueueSong())
         const parentDirectory = getParentDirectory(event)
