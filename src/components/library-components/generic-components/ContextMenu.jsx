@@ -38,6 +38,17 @@ const ContextMenu = props => {
         }
     }
 
+    const handleLoseFocus = ({ target: contextMenu }) => {
+        const isContextOptionFocused = [...contextMenu.children]
+            .some(contextOption => {
+                return document.activeElement === contextOption
+            })
+
+        if (!isContextOptionFocused) {
+            props.closeContextMenu()
+        }
+    }
+
     const contextMenuList = props.contextoptions.map(option => {
         const uuid = uuidv4()
         return (
@@ -65,7 +76,7 @@ const ContextMenu = props => {
             <ul
                 className='unstyled-ul context-menu hard-rounded-corners'
                 tabIndex={0}
-                onBlur={props.closeContextMenu}
+                onBlur={handleLoseFocus}
                 ref={contextMenuRef}
             >
                 {contextMenuList}
