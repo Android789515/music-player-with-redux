@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
 import '../../../css/modal-styles.scss'
@@ -6,11 +6,11 @@ import { setModalContent } from '../../../reducers/modalSlice'
 
 // Modal renders a special prompt component that will vary
 const Modal = () => {
-    const modal = useSelector(state => state['modal'])
+    const modalContent = useSelector(state => state['modal'].modalContent)
     const dispatch = useDispatch()
 
     const handleKeyDown = ({ key }) => {
-        if (key === 'Escape' || key === 'Enter') {
+        if (key === 'Escape') {
             dispatch(setModalContent(undefined))
         }
     }
@@ -23,10 +23,10 @@ const Modal = () => {
 
     return (
         <div
-            className={`modal ${modal.modalContent ? '' : 'hidden'}`.trim()}
+            className={`modal ${modalContent ? '' : 'hidden'}`.trim()}
             onKeyDown={handleKeyDown}
         >
-            {modal.modalContent}
+            {modalContent}
         </div>
     )
 }

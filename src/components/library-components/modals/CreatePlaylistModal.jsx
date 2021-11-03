@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import '../../../css/modal-styles.scss'
 
 import { addPlaylist } from '../../../reducers/librarySlice'
+import { setModalContent } from '../../../reducers/modalSlice'
 
 const CreatePlaylistModal = () => {
     const [ modalText, updateModalText ] = useState('')
@@ -11,19 +12,19 @@ const CreatePlaylistModal = () => {
     const dispatch = useDispatch()
     const playlists = useSelector(state => state['library'].playlists)
 
-    const submit = event => {
-        if (event.key === 'Enter') {
-            const isValidName = modalText.trim()
+    const submit = () => {
+        const isValidName = modalText.trim()
 
-            if (isValidName) {
-                dispatch(addPlaylist({
-                    id: playlists.length,
-                    name: modalText,
-                    songs: []
-                }))
-            }
-            updateModalText(() =>'')
+        if (isValidName) {
+            dispatch(addPlaylist({
+                id: playlists.length,
+                name: modalText,
+                songs: []
+            }))
         }
+        updateModalText('')
+
+        dispatch(setModalContent(undefined))
     }
 
     return (
@@ -34,7 +35,7 @@ const CreatePlaylistModal = () => {
                 type='text'
                 onChange={event => updateModalText(() => event.target.value)}
                 value={modalText}
-                onKeyPress={submit}
+                onKeyPress={event => event.key === 'Enter' && submit()}
             />
         </label>
     )

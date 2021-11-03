@@ -1,6 +1,8 @@
 import React from 'react'
 import { v4 as uuidv4 } from 'uuid'
 
+import { customEvents } from '../../../events'
+
 const capitalize = string => string.charAt(0).toUpperCase() + string.slice(1)
 
 export const contextMenuOptions = {
@@ -27,7 +29,7 @@ const ContextMenu = props => {
                 break
 
             case contextMenuOptions._delete:
-                const deleteRequest = new Event('deleterequest')
+                const deleteRequest = new Event(customEvents.deleteRequest)
                 closestEntry.dispatchEvent(deleteRequest)
                 break
 
@@ -44,16 +46,14 @@ const ContextMenu = props => {
                 className="context-menu-option"
                 onClick={handleContextOptionClick}
             >
-                {capitalize(option)}</li>
+                {capitalize(option)}
+            </li>
         )
     })
 
     if (props.shouldShow) {
         return (
-            <ul
-                className="unstyled-ul context-menu hard-rounded-corners"
-                onClick={props.openContextMenu}
-            >
+            <ul className="unstyled-ul context-menu hard-rounded-corners">
                 {contextMenuList}
             </ul>
         )

@@ -7,7 +7,7 @@ import PlaylistDirectoryEntry from '../PlaylistDirectoryEntry'
 const DirectoryEntries = ({ directoryIdentifier, entries, ...props }) => {
 
     switch (directoryIdentifier) {
-        case directories.songs:
+        case directories.songs.identifier:
             return entries.map(song => (
                 <SongDirectoryEntry
                     key={song.id}
@@ -15,7 +15,7 @@ const DirectoryEntries = ({ directoryIdentifier, entries, ...props }) => {
                     dispatch={props.dispatch}
                 />
             ))
-        case directories.playlists:
+        case directories.playlists.identifier:
             return entries.map(playlist => (
                 <PlaylistDirectoryEntry
                     key={playlist.id}
@@ -24,7 +24,7 @@ const DirectoryEntries = ({ directoryIdentifier, entries, ...props }) => {
                     dispatch={props.dispatch}
                 />
             ))
-        case directories.openedPlaylist:
+        case directories.openedPlaylist.identifier:
             return entries.songs.map(song => (
                 <SongDirectoryEntry
                     key={song.id}
@@ -34,7 +34,7 @@ const DirectoryEntries = ({ directoryIdentifier, entries, ...props }) => {
             ))
 
         default:
-            return
+            return <></>
     }
 }
 

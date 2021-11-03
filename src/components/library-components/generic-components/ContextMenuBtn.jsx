@@ -4,31 +4,19 @@ import contextMenuBtn from '../../../img/dark-btns/context.svg'
 import ContextMenu from './ContextMenu'
 
 const ContextMenuBtn = props => {
-    const [ shouldShowContextMenu, showContextMenu ] = useState(false)
+    const [ shouldShowContextMenu, isContextMenuShown ] = useState(false)
 
     const openContextMenu = event => {
         event.stopPropagation()
 
-        showContextMenu(true)
+        isContextMenuShown(true)
     }
 
     const closeContextMenu = event => {
         event.stopPropagation()
 
-        const didClickOnContextMenu = event.target.classList.contains('context-menu')
-        const didClickOnContextMenuOption = event.target.classList.contains('.context-menu-option')
-        const didClickInContextMenu = didClickOnContextMenu || didClickOnContextMenuOption
-
-        if (!didClickInContextMenu) {
-            showContextMenu(false)
-        }
+        isContextMenuShown(false)
     }
-
-    useEffect(() => {
-        document.body.addEventListener('click', closeContextMenu)
-
-        return () => document.body.removeEventListener('click', closeContextMenu)
-    }, [])
 
     return (
         <>
@@ -37,6 +25,7 @@ const ContextMenuBtn = props => {
                 src={contextMenuBtn}
                 alt='Context menu button'
                 onClick={openContextMenu}
+                onBlur={closeContextMenu}
             />
 
             <ContextMenu
