@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
 import '../../../css/modal-styles.scss'
-import { closeModal } from '../../../reducers/modalSlice'
+import { setModalContent } from '../../../reducers/modalSlice'
 
 // Modal renders a special prompt component that will vary
 const Modal = () => {
@@ -11,7 +11,7 @@ const Modal = () => {
 
     const handleKeyDown = ({ key }) => {
         if (key === 'Escape' || key === 'Enter') {
-            dispatch(closeModal())
+            dispatch(setModalContent(undefined))
         }
     }
 
@@ -23,12 +23,17 @@ const Modal = () => {
 
     return (
         <div
-            className={`modal ${modal.isOpen ? '' : 'hidden'}`.trim()}
+            className={`modal ${modal.modalContent ? '' : 'hidden'}`.trim()}
             onKeyDown={handleKeyDown}
         >
             {modal.modalContent}
         </div>
     )
+}
+
+export const modalCommands = {
+    _CREATE_PLAYLIST: 'create-playlist',
+    _DELETE_ENTRY: 'delete-entry'
 }
 
 export default Modal

@@ -3,13 +3,14 @@ import { v4 as uuidv4 } from 'uuid'
 
 const capitalize = string => string.charAt(0).toUpperCase() + string.slice(1)
 
+export const contextMenuOptions = {
+    _queue: 'queue',
+    _open: 'open',
+    _rename: 'rename',
+    _delete: 'delete'
+}
+
 const ContextMenu = props => {
-    const allContextMenuOptions = {
-        queue: 'queue',
-        open: 'open',
-        rename: 'rename',
-        delete: 'delete'
-    }
 
     const handleContextOptionClick = event => {
         event.stopPropagation()
@@ -19,13 +20,13 @@ const ContextMenu = props => {
         props.closeContextMenu(event)
 
         switch (optionClicked) {
-            case allContextMenuOptions.queue:
-            case allContextMenuOptions.open:
+            case contextMenuOptions._queue:
+            case contextMenuOptions._open:
                 props.closeContextMenu(event)
                 closestEntry.click()
                 break
 
-            case allContextMenuOptions.delete:
+            case contextMenuOptions._delete:
                 const deleteRequest = new Event('deleterequest')
                 closestEntry.dispatchEvent(deleteRequest)
                 break

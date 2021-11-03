@@ -1,14 +1,24 @@
 import React from 'react'
+import { useDispatch } from 'react-redux'
 
 import '../../../css/modal-styles.scss'
+import { closeModal } from '../../../reducers/modalSlice'
 
 const DeleteEntryModal = props => {
-    const handleClick = event => {
+    const dispatch = useDispatch()
 
+    const proceedWithDelete = () => {
+    }
+
+    const cancelDelete = () => {
     }
 
     const handleKeyPress = ({ key }) => {
-
+        if (key === 'Escape') {
+            cancelDelete()
+        } else if (key === 'Enter') {
+            proceedWithDelete()
+        }
     }
 
     return (
@@ -19,7 +29,7 @@ const DeleteEntryModal = props => {
                 <button className='modal-btn-bg hard-rounded-corners' >
                     <span
                         className='btn no-btn hard-rounded-corners'
-                        onClick={handleClick}
+                        onClick={cancelDelete}
                         onKeyDown={handleKeyPress}
                     >
                         No
@@ -31,7 +41,7 @@ const DeleteEntryModal = props => {
                 <button className='modal-btn-bg hard-rounded-corners' >
                     <span
                         className='btn yes-btn hard-rounded-corners'
-                        onClick={handleClick}
+                        onClick={proceedWithDelete}
                         onKeyDown={handleKeyPress}
                     >
                         Yes

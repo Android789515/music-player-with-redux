@@ -1,21 +1,22 @@
 import React from 'react'
 
+import { directories } from '../DirectoryList'
 import SongDirectoryEntry from '../SongDirectoryEntry'
 import PlaylistDirectoryEntry from '../PlaylistDirectoryEntry'
 
-const DirectoryEntries = props => {
+const DirectoryEntries = ({ directoryIdentifier, entries, ...props }) => {
 
-    switch (props.directoryIdentifier) {
-        case 'songs':
-            return props.entries.map(song => (
+    switch (directoryIdentifier) {
+        case directories.songs:
+            return entries.map(song => (
                 <SongDirectoryEntry
                     key={song.id}
                     song={song}
                     dispatch={props.dispatch}
                 />
             ))
-        case 'playlists':
-            return props.entries.map(playlist => (
+        case directories.playlists:
+            return entries.map(playlist => (
                 <PlaylistDirectoryEntry
                     key={playlist.id}
                     playlist={playlist}
@@ -23,8 +24,8 @@ const DirectoryEntries = props => {
                     dispatch={props.dispatch}
                 />
             ))
-        case 'openedPlaylist':
-            return props.entries.songs.map(song => (
+        case directories.openedPlaylist:
+            return entries.songs.map(song => (
                 <SongDirectoryEntry
                     key={song.id}
                     song={song}

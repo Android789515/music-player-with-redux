@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 
 import '../../css/library-styles/music-library-styles.scss'
 
@@ -7,9 +7,10 @@ import { directories } from './DirectoryList'
 
 import DirectoryList from './DirectoryList'
 import CurrentDirectory from './CurrentDirectory'
-import DirectoryEntries from './generic-components/DirectoryEntries'
 
-const LibraryComponent = props => {
+const LibraryComponent = () => {
+    const dispatch = useDispatch()
+
     // Keeps track of what directory is open
     const [ currentDirectory, setCurrentDirectory ] = useState(directories.songs)
     const library = useSelector(state => state['library'])
@@ -20,7 +21,7 @@ const LibraryComponent = props => {
             <DirectoryList
                 currentDirectory={currentDirectory}
                 setCurrentDirectory={setCurrentDirectory}
-                dispatch={props.dispatch}
+                dispatch={dispatch}
             />
 
             <CurrentDirectory
@@ -28,18 +29,10 @@ const LibraryComponent = props => {
                 addEntryText={openedPlaylist ?
                     'Add Song to Playlist' :
                     currentDirectory.addEntryText}
-                hasInputComponent={openedPlaylist ? true : currentDirectory.hasInputComponent}
-                dispatch={props.dispatch}
-            >
-                <DirectoryEntries
-                    entries={library[currentDirectory.identifier]}
-                    directoryIdentifier={currentDirectory.identifier}
-                    setCurrentDirectory={setCurrentDirectory}
-                    dispatch={props.dispatch}
-                >
-
-                </DirectoryEntries>
-            </CurrentDirectory>
+                hasInputComponent={currentDirectory.hasInputComponent}
+                setCurrentDirectory={setCurrentDirectory}
+                dispatch={dispatch}
+            />
         </section>
     )
 }
