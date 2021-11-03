@@ -35,7 +35,7 @@ const CreatePlaylistModal = () => {
                 type='text'
                 onChange={event => updateModalText(() => event.target.value)}
                 value={modalText}
-                onKeyPress={event => event.key === 'Enter' && submit()}
+                onKeyPress={({ key }) => key === 'Enter' && submit()}
             />
         </label>
     )

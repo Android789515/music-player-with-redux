@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 
 import contextMenuBtn from '../../../img/dark-btns/context.svg'
 import ContextMenu from './ContextMenu'
@@ -24,8 +24,9 @@ const ContextMenuBtn = props => {
                 className='context-menu-btn overlay-component soft-rounded-corners'
                 src={contextMenuBtn}
                 alt='Context menu button'
+                tabIndex={0}
                 onClick={openContextMenu}
-                onBlur={closeContextMenu}
+                onKeyPress={event => event.key === 'Enter' && openContextMenu(event)}
             />
 
             <ContextMenu

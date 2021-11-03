@@ -67,6 +67,11 @@
   background: #f0f0f0;
 }
 
+// TODO The options will have focus
+.context-menu:focus {
+  outline: none;
+}
+
 .context-menu > *:hover {
   background: $grayed-out;
 }

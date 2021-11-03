@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useRef } from 'react'
 import { v4 as uuidv4 } from 'uuid'
 
 import { customEvents } from '../../../events'
@@ -43,7 +43,8 @@ const ContextMenu = props => {
         return (
             <li
                 key={uuid}
-                className="context-menu-option"
+                className='context-menu-option'
+                tabIndex={0}
                 onClick={handleContextOptionClick}
             >
                 {capitalize(option)}
@@ -51,9 +52,22 @@ const ContextMenu = props => {
         )
     })
 
+    const contextMenuRef = useRef(undefined)
+
+    useEffect(() => {
+        if (props.shouldShow) {
+            contextMenuRef.current.focus()
+        }
+    }, [props.shouldShow])
+
     if (props.shouldShow) {
         return (
-            <ul className="unstyled-ul context-menu hard-rounded-corners">
+            <ul
+                className='unstyled-ul context-menu hard-rounded-corners'
+                tabIndex={0}
+                onBlur={props.closeContextMenu}
+                ref={contextMenuRef}
+            >
                 {contextMenuList}
             </ul>
         )
