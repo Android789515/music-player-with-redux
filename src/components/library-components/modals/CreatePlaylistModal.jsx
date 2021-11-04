@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import '../../../css/modal-styles.scss'
 
 import { addPlaylist } from '../../../reducers/librarySlice'
-import { setModalContent } from '../../../reducers/modalSlice'
+import { clearModal } from '../../../reducers/modalSlice'
 
 const CreatePlaylistModal = () => {
     const [ modalText, updateModalText ] = useState('')
@@ -24,7 +24,7 @@ const CreatePlaylistModal = () => {
         }
         updateModalText('')
 
-        dispatch(setModalContent(undefined))
+        dispatch(clearModal())
     }
 
     return (

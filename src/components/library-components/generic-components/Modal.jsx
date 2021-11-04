@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
 import '../../../css/modal-styles.scss'
-import { setModalContent } from '../../../reducers/modalSlice'
+import { clearModal } from '../../../reducers/modalSlice'
 
 // Modal renders a special prompt component that will vary
 const Modal = () => {
@@ -11,7 +11,7 @@ const Modal = () => {
 
     const handleKeyDown = ({ key }) => {
         if (key === 'Escape') {
-            dispatch(setModalContent(undefined))
+            dispatch(clearModal())
         }
     }
 

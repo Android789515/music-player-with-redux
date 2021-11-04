@@ -1,6 +1,6 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
-import { setModalContent, setModalData } from '../../../reducers/modalSlice'
+import { clearModal, setModalData } from '../../../reducers/modalSlice'
 
 import '../../../css/modal-styles.scss'
 
@@ -15,11 +15,11 @@ const DeleteEntryModal = entry => {
     const proceedWithDelete = () => {
         dispatch(setModalData(modalDataForDeleting._CONFIRM_DELETE))
 
-        dispatch(setModalContent(undefined))
+        dispatch(clearModal())
     }
 
     const cancelDelete = () => {
-        dispatch(setModalContent(undefined))
+        dispatch(clearModal())
     }
 
     return (

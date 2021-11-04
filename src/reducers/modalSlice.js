@@ -10,12 +10,13 @@ export const modalSlice = createSlice({
         setModalContent: (state, action) => {
             return {...state, modalContent: action.payload}
         },
+        clearModal: state => ({ ...state, modalContent: undefined }),
         setModalData: (state, action) => {
             return {...state, modalData: action.payload}
         }
     }
 })
 
-export const { setModalContent, setModalData } = modalSlice.actions
+export const { setModalContent, clearModal, setModalData } = modalSlice.actions
 
 export default modalSlice.reducer

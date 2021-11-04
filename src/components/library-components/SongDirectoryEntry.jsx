@@ -3,7 +3,6 @@ import { useSelector } from 'react-redux'
 
 import { directories } from './DirectoryList'
 import { contextMenuOptions } from './generic-components/ContextMenu'
-import { customEvents } from '../../events'
 import { getFormattedSongTime } from '../../TimeFormatter'
 import { play, stop } from '../../reducers/mediaSlice'
 import { queueSong, removeSong, unqueueSong } from '../../reducers/librarySlice'
