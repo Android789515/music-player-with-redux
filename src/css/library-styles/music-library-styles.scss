@@ -80,10 +80,13 @@
     transition: right 500ms;
   }
 
+  .library-open {
+    right: 0;
+  }
+
   .library-panel-btn {
     display: block;
     position: fixed;
-    //right: -5%;
   }
 
   $libraryButtonMinSize: 30px;
@@ -107,9 +110,5 @@
     min-height: $libraryButtonMinSize;
     max-width: $libraryButtonMinSize;
     max-height: $libraryButtonMinSize;
-  }
-
-  .library-open {
-    right: 0;
   }
 }
