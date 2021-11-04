@@ -20,7 +20,7 @@ const ContextMenu = props => {
         const { target } = event
         const optionClicked = target.textContent.toLowerCase()
         const closestEntry = target.closest('.directory-entry')
-        // props.closeContextMenu(event)
+        props.closeContextMenu(event)
 
         switch (optionClicked) {
             case contextMenuOptions._queue:
