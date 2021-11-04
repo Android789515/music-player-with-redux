@@ -59,10 +59,10 @@
 }
 
 .context-menu {
-  position: absolute;
+  width: max-content;
 
   padding: .5em .75em;
-  margin-left: 30%;
+  margin-left: auto;
 
   background: #f0f0f0;
 }
