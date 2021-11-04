@@ -3,7 +3,8 @@ import { useSelector } from 'react-redux'
 
 import { directories } from './DirectoryList'
 import { contextMenuOptions } from './generic-components/ContextMenu'
-import { setOpenedPlaylist } from '../../reducers/librarySlice'
+import { stop } from '../../reducers/mediaSlice'
+import { removePlaylist, setOpenedPlaylist, unqueueSong } from '../../reducers/librarySlice'
 
 import DirectoryEntry from './generic-components/DirectoryEntry'
 import { setModalData } from '../../reducers/modalSlice'
@@ -29,15 +30,23 @@ const PlaylistDirectoryEntry = props => {
         props.setCurrentDirectory(() => directories.openedPlaylist)
     }
 
+    const queuedSongId = useSelector(state => state['library'].queuedSong.id)
     const deleteEntry = () => {
+        const doesPlaylistContainQueuedSong = props.playlist.songs.find(song => song.id === queuedSongId)
 
+        if (doesPlaylistContainQueuedSong) {
+            props.dispatch(stop())
+            props.dispatch(unqueueSong())
+        }
+
+        props.dispatch(removePlaylist(props.playlist.id))
     }
 
     const currentModalData = useSelector(state => state['modal'].modalData)
     useEffect(() => {
         if (currentModalData.id === props.playlist.id) {
             deleteEntry()
-            props.dispatch(setModalData(undefined))
+            props.dispatch(setModalData({}))
         }
     }, [currentModalData])
 

@@ -59,6 +59,9 @@
 }
 
 .context-menu {
+  grid-row: 1 / -1;
+  grid-column: 1;
+
   width: max-content;
 
   padding: .5em .75em;
@@ -104,13 +107,8 @@
   }
 
   .song-entry-info,
-  .context-menu-btn,
-  .context-menu {
+  .context-menu-btn {
     grid-column: 1;
-  }
-
-  .context-menu {
-    grid-row: 1 / span 2;
   }
 
   .context-menu-btn {
