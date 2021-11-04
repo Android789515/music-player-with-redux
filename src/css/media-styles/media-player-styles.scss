@@ -21,6 +21,12 @@
   align-items: center;
 }
 
+.song-info {
+  font-size: 1rem;
+
+  transition: font-size 250ms;
+}
+
 .cover-art {
   $image-size: 167.95px;
   object-fit: cover;
@@ -33,27 +39,6 @@
   margin: 2em auto;
 
   transition: width 250ms, margin-right 250ms;
-}
-@media (min-width: $first-cover-art-breakpoint) {
-  .cover-art {
-    width: 80%;
-  }
-}
-@media (min-width: $second-cover-art-breakpoint) {
-  .cover-art {
-    width: 85%;
-  }
-}
-@media (min-width: $third-cover-art-breakpoint) {
-  .cover-art {
-    width: 90%;
-  }
-}
-
-.song-info {
-  font-size: 1rem;
-
-  transition: font-size 250ms;
 }
 
 // Align the text to the center at very small screens
@@ -92,6 +77,7 @@
     grid-column: 1;
 
     flex-direction: row;
+    align-items: flex-start;
 
     margin-left: 5%;
   }
@@ -108,6 +94,8 @@
 
   .song-info {
     font-size: .85rem;
+
+    width: 100%;
   }
 }
 
