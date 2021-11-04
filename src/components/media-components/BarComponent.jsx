@@ -20,11 +20,10 @@ function BarComponent(props) {
         _HORIZONTAL: 'horizontal'
     }
 
-    const getBarElementOfClickedBar = event => {
-        if (!event.target.classList.contains(`${props.name}-bar`)) {
-            event.target = event.target.parentElement
-        }
-        return event.target
+    const getBarElementOfClickedBar = ({ target }) => {
+        const isClickedElementBar = target.classList.contains(`${props.name}-bar`)
+
+        return isClickedElementBar ? target : target.parentElement
     }
 
     const setBarPercent = (pos, size) => {
@@ -38,13 +37,16 @@ function BarComponent(props) {
     // Allows user to set the slider to 0 when they click the beginning of the bar
     // and 100 when they click the end
     const formatBarPercent = percent => {
-        if (percent < 1 && percent !== 0) {
+        const isBeginningOfBar = percent < 1 && percent !== 0
+        const isEndOfBar = percent > 99 && percent !== 100
+
+        if (isBeginningOfBar) {
             return 0
-        } else if (percent > 99 && percent !== 100) {
+        } else if (isEndOfBar) {
             return 100
-        } else {
-            return percent
         }
+
+        return percent
     }
 
     const handleBarDrag = event => {

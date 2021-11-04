@@ -1,20 +1,30 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
+import { setModalContent, setModalData } from '../../../reducers/modalSlice'
 
 import '../../../css/modal-styles.scss'
 
-const DeleteEntryModal = props => {
+export const modalDataForDeleting = {
+    _CONFIRM: 'confirm'
+}
+
+const DeleteEntryModal = entry => {
+    const entryName = entry.name || entry.title
     const dispatch = useDispatch()
 
     const proceedWithDelete = () => {
+        dispatch(setModalData(modalDataForDeleting._CONFIRM))
+
+        dispatch(setModalContent(undefined))
     }
 
     const cancelDelete = () => {
+        dispatch(setModalContent(undefined))
     }
 
     return (
         <div className='delete-entry-modal modal-content hard-rounded-corners'>
-            <h2>Are you sure you would like to delete {props.entryName}?</h2>
+            <h2>Are you sure you would like to delete {entryName}?</h2>
 
             <p>
                 <button className='modal-btn-bg hard-rounded-corners' >

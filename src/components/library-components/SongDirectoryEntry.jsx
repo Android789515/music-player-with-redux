@@ -7,31 +7,35 @@ import { customEvents } from '../../events'
 import { getFormattedSongTime } from '../../TimeFormatter'
 import { play, stop } from '../../reducers/mediaSlice'
 import { queueSong, removeSong, unqueueSong } from '../../reducers/librarySlice'
-import { setModalContent } from '../../reducers/modalSlice'
+import { setModalContent, setModalData } from '../../reducers/modalSlice'
 
 import DirectoryEntry from './generic-components/DirectoryEntry'
 import SliderComponent from '../media-components/SliderComponent'
-import DeleteEntryModal from './modals/DeleteEntryModal'
+import DeleteEntryModal, { modalDataForDeleting } from './modals/DeleteEntryModal'
 
 const SongDirectoryEntry = ({ currentDirectory, ...props }) => {
     const media = useSelector(state => state['media'])
     const queuedSong = useSelector(state => state['library'].queuedSong)
     const isThisSongQueued = queuedSong.id === props.song.id
     const sliderValueOfSongTime = Math.round((media.time / media.maxTime) * 100)
+    const currentModalData = useSelector(state => state['modal'].modalData)
 
     const deleteEntry = event => {
         // event.target.removeEventListener(customEvents.deleteRequest, deleteEntry)
-
         // ask if sure they want to delete
         renderDeleteEntryModal()
 
+
         // if yes then execute below
-        if (false) {
+        if (currentModalData === modalDataForDeleting._CONFIRM) {
+            props.dispatch(setModalData(undefined))
             if (queuedSong.id === props.song.id) {
                 props.dispatch(stop())
                 props.dispatch(unqueueSong())
             }
 
+            // A song directory entry can be in the songs directory
+            // or in a playlist directory
             const songsDirectory = directories.songs.identifier
             if (currentDirectory === songsDirectory) {
                 URL.revokeObjectURL(props.song.src)
@@ -41,7 +45,7 @@ const SongDirectoryEntry = ({ currentDirectory, ...props }) => {
     }
 
     const renderDeleteEntryModal = () => {
-        props.dispatch(setModalContent(<DeleteEntryModal entryName={props.song.title} />))
+        props.dispatch(setModalContent(<DeleteEntryModal entry={props.song} />))
     }
 
     const queueClickedSong = () => {

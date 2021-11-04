@@ -17,14 +17,14 @@ const ContextMenu = props => {
     const handleContextOptionClick = event => {
         event.stopPropagation()
 
-        const optionClicked = event.target.textContent.toLowerCase()
-        const closestEntry = event.target.closest('.directory-entry')
+        const { target } = event
+        const optionClicked = target.textContent.toLowerCase()
+        const closestEntry = target.closest('.directory-entry')
         props.closeContextMenu(event)
 
         switch (optionClicked) {
             case contextMenuOptions._queue:
             case contextMenuOptions._open:
-                props.closeContextMenu(event)
                 closestEntry.click()
                 break
 
@@ -38,14 +38,12 @@ const ContextMenu = props => {
         }
     }
 
-    const handleLoseFocus = ({ target: contextMenu }) => {
-        const isContextOptionFocused = [...contextMenu.children]
-            .some(contextOption => {
-                return document.activeElement === contextOption
-            })
+    const handleLoseFocus = event => {
+        const { target: contextMenu } = event
+        const isContextOptionFocused = contextMenu.contains(event.relatedTarget)
 
         if (!isContextOptionFocused) {
-            props.closeContextMenu()
+            props.closeContextMenu(event)
         }
     }
 
