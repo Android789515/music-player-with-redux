@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from 'react'
-import { customEvents } from '../../../events'
+import { useDispatch } from 'react-redux'
 
+import { customEvents } from '../../../events'
 import { setModalContent } from '../../../reducers/modalSlice'
 import ContextMenuBtn from './ContextMenuBtn'
 import DeleteEntryModal from '../modals/DeleteEntryModal'
@@ -10,8 +11,9 @@ const DirectoryEntry = props => {
 
     const directoryEntryRef = useRef(undefined)
 
+    const dispatch = useDispatch()
     const renderDeleteEntryModal = () => {
-        props.dispatch(setModalContent(<DeleteEntryModal entry={props.song} />))
+        dispatch(setModalContent(<DeleteEntryModal entry={props.song} />))
     }
 
     useEffect(() => {
