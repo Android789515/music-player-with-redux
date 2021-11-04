@@ -6,21 +6,30 @@ import '../../../css/modal-styles.scss'
 import { addPlaylist } from '../../../reducers/librarySlice'
 import { clearModal } from '../../../reducers/modalSlice'
 
-const CreatePlaylistModal = () => {
+const PlaylistModal = props => {
     const [ modalText, updateModalText ] = useState('')
 
     const dispatch = useDispatch()
     const playlists = useSelector(state => state['library'].playlists)
 
+    const actions = {
+        create: 'create',
+        rename: 'rename'
+    }
+
     const submit = () => {
         const isValidName = modalText.trim()
 
         if (isValidName) {
-            dispatch(addPlaylist({
-                id: playlists.length,
-                name: modalText,
-                songs: []
-            }))
+            if (props.action === actions.create) {
+                dispatch(addPlaylist({
+                    id: playlists.length,
+                    name: modalText,
+                    songs: []
+                }))
+            } else {
+                // dispatch()
+            }
         }
         updateModalText('')
 
@@ -41,4 +50,4 @@ const CreatePlaylistModal = () => {
     )
 }
 
-export default CreatePlaylistModal
+export default PlaylistModal

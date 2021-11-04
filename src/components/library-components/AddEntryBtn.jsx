@@ -4,7 +4,7 @@ import '../../css/library-styles/add-entry-styles.scss'
 
 import SongUploader from './SongUploader'
 import { setModalContent } from '../../reducers/modalSlice'
-import CreatePlaylistModal from './modals/CreatePlaylistModal'
+import PlaylistModal from './modals/PlaylistModal'
 
 const AddEntryBtn = props => {
     const uploaderRef = useRef(undefined)
@@ -19,7 +19,7 @@ const AddEntryBtn = props => {
     }
 
     const renderCreatePlaylistModal = async () => {
-        await props.dispatch(setModalContent(<CreatePlaylistModal />))
+        await props.dispatch(setModalContent(<PlaylistModal />))
     }
 
     return (

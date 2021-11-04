@@ -20,7 +20,7 @@ const showOrHideLibrary = setLibraryOpen => {
 }
 
 const LibraryBtn = () => {
-    const [ isLibraryOpen, setIsLibraryOpen ] = useState(false)
+    const [ isLibraryOpen, setIsLibraryOpen ] = useState(true)
 
     return (
         <img
