@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useSelector } from 'react-redux'
 
 import { directories } from './DirectoryList'
@@ -20,29 +20,32 @@ const SongDirectoryEntry = ({ currentDirectory, ...props }) => {
     const sliderValueOfSongTime = Math.round((media.time / media.maxTime) * 100)
     const currentModalData = useSelector(state => state['modal'].modalData)
 
-    const deleteEntry = event => {
+    const handleDelete = event => {
         // event.target.removeEventListener(customEvents.deleteRequest, deleteEntry)
         // ask if sure they want to delete
         renderDeleteEntryModal()
-
-
-        // if yes then execute below
-        if (currentModalData === modalDataForDeleting._CONFIRM) {
-            props.dispatch(setModalData(undefined))
-            if (queuedSong.id === props.song.id) {
-                props.dispatch(stop())
-                props.dispatch(unqueueSong())
-            }
-
-            // A song directory entry can be in the songs directory
-            // or in a playlist directory
-            const songsDirectory = directories.songs.identifier
-            if (currentDirectory === songsDirectory) {
-                URL.revokeObjectURL(props.song.src)
-            }
-            props.dispatch(removeSong({from: currentDirectory, songId: props.song.id}))
-        }
     }
+
+    const deleteEntry = () => {
+        props.dispatch(setModalData(undefined))
+        if (queuedSong.id === props.song.id) {
+            props.dispatch(stop())
+            props.dispatch(unqueueSong())
+        }
+        // A song directory entry can be in the songs directory
+        // or in a playlist directory
+        const songsDirectory = directories.songs.identifier
+        if (currentDirectory === songsDirectory) {
+            URL.revokeObjectURL(props.song.src)
+        }
+        props.dispatch(removeSong({from: currentDirectory, songId: props.song.id}))
+    }
+
+    useEffect(() => {
+        if (currentModalData === modalDataForDeleting._CONFIRM_DELETE) {
+            deleteEntry()
+        }
+    }, [currentModalData])
 
     const renderDeleteEntryModal = () => {
         props.dispatch(setModalContent(<DeleteEntryModal entry={props.song} />))
@@ -60,7 +63,7 @@ const SongDirectoryEntry = ({ currentDirectory, ...props }) => {
                 entry={props.song}
                 className='btn directory-entry'
                 onClick={queueClickedSong}
-                deleteEntry={deleteEntry}
+                handleDelete={handleDelete}
                 contextoptions={[contextMenuOptions._queue, contextMenuOptions._delete]}
             >
                 <h4 className='song-entry-title song-entry-info'>{props.song.title}</h4>

@@ -4,15 +4,15 @@ import { customEvents } from '../../../events'
 import ContextMenuBtn from './ContextMenuBtn'
 
 const DirectoryEntry = props => {
-    const { entry, deleteEntry, ...restProps } = props
+    const { entry, handleDelete, ...restProps } = props
 
     const directoryEntryRef = useRef(undefined)
 
     useEffect(() => {
         const directoryEntry = directoryEntryRef.current
-        directoryEntry.addEventListener(customEvents.deleteRequest, deleteEntry)
+        directoryEntry.addEventListener(customEvents.deleteRequest, handleDelete)
 
-        return () => directoryEntry.removeEventListener(customEvents.deleteRequest, deleteEntry)
+        return () => directoryEntry.removeEventListener(customEvents.deleteRequest, handleDelete)
     }, [])
 
     return (

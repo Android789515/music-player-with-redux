@@ -11,6 +11,7 @@ const DirectoryEntries = ({ directoryIdentifier, entries, ...props }) => {
             return entries.map(song => (
                 <SongDirectoryEntry
                     key={song.id}
+                    currentDirectory={directoryIdentifier}
                     song={song}
                     dispatch={props.dispatch}
                 />
@@ -19,6 +20,7 @@ const DirectoryEntries = ({ directoryIdentifier, entries, ...props }) => {
             return entries.map(playlist => (
                 <PlaylistDirectoryEntry
                     key={playlist.id}
+                    currentDirectory={directoryIdentifier}
                     playlist={playlist}
                     setCurrentDirectory={props.setCurrentDirectory}
                     dispatch={props.dispatch}
@@ -28,6 +30,7 @@ const DirectoryEntries = ({ directoryIdentifier, entries, ...props }) => {
             return entries.songs.map(song => (
                 <SongDirectoryEntry
                     key={song.id}
+                    currentDirectory={directoryIdentifier}
                     song={song}
                     dispatch={props.dispatch}
                 />

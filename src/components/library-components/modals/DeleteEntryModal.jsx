@@ -5,7 +5,7 @@ import { setModalContent, setModalData } from '../../../reducers/modalSlice'
 import '../../../css/modal-styles.scss'
 
 export const modalDataForDeleting = {
-    _CONFIRM: 'confirm'
+    _CONFIRM_DELETE: 'confirm-delete'
 }
 
 const DeleteEntryModal = entry => {
@@ -13,7 +13,7 @@ const DeleteEntryModal = entry => {
     const dispatch = useDispatch()
 
     const proceedWithDelete = () => {
-        dispatch(setModalData(modalDataForDeleting._CONFIRM))
+        dispatch(setModalData(modalDataForDeleting._CONFIRM_DELETE))
 
         dispatch(setModalContent(undefined))
     }
