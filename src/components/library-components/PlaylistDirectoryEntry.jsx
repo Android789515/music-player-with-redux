@@ -1,11 +1,12 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import { useSelector } from 'react-redux'
 
 import { directories } from './DirectoryList'
 import { contextMenuOptions } from './generic-components/ContextMenu'
-import { customEvents } from '../../events'
 import { setOpenedPlaylist } from '../../reducers/librarySlice'
 
 import DirectoryEntry from './generic-components/DirectoryEntry'
+import { modalDataForDeleting } from './modals/DeleteEntryModal'
 
 const PlaylistDirectoryEntry = props => {
     const cutPlaylistName = () => {
@@ -28,9 +29,16 @@ const PlaylistDirectoryEntry = props => {
         props.setCurrentDirectory(() => directories.openedPlaylist)
     }
 
-    const deleteEntry = event => {
-        // event.target.removeEventListener(customEvents.deleteRequest, deleteEntry)
+    const deleteEntry = () => {
+
     }
+
+    const currentModalData = useSelector(state => state['modal'].modalData)
+    useEffect(() => {
+        if (currentModalData === modalDataForDeleting._CONFIRM_DELETE) {
+            deleteEntry()
+        }
+    }, [currentModalData])
 
     const { _open, _rename, _delete } = contextMenuOptions
 
@@ -39,7 +47,6 @@ const PlaylistDirectoryEntry = props => {
             className='btn directory-entry'
             entry={props.playlist}
             onClick={openPlaylist}
-            deleteEntry={deleteEntry}
             contextoptions={[_open, _rename,  _delete]}
         >
             <h4 className='playlist-entry-title'>{cutPlaylistName()}</h4>

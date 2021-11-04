@@ -6,24 +6,17 @@ import { contextMenuOptions } from './generic-components/ContextMenu'
 import { getFormattedSongTime } from '../../TimeFormatter'
 import { play, stop } from '../../reducers/mediaSlice'
 import { queueSong, removeSong, unqueueSong } from '../../reducers/librarySlice'
-import { setModalContent, setModalData } from '../../reducers/modalSlice'
+import { setModalData } from '../../reducers/modalSlice'
 
 import DirectoryEntry from './generic-components/DirectoryEntry'
 import SliderComponent from '../media-components/SliderComponent'
-import DeleteEntryModal, { modalDataForDeleting } from './modals/DeleteEntryModal'
+import { modalDataForDeleting } from './modals/DeleteEntryModal'
 
 const SongDirectoryEntry = ({ currentDirectory, ...props }) => {
     const media = useSelector(state => state['media'])
     const queuedSong = useSelector(state => state['library'].queuedSong)
     const isThisSongQueued = queuedSong.id === props.song.id
     const sliderValueOfSongTime = Math.round((media.time / media.maxTime) * 100)
-    const currentModalData = useSelector(state => state['modal'].modalData)
-
-    const handleDelete = event => {
-        // event.target.removeEventListener(customEvents.deleteRequest, deleteEntry)
-        // ask if sure they want to delete
-        renderDeleteEntryModal()
-    }
 
     const deleteEntry = () => {
         props.dispatch(setModalData(undefined))
@@ -40,15 +33,12 @@ const SongDirectoryEntry = ({ currentDirectory, ...props }) => {
         props.dispatch(removeSong({from: currentDirectory, songId: props.song.id}))
     }
 
+    const currentModalData = useSelector(state => state['modal'].modalData)
     useEffect(() => {
         if (currentModalData === modalDataForDeleting._CONFIRM_DELETE) {
             deleteEntry()
         }
     }, [currentModalData])
-
-    const renderDeleteEntryModal = () => {
-        props.dispatch(setModalContent(<DeleteEntryModal entry={props.song} />))
-    }
 
     const queueClickedSong = () => {
         props.dispatch(stop())
@@ -62,7 +52,6 @@ const SongDirectoryEntry = ({ currentDirectory, ...props }) => {
                 entry={props.song}
                 className='btn directory-entry'
                 onClick={queueClickedSong}
-                handleDelete={handleDelete}
                 contextoptions={[contextMenuOptions._queue, contextMenuOptions._delete]}
             >
                 <h4 className='song-entry-title song-entry-info'>{props.song.title}</h4>

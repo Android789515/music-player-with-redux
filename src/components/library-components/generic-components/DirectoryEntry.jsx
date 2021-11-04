@@ -1,18 +1,24 @@
 import React, { useEffect, useRef } from 'react'
 import { customEvents } from '../../../events'
 
+import { setModalContent } from '../../../reducers/modalSlice'
 import ContextMenuBtn from './ContextMenuBtn'
+import DeleteEntryModal from '../modals/DeleteEntryModal'
 
 const DirectoryEntry = props => {
-    const { entry, handleDelete, ...restProps } = props
+    const { entry, ...restProps } = props
 
     const directoryEntryRef = useRef(undefined)
 
+    const renderDeleteEntryModal = () => {
+        props.dispatch(setModalContent(<DeleteEntryModal entry={props.song} />))
+    }
+
     useEffect(() => {
         const directoryEntry = directoryEntryRef.current
-        directoryEntry.addEventListener(customEvents.deleteRequest, handleDelete)
+        directoryEntry.addEventListener(customEvents.deleteRequest, renderDeleteEntryModal)
 
-        return () => directoryEntry.removeEventListener(customEvents.deleteRequest, handleDelete)
+        return () => directoryEntry.removeEventListener(customEvents.deleteRequest, renderDeleteEntryModal)
     }, [])
 
     return (
