@@ -10,7 +10,6 @@ import { setModalData } from '../../reducers/modalSlice'
 
 import DirectoryEntry from './generic-components/DirectoryEntry'
 import SliderComponent from '../media-components/SliderComponent'
-import { modalDataForDeleting } from './modals/DeleteEntryModal'
 
 const SongDirectoryEntry = ({ currentDirectory, ...props }) => {
     const media = useSelector(state => state['media'])
@@ -19,7 +18,6 @@ const SongDirectoryEntry = ({ currentDirectory, ...props }) => {
     const sliderValueOfSongTime = Math.round((media.time / media.maxTime) * 100)
 
     const deleteEntry = () => {
-        props.dispatch(setModalData(undefined))
         if (queuedSong.id === props.song.id) {
             props.dispatch(stop())
             props.dispatch(unqueueSong())
@@ -35,8 +33,9 @@ const SongDirectoryEntry = ({ currentDirectory, ...props }) => {
 
     const currentModalData = useSelector(state => state['modal'].modalData)
     useEffect(() => {
-        if (currentModalData === modalDataForDeleting._CONFIRM_DELETE) {
+        if (currentModalData.id === props.song.id) {
             deleteEntry()
+            props.dispatch(setModalData({}))
         }
     }, [currentModalData])
 

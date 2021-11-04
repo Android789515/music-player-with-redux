@@ -13,7 +13,7 @@ const DirectoryEntry = props => {
 
     const dispatch = useDispatch()
     const renderDeleteEntryModal = () => {
-        dispatch(setModalContent(<DeleteEntryModal entry={props.song} />))
+        dispatch(setModalContent(<DeleteEntryModal entry={entry} />))
     }
 
     useEffect(() => {

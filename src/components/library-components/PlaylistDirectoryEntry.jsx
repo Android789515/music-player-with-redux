@@ -6,7 +6,7 @@ import { contextMenuOptions } from './generic-components/ContextMenu'
 import { setOpenedPlaylist } from '../../reducers/librarySlice'
 
 import DirectoryEntry from './generic-components/DirectoryEntry'
-import { modalDataForDeleting } from './modals/DeleteEntryModal'
+import { setModalData } from '../../reducers/modalSlice'
 
 const PlaylistDirectoryEntry = props => {
     const cutPlaylistName = () => {
@@ -35,8 +35,9 @@ const PlaylistDirectoryEntry = props => {
 
     const currentModalData = useSelector(state => state['modal'].modalData)
     useEffect(() => {
-        if (currentModalData === modalDataForDeleting._CONFIRM_DELETE) {
+        if (currentModalData.id === props.playlist.id) {
             deleteEntry()
+            props.dispatch(setModalData(undefined))
         }
     }, [currentModalData])
 

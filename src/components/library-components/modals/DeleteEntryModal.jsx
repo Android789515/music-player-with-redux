@@ -4,16 +4,15 @@ import { clearModal, setModalData } from '../../../reducers/modalSlice'
 
 import '../../../css/modal-styles.scss'
 
-export const modalDataForDeleting = {
-    _CONFIRM_DELETE: 'confirm-delete'
-}
-
-const DeleteEntryModal = entry => {
+const DeleteEntryModal = ({ entry }) => {
     const entryName = entry.name || entry.title
     const dispatch = useDispatch()
 
     const proceedWithDelete = () => {
-        dispatch(setModalData(modalDataForDeleting._CONFIRM_DELETE))
+        dispatch(setModalData({
+            confirmDelete: true,
+            id: entry.id
+        }))
 
         dispatch(clearModal())
     }
