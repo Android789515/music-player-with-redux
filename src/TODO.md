@@ -2,8 +2,6 @@
 
 * ###Cleanup
 
-* ###Implement planned features
-* #### Remove songs and playlists
-* #### Rename playlists
-* ###Fix bug where song time minutes is displayed over 60
+
+* ###Hook up loop and shuffle button
 * ###Add feature to guess song artist and title
