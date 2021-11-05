@@ -2,6 +2,7 @@ import { createSlice } from '@reduxjs/toolkit'
 export const mediaSlice = createSlice({
     name: 'media',
     initialState: {
+        workingDirectory: { id: undefined, name: undefined },
         volume: .5,
         muted: false,
         paused: true,
@@ -12,6 +13,10 @@ export const mediaSlice = createSlice({
     },
 
     reducers: {
+        setWorkingDirectory: (state, action) => {
+            return {...state, workingDirectory: action.payload}
+        },
+
         stop: state => {
             return {...state, paused: true, time: 0}
         },

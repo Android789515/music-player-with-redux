@@ -1,8 +1,11 @@
 import React, { useEffect } from 'react'
+import { useSelector } from 'react-redux'
 
-import { pause, updateTime, setMaxTime } from '../../reducers/mediaSlice'
+import { pause, updateTime, setMaxTime, play } from '../../reducers/mediaSlice'
+import { queueSong } from '../../reducers/librarySlice'
 
 function AudioPlayer(props) {
+    const library = useSelector(state => state['library'])
 
     const loadAudio = event => {
         const audio = event.target
@@ -26,6 +29,33 @@ function AudioPlayer(props) {
 
     const handleAudioEnd = () => {
         props.dispatch(pause())
+
+        // If loop enabled (shuffle overrides loop), restart song
+        if (props.media.shuffle) {
+            // Get working directory first
+            // then get the amount of songs in it
+            // Choose a random one and queue it
+            const randomSong = Math.round(Math.random() * library.songs.length)
+            props.dispatch(queueSong(randomSong))
+        } else if (props.media.loop) {
+            props.dispatch(play())
+        }
+    }
+
+    const randomNumFromArr = arrLen => Math.round(Math.random() * arrLen)
+
+    const chooseRandomSongFromSongs = () => randomNumFromArr(library.songs.length)
+
+    const chooseRandomSongFromPlaylist = playlistId => {
+        const playlist = library.playlists.find(playlist => playlist.id === playlistId)
+
+        const pickedSong = randomNumFromArr(playlist.length)
+
+        if (pickedSong.id === props.queuedSong.id) {
+            chooseRandomSongFromPlaylist(playlistId)
+        } else {
+            return pickedSong
+        }
     }
 
     useEffect( () => {
