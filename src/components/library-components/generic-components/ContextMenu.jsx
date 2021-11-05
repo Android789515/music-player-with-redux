@@ -1,7 +1,10 @@
 import React, { useEffect, useRef } from 'react'
+import { useDispatch } from 'react-redux'
 import { v4 as uuidv4 } from 'uuid'
 
-import { customEvents } from '../../../events'
+import { setModalContent } from '../../../reducers/modalSlice'
+import PlaylistModal from '../modals/PlaylistModal'
+import DeleteEntryModal from '../modals/DeleteEntryModal'
 
 const capitalize = string => string.charAt(0).toUpperCase() + string.slice(1)
 
@@ -13,6 +16,7 @@ export const contextMenuOptions = {
 }
 
 const ContextMenu = props => {
+    const dispatch = useDispatch()
 
     const handleContextOptionClick = event => {
         event.stopPropagation()
@@ -29,12 +33,11 @@ const ContextMenu = props => {
                 break
 
             case contextMenuOptions._rename:
-
+                dispatch(setModalContent(<PlaylistModal action='rename' playlistId={props.entry.id} />))
                 break
 
             case contextMenuOptions._delete:
-                const deleteRequest = new Event(customEvents.deleteRequest)
-                closestEntry.dispatchEvent(deleteRequest)
+                dispatch(setModalContent(<DeleteEntryModal entry={props.entry} />))
                 break
 
             default:

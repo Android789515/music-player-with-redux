@@ -19,7 +19,7 @@ const AddEntryBtn = props => {
     }
 
     const renderCreatePlaylistModal = async () => {
-        await props.dispatch(setModalContent(<PlaylistModal />))
+        await props.dispatch(setModalContent(<PlaylistModal action='create' />))
     }
 
     return (
