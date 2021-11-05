@@ -38,7 +38,7 @@ function AudioPlayer(props) {
             const randomSong = Math.round(Math.random() * library.songs.length)
             props.dispatch(queueSong(randomSong))
         } else if (props.media.loop) {
-            props.dispatch(play())
+            props.dispatch(queueSong(props.queuedSong))
         }
     }
 

@@ -24,10 +24,12 @@ function MediaControlBtn(props) {
         src = require(`../../img/${btnTheme}-btns/media-btns/${name}-btn.svg`).default
     }
 
+    const getToggleBtnClassName = () => isToggled ? 'toggled' : ''
+
     return (
         <img
             name={name}
-            className={`${className} ${isToggleBtn ? isToggled : ''}`.trim()}
+            className={`${className} ${isToggleBtn ? getToggleBtnClassName() : ''}`.trim()}
             src={src}
             alt={name}
             onClick={() => {
