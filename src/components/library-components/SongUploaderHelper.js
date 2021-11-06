@@ -3,11 +3,13 @@ import jsmediatags from 'jsmediatags'
 import { v4 as uuidv4 } from 'uuid'
 
 import { addSong } from '../../reducers/librarySlice'
+import { directories } from './DirectoryList'
 
-export const uploadSong = async (location, song) => {
+export const uploadSong = async song => {
     const songObj = await createSongObject(song)
 
-    store.dispatch(addSong({ to: location, song: songObj}))
+    const songsDirectory = directories.songs.identifier
+    store.dispatch(addSong({ to: songsDirectory, song: songObj}))
 }
 
 const createSongObject = async song => {

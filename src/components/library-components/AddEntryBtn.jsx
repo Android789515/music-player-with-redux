@@ -2,34 +2,40 @@ import React, { useRef } from 'react'
 
 import '../../css/library-styles/add-entry-styles.scss'
 
-import SongUploader from './SongUploader'
 import { setModalContent } from '../../reducers/modalSlice'
+
+import SongUploader from './SongUploader'
 import PlaylistModal from './modals/PlaylistModal'
 
 const AddEntryBtn = props => {
     const uploaderRef = useRef(undefined)
 
-    const uploadOrCreateEntry = () => {
+    const addEntry = () => {
         const uploader = uploaderRef.current
         if (uploader) {
             uploader.click()
+        } else if (props.isPlaylistOpen) {
+
         } else {
             renderCreatePlaylistModal()
         }
     }
 
-    const renderCreatePlaylistModal = async () => {
-        await props.dispatch(setModalContent(<PlaylistModal action='create' />))
+    const renderAddToPlaylistModal = () => {
+
+    }
+
+    const renderCreatePlaylistModal = () => {
+        props.dispatch(setModalContent(<PlaylistModal action='create' />))
     }
 
     return (
-        <div className='btn add-entry-section' onClick={uploadOrCreateEntry}>
+        <div className='btn add-entry-section' onClick={addEntry}>
             <button className='btn'>+</button>
             <p className={`add-entry-text`}>{props.btnText}</p>
 
             {props.hasInputComponent && (
                 <SongUploader
-                    uploadTo={props.uploadTo}
                     uploaderRef={uploaderRef}
                     dispatch={props.dispatch}
                 />

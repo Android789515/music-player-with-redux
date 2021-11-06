@@ -9,7 +9,7 @@ const SongUploader = props => {
         const uploader = event.target
         const uploadedData = [ ...uploader.files ]
 
-        uploadedData.forEach(song => uploadSong(props.uploadTo, song))
+        uploadedData.forEach(song => uploadSong(song))
     }
 
     return (

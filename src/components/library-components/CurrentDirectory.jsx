@@ -33,7 +33,7 @@ const CurrentDirectory = ({ identifier: directoryIdentifier, ...props }) => {
 
             <AddEntryBtn
                 btnText={props.addEntryText}
-                uploadTo={directoryIdentifier}
+                isPlaylistOpen={library.openedPlaylist}
                 hasInputComponent={props.hasInputComponent}
                 dispatch={props.dispatch}
             />

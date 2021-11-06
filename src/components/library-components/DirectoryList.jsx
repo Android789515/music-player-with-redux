@@ -22,9 +22,7 @@ export const directories = {
     openedPlaylist: {
         identifier: 'openedPlaylist',
         addEntryText: 'Add Song to Playlist',
-
-        // TODO - remove field
-        hasInputComponent: true
+        hasInputComponent: false
     }
 }
 
