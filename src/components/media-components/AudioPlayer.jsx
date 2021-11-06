@@ -33,12 +33,16 @@ function AudioPlayer(props) {
 
         // If loop enabled (shuffle overrides loop), restart song
         if (props.media.shuffle) {
-            // Get working directory first
-            // then get the amount of songs in it
-            // Choose a random one and queue it
-            const randomSong = randomNumFromArr(library.songs.length)
             props.dispatch(stop())
-            props.dispatch(queueSong(library.songs.at(randomSong)))
+
+            if (library.playlistPlaying) {
+                const randomSong = chooseRandomSongFromPlaylist(library.playlistPlaying)
+                props.dispatch(queueSong(randomSong))
+            } else {
+                const randomSong = chooseRandomSongFromSongs()
+                props.dispatch(queueSong(randomSong))
+            }
+
             props.dispatch(play())
         } else if (props.media.loop) {
             const { current: audio } = audioRef
@@ -48,17 +52,19 @@ function AudioPlayer(props) {
         }
     }
 
-    const randomNumFromArr = arrLen => Math.round(Math.random() * arrLen)
+    const randomNumFromArr = arrLen =>
+        /* keeps from selecting index larger than arr */
+        Math.round(Math.random() * (arrLen - 1) )
 
-    const chooseRandomSongFromSongs = () => randomNumFromArr(library.songs.length)
+    const chooseRandomSongFromSongs = () => library.songs[randomNumFromArr(library.songs.length)]
 
     const chooseRandomSongFromPlaylist = playlistId => {
         const playlist = library.playlists.find(playlist => playlist.id === playlistId)
 
-        const pickedSong = randomNumFromArr(playlist.length)
+        const pickedSong = playlist.songs[randomNumFromArr(playlist.songs.length)]
 
         if (pickedSong.id === props.queuedSong.id) {
-            chooseRandomSongFromPlaylist(playlistId)
+            return chooseRandomSongFromPlaylist(playlistId)
         } else {
             return pickedSong
         }

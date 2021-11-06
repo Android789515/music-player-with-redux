@@ -5,7 +5,7 @@ import { directories } from './DirectoryList'
 import { contextMenuOptions } from './generic-components/ContextMenu'
 import { getFormattedSongTime } from '../../TimeFormatter'
 import { play, stop } from '../../reducers/mediaSlice'
-import { queueSong, removeSong, unqueueSong } from '../../reducers/librarySlice'
+import { queueSong, removeSong, setPlaylistPlaying, unqueueSong } from '../../reducers/librarySlice'
 import { setModalData } from '../../reducers/modalSlice'
 
 import DirectoryEntry from './generic-components/DirectoryEntry'
@@ -16,6 +16,8 @@ const SongDirectoryEntry = ({ currentDirectory, ...props }) => {
     const queuedSong = useSelector(state => state['library'].queuedSong)
     const isThisSongQueued = queuedSong.id === props.song.id
     const sliderValueOfSongTime = Math.round((media.time / media.maxTime) * 100)
+
+    const library = useSelector(state => state['library'])
 
     const deleteEntry = () => {
         if (queuedSong.id === props.song.id) {
@@ -39,10 +41,23 @@ const SongDirectoryEntry = ({ currentDirectory, ...props }) => {
         }
     }, [currentModalData])
 
+    const handleEntryClick = () => {
+        queueClickedSong()
+        setWorkingPlaylist()
+    }
+
     const queueClickedSong = () => {
         props.dispatch(stop())
         props.dispatch(queueSong(props.song))
         props.dispatch(play())
+    }
+
+    const setWorkingPlaylist = () => {
+        if (props.isInPlaylist) {
+            props.dispatch(setPlaylistPlaying(library.openedPlaylist.id))
+        } else {
+            props.dispatch(setPlaylistPlaying(undefined))
+        }
     }
 
     return (
@@ -50,7 +65,7 @@ const SongDirectoryEntry = ({ currentDirectory, ...props }) => {
             <DirectoryEntry
                 entry={props.song}
                 className='btn directory-entry'
-                onClick={queueClickedSong}
+                onClick={handleEntryClick}
                 contextoptions={[contextMenuOptions._queue, contextMenuOptions._delete]}
             >
                 <h4 className='song-entry-title song-entry-info'>{props.song.title}</h4>

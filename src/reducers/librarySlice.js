@@ -18,7 +18,7 @@ export const librarySlice = createSlice({
         // and second are arrays of songs
         playlists: [],
         openedPlaylist: undefined,
-        currentDirectory: directories.songs
+        playlistPlaying: undefined
     },
 
     reducers: {
@@ -110,6 +110,10 @@ export const librarySlice = createSlice({
 
         setOpenedPlaylist: (state, action) => {
             return {...state, openedPlaylist: action.payload}
+        },
+
+        setPlaylistPlaying: (state, action) => {
+            return {...state, playlistPlaying: action.payload}
         }
     }
 })
@@ -122,7 +126,8 @@ export const {
     addPlaylist,
     renamePlaylist,
     removePlaylist,
-    setOpenedPlaylist
+    setOpenedPlaylist,
+    setPlaylistPlaying
 } = librarySlice.actions
 
 export default librarySlice.reducer

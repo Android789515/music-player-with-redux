@@ -31,6 +31,7 @@ const DirectoryEntries = ({ directoryIdentifier, entries, ...props }) => {
                 <SongDirectoryEntry
                     key={song.id}
                     currentDirectory={directoryIdentifier}
+                    isInPlaylist={true}
                     song={song}
                     dispatch={props.dispatch}
                 />
