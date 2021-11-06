@@ -7,6 +7,7 @@ import { directories } from '../DirectoryList'
 
 import AddableSongEntry from '../AddableSongEntry'
 import ModalBtn from '../generic-components/ModalBtn'
+import Tooltip from '../generic-components/Tooltip'
 
 const AddToPlaylistModal = props => {
     const [ songsToAdd, updateSongsToAdd ] = useState([])
@@ -29,6 +30,8 @@ const AddToPlaylistModal = props => {
 
     const cancel = () => dispatch(clearModal())
 
+    // const [ shouldShowTooltip, setShouldShowTooltip ] = useState(false)
+
     return (
         <div className='add-to-playlist-modal modal-content overlay-component hard-rounded-corners'>
             <ul className='unstyled-ul songs-in-library'>
@@ -40,7 +43,15 @@ const AddToPlaylistModal = props => {
 
             <ModalBtn doOnClick={cancel} btnText='Cancel' />
 
-            <ModalBtn doOnClick={addSongs} btnText='Add songs' disabled={songsToAdd.length < 1} />
+            <ModalBtn
+                btnText='Add songs'
+                disabled={songsToAdd.length < 1}
+                doOnClick={addSongs}
+                // onMouseEnter={() => setShouldShowTooltip(true)}
+                // onMouseLeave={() => setShouldShowTooltip(false)}
+            />
+
+            {/*{shouldShowTooltip && <Tooltip text='Select songs to add to the playlist' />}*/}
         </div>
     )
 }

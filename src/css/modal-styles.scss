@@ -14,53 +14,59 @@
   height: 100vh;
 
   background: rgba(200, 200, 200, .9);
+}
 
-  .modal-btn {
-    font-size: 1.25rem;
-    font-weight: 700;
-    color: #fff;
+.modal-btn {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #fff;
 
-    display: inline-block;
+  display: inline-block;
 
-    padding: .75em 2.5em;
-    background: $primary-dark-color;
+  padding: .75em 2.5em;
+  background: $primary-dark-color;
 
-    transform: translateY(-4px);
-    transition: transform 20ms;
-  }
+  transform: translateY(-4px);
+  transition: transform 20ms;
+}
 
-  .modal-btn:active {
-    transform: translateY(-2px);
-  }
+.modal-btn:active {
+  transform: translateY(-2px);
+}
 
-  .modal-btn.disabled {
-    cursor: not-allowed;
+.modal-btn.disabled {
+  cursor: not-allowed;
 
-    background: $primary-accent-color;
+  background: $primary-accent-color;
 
-    transition: none;
-  }
+  transition: none;
+}
 
-  .modal-btn.disabled:active {
-    transform: translateY(-4px);
-  }
+.modal-btn.disabled:active {
+  transform: translateY(-4px);
+}
 
-  .modal-btn-base {
-    padding: 0;
-    background: none;
-    border: none;
+.modal-btn-base {
+  padding: 0;
+  background: none;
+  border: none;
 
-    background: $tertiary-dark-color;
-  }
+  background: $tertiary-dark-color;
+}
 
-  .modal-btn-base:disabled {
-    background: $secondary-accent-color;
-  }
+.modal-btn-base:disabled {
+  background: $secondary-accent-color;
 }
 
 .modal-content {
   padding: 1em 2em;
   background: #fff;
+}
+
+@media (min-width: 465px) {
+  .modal-btn {
+    font-size: 1.25rem;
+  }
 }
 
 .create-playlist-modal {
