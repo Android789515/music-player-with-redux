@@ -3,5 +3,5 @@
 * ###Cleanup
 
 * ###Add dark/light theme
-* ###Hook up loop and shuffle button
+* ###Change adding songs to playist from an upload to pulling songs from the main library
 * ###Add feature to guess song artist and title
