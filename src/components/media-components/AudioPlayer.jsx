@@ -1,11 +1,12 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useRef } from 'react'
 import { useSelector } from 'react-redux'
 
-import { pause, updateTime, setMaxTime, play } from '../../reducers/mediaSlice'
+import { pause, updateTime, setMaxTime, play, stop } from '../../reducers/mediaSlice'
 import { queueSong } from '../../reducers/librarySlice'
 
 function AudioPlayer(props) {
     const library = useSelector(state => state['library'])
+    const audioRef = useRef(undefined)
 
     const loadAudio = event => {
         const audio = event.target
@@ -35,10 +36,15 @@ function AudioPlayer(props) {
             // Get working directory first
             // then get the amount of songs in it
             // Choose a random one and queue it
-            const randomSong = Math.round(Math.random() * library.songs.length)
-            props.dispatch(queueSong(randomSong))
+            const randomSong = randomNumFromArr(library.songs.length)
+            props.dispatch(stop())
+            props.dispatch(queueSong(library.songs.at(randomSong)))
+            props.dispatch(play())
         } else if (props.media.loop) {
-            props.dispatch(queueSong(props.queuedSong))
+            const { current: audio } = audioRef
+            // resets audio time to 0
+            props.dispatch(play())
+            audio.play()
         }
     }
 
@@ -59,7 +65,7 @@ function AudioPlayer(props) {
     }
 
     useEffect( () => {
-        const audio = document.getElementById('audio')
+        const { current: audio } = audioRef
         if (props.media.paused) {
             audio.pause()
         } else {
@@ -68,15 +74,15 @@ function AudioPlayer(props) {
     }, [props.media.paused])
 
     useEffect( () => {
-        const audio = document.getElementById('audio')
+        const { current: audio } = audioRef
         audio.volume = props.media.volume
     }, [props.media.volume])
 
 
     // Loop
     // useEffect( () => {
-    //
-    // }, [])
+    //     console.log(props.media.loop)
+    // }, [props.media.loop])
 
     // Shuffle
     // useEffect( () => {
@@ -87,6 +93,8 @@ function AudioPlayer(props) {
         id='audio'
         muted={props.media.muted}
         src={props.queuedSong.src}
+        // autoPlay
+        ref={audioRef}
         onLoadedMetadata={loadAudio}
         onTimeUpdate={determineSongTime}
         onEnded={handleAudioEnd}

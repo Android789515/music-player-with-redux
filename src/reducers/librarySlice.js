@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
+import { directories } from '../components/library-components/DirectoryList'
 
 export const librarySlice = createSlice({
     name: 'library',
@@ -16,7 +17,8 @@ export const librarySlice = createSlice({
         // first items are an obj of id and values
         // and second are arrays of songs
         playlists: [],
-        openedPlaylist: undefined
+        openedPlaylist: undefined,
+        currentDirectory: directories.songs
     },
 
     reducers: {
