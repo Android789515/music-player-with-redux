@@ -40,7 +40,6 @@ export const librarySlice = createSlice({
 
                     return {
                         ...state,
-                        songs: [...state.songs, action.payload.song],
                         playlists: updatedPlaylists,
                         openedPlaylist: updatedPlaylists.find(playlist => playlist.id === state.openedPlaylist.id)
                     }
