@@ -6,6 +6,7 @@ import { setModalContent } from '../../reducers/modalSlice'
 
 import SongUploader from './SongUploader'
 import PlaylistModal from './modals/PlaylistModal'
+import AddToPlaylistModal from './modals/AddToPlaylistModal'
 
 const AddEntryBtn = props => {
     const uploaderRef = useRef(undefined)
@@ -15,14 +16,14 @@ const AddEntryBtn = props => {
         if (uploader) {
             uploader.click()
         } else if (props.isPlaylistOpen) {
-
+            renderAddToPlaylistModal()
         } else {
             renderCreatePlaylistModal()
         }
     }
 
     const renderAddToPlaylistModal = () => {
-
+        props.dispatch(setModalContent(<AddToPlaylistModal />))
     }
 
     const renderCreatePlaylistModal = () => {
@@ -31,7 +32,7 @@ const AddEntryBtn = props => {
 
     return (
         <div className='btn add-entry-section' onClick={addEntry}>
-            <button className='btn'>+</button>
+            <button className='btn entry-btn'>+</button>
             <p className={`add-entry-text`}>{props.btnText}</p>
 
             {props.hasInputComponent && (

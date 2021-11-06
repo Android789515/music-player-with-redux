@@ -15,11 +15,7 @@
 
   background: rgba(200, 200, 200, .9);
 
-  .btn,
-  .modal-btn-bg {
-  }
-
-  .btn {
+  .modal-btn {
     font-size: 1.25rem;
     font-weight: 700;
     color: #fff;
@@ -33,20 +29,32 @@
     transition: transform 20ms;
   }
 
-  .btn:focus,
-  .btn:hover {
+  .modal-btn:active {
+    transform: translateY(-2px);
   }
 
-  .btn:active {
-    transform: translateY(1px);
+  .modal-btn.disabled {
+    cursor: not-allowed;
+
+    background: $primary-accent-color;
+
+    transition: none;
   }
 
-  .modal-btn-bg {
+  .modal-btn.disabled:active {
+    transform: translateY(-4px);
+  }
+
+  .modal-btn-base {
     padding: 0;
     background: none;
     border: none;
 
     background: $tertiary-dark-color;
+  }
+
+  .modal-btn-base:disabled {
+    background: $secondary-accent-color;
   }
 }
 
@@ -78,5 +86,43 @@
 
   p {
     justify-self: center;
+  }
+}
+
+.add-to-playlist-modal {
+  .fallback-text {
+    font-weight: 700;
+    text-align: center;
+
+    margin-top: 0;
+    margin-bottom: 2em;
+  }
+
+  .songs-in-library {
+    overflow-y: scroll;
+
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-row-gap: 1em;
+
+    max-height: 50vh;
+
+    padding-right: 1em;
+  }
+
+  .addable-song {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .addable-song.selected {
+    .entry-btn {
+      padding: .125em .55em;
+    }
+  }
+
+  .modal-btn-base:first-of-type {
+    margin-right: 2em;
   }
 }

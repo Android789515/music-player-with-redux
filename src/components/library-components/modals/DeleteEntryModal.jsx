@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux'
 import { clearModal, setModalData } from '../../../reducers/modalSlice'
 
 import '../../../css/modal-styles.scss'
+import ModalBtn from '../generic-components/ModalBtn'
 
 const DeleteEntryModal = ({ entry }) => {
     const entryName = entry.name || entry.title
@@ -26,25 +27,11 @@ const DeleteEntryModal = ({ entry }) => {
             <h2>Are you sure you would like to delete {entryName}?</h2>
 
             <p>
-                <button className='modal-btn-bg hard-rounded-corners' >
-                    <span
-                        className='btn no-btn hard-rounded-corners'
-                        onClick={cancelDelete}
-                    >
-                        No
-                    </span>
-                </button>
+                <ModalBtn doOnClick={cancelDelete} btnText='No' />
             </p>
 
             <p>
-                <button className='modal-btn-bg hard-rounded-corners' >
-                    <span
-                        className='btn yes-btn hard-rounded-corners'
-                        onClick={proceedWithDelete}
-                    >
-                        Yes
-                    </span>
-                </button>
+                <ModalBtn doOnClick={proceedWithDelete} btnText='Yes' />
             </p>
         </div>
     )

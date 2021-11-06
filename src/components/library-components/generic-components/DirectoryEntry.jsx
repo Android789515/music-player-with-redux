@@ -11,7 +11,7 @@ const DirectoryEntry = props => {
         <li key={entry.id} entryid={entry.id} {...restProps} ref={directoryEntryRef}>
             {props.children}
 
-            <ContextMenuBtn entry={entry} contextoptions={props.contextoptions} />
+            {props.contextoptions && <ContextMenuBtn entry={entry} contextoptions={props.contextoptions} />}
         </li>
     )
 }
