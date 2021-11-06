@@ -26,7 +26,7 @@ const AddableSongEntry = ({ updateSongsToAdd, song }) => {
     }
 
     return (
-        <div className={`addable-song ${isToggled ? 'selected' : ''}`.trim()}>
+        <div className={`addable-song hard-rounded-corners ${isToggled ? 'selected' : ''}`.trim()}>
             <button className='btn entry-btn'>{isToggled ? '-' : '+'}</button>
 
             <DirectoryEntry
