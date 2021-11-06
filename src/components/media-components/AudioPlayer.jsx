@@ -99,7 +99,7 @@ function AudioPlayer(props) {
         id='audio'
         muted={props.media.muted}
         src={props.queuedSong.src}
-        // autoPlay
+        autoPlay
         ref={audioRef}
         onLoadedMetadata={loadAudio}
         onTimeUpdate={determineSongTime}
