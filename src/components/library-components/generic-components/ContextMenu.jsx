@@ -33,10 +33,10 @@ const ContextMenu = props => {
                 break
 
             case contextMenuOptions._rename:
-                console.log(closestEntry)
+                const entryName = closestEntry.firstElementChild.textContent
                 dispatch(setModalContent(<PlaylistModal
                     action='rename'
-                    prevName={closestEntry.firstElementChild.textContent}
+                    prevName={entryName}
                     playlistId={props.entry.id}
                 />))
                 break
