@@ -1,36 +1,33 @@
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
-import { addSong } from '../../../reducers/librarySlice'
+import { addSongs } from '../../../reducers/librarySlice'
 import { clearModal } from '../../../reducers/modalSlice'
 import { directories } from '../DirectoryList'
 
 import AddableSongEntry from '../AddableSongEntry'
 import ModalBtn from '../generic-components/ModalBtn'
 
-const AddToPlaylistModal = props => {
+const AddToPlaylistModal = () => {
     const [ songsToAdd, updateSongsToAdd ] = useState([])
 
-    const songs = useSelector(state => state['library'].songs)
+    const songs = useSelector(state => state.library.songs)
 
     const songEntries = songs.map(song => {
         return <AddableSongEntry updateSongsToAdd={updateSongsToAdd} song={song} />
     })
 
     const dispatch = useDispatch()
-    const addSongs = () => {
-        songsToAdd.forEach(song => {
-            const openedPlaylist = directories.openedPlaylist.identifier
-            dispatch(addSong({ to: openedPlaylist, song: song }))
-        })
+    const addSongsToPlaylist = () => {
+        const openedPlaylist = directories.openedPlaylist.identifier
+        dispatch(addSongs({ to: openedPlaylist, songs: songsToAdd }))
 
         dispatch(clearModal())
     }
 
     const cancel = () => dispatch(clearModal())
 
-    // const [ shouldShowTooltip, setShouldShowTooltip ] = useState(false)
-
+    const areNoSongsInLibrary = songsToAdd.length < 1
     return (
         <div className='add-to-playlist-modal modal-content overlay-component hard-rounded-corners'>
             <ul className='unstyled-ul songs-in-library'>
@@ -44,13 +41,9 @@ const AddToPlaylistModal = props => {
 
             <ModalBtn
                 btnText='Add songs'
-                disabled={songsToAdd.length < 1}
-                doOnClick={addSongs}
-                // onMouseEnter={() => setShouldShowTooltip(true)}
-                // onMouseLeave={() => setShouldShowTooltip(false)}
+                disabled={areNoSongsInLibrary}
+                doOnClick={addSongsToPlaylist}
             />
-
-            {/*{shouldShowTooltip && <Tooltip text='Select songs to add to the playlist' />}*/}
         </div>
     )
 }

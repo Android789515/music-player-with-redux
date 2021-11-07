@@ -1,15 +1,15 @@
 import React from 'react'
 
-import { uploadSong } from './SongUploaderHelper'
+import { uploadSongs } from './SongUploaderHelper'
 
 // Component
 const SongUploader = props => {
 
-    const uploadSongs = event => {
+    const addSongs = event => {
         const uploader = event.target
         const uploadedData = [ ...uploader.files ]
 
-        uploadedData.forEach(song => uploadSong(song))
+        uploadedData.forEach(song => uploadSongs(song))
     }
 
     return (
@@ -18,7 +18,7 @@ const SongUploader = props => {
             style={{ display: 'none' }}
             type='file'
             multiple
-            onChange={uploadSongs}
+            onChange={addSongs}
             ref={props.uploaderRef}
         />
     )

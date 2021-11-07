@@ -22,17 +22,17 @@ export const librarySlice = createSlice({
     },
 
     reducers: {
-        addSong: (state, action) => {
+        addSongs: (state, action) => {
             switch (action.payload.to) {
                 case 'songs':
-                    return {...state, songs: [...state.songs, action.payload.song]}
+                    return {...state, songs: [...state.songs, ...action.payload.songs]}
 
                 case 'openedPlaylist':
                     const updatedPlaylists = [...state.playlists].map(playlist => {
                         if (playlist.id === state.openedPlaylist.id) {
                             return {
                                 ...playlist,
-                                songs: [...playlist.songs, action.payload.song]
+                                songs: [...playlist.songs, ...action.payload.songs]
                             }
                         }
                         return playlist
@@ -118,7 +118,7 @@ export const librarySlice = createSlice({
 })
 
 export const {
-    addSong,
+    addSongs,
     removeSong,
     queueSong,
     unqueueSong,
