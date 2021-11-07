@@ -7,17 +7,16 @@ const ContextMenuBtn = props => {
     const [ shouldShowContextMenu, isContextMenuShown ] = useState(false)
     const [ menuPos, setMenuPos ] = useState(0)
 
-    const contextMenuBtnRef = useRef(undefined)
-
     const openContextMenu = event => {
         event.stopPropagation()
 
         isContextMenuShown(true)
 
-        const targetPos = contextMenuBtnRef.current.getBoundingClientRect()
-        const positionForMenu = targetPos.x - 138
-        console.log(targetPos)
-        setMenuPos(targetPos.x)
+        const contextBtnPos = event.target.getBoundingClientRect()
+        const directoryEntryPos = event.target.parentElement.getBoundingClientRect()
+
+        const positionForMenu = contextBtnPos.x - directoryEntryPos.x - 55
+        setMenuPos(positionForMenu)
     }
 
     const closeContextMenu = event => {
@@ -33,7 +32,6 @@ const ContextMenuBtn = props => {
                 src={contextMenuBtn}
                 alt='Context menu button'
                 tabIndex={0}
-                ref={contextMenuBtnRef}
                 onClick={openContextMenu}
                 onKeyPress={event => event.key === 'Enter' && openContextMenu(event)}
             />
