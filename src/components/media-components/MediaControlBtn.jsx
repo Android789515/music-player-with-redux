@@ -1,10 +1,11 @@
 import React from 'react'
+import { useSelector } from 'react-redux'
+
 import useButtonToggle from '../../hooks/useButtonToggle'
 
 function MediaControlBtn(props) {
     const { name, isVolumeBtn, btnTheme, handleMediaBtnClick } = props
 
-    const { isToggled, toggle } = useButtonToggle()
     const toggleBtns = {
         _SHUFFLE: 'shuffle',
         _LOOP: 'loop'
@@ -12,6 +13,9 @@ function MediaControlBtn(props) {
     const isShuffleBtn = name === toggleBtns._SHUFFLE
     const isLoopBtn = name === toggleBtns._LOOP
     const isToggleBtn = isShuffleBtn || isLoopBtn
+    const media = useSelector(state => state['media'])
+    const { isToggled, toggle } = useButtonToggle((isLoopBtn && media.loop) ||
+        (isShuffleBtn && media.shuffle) )
 
     let className
     let src

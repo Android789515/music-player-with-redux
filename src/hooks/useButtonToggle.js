@@ -1,8 +1,8 @@
 import { useState } from 'react'
 
 
-const useButtonToggle = () => {
-    const [ isToggled, setIsToggled ] = useState(false)
+const useButtonToggle = (initialState = false) => {
+    const [ isToggled, setIsToggled ] = useState(initialState)
 
     const toggle = () => setIsToggled(prevToggleState => !prevToggleState)
 
