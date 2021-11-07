@@ -8,7 +8,7 @@ import { addPlaylist, renamePlaylist } from '../../../reducers/librarySlice'
 import { clearModal } from '../../../reducers/modalSlice'
 
 const PlaylistModal = props => {
-    const [ modalText, updateModalText ] = useState(props.initialText || '')
+    const [ modalText, updateModalText ] = useState(props.prevName || '')
 
     const actions = {
         create: 'create',
