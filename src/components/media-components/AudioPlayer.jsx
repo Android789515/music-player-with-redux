@@ -39,6 +39,7 @@ function AudioPlayer(props) {
 
     useEffect( () => {
         const { current: audio } = audioRef
+        console.log(props.media.paused)
         if (props.media.paused) {
             audio.pause()
         } else {
@@ -55,7 +56,7 @@ function AudioPlayer(props) {
         id='audio'
         muted={props.media.muted}
         src={props.queuedSong.src}
-        autoPlay
+        autoPlay={true}
         ref={audioRef}
         onLoadedMetadata={loadAudio}
         onTimeUpdate={determineSongTime}

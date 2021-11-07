@@ -2,16 +2,23 @@ import store from '../../store'
 import { play, stop } from '../../reducers/mediaSlice'
 import { queueSong } from '../../reducers/librarySlice'
 
-const library = store.getState().library
 const dispatch = store.dispatch
 
-const randomNumFromArr = arrLen =>
+const randomNumFromArr = arrLen => {
     /* keeps from selecting index larger than arr */
-    Math.round(Math.random() * (arrLen - 1) )
+    const num = Math.round(Math.random() * (arrLen - 1) )
+    // Prevents negative indices
+    return Math.abs(num)
+}
 
-const chooseRandomSongFromSongs = () => library.songs[randomNumFromArr(library.songs.length)]
+
+const chooseRandomSongFromSongs = () => {
+    const library = store.getState().library
+    return library.songs[randomNumFromArr(library.songs.length)]
+}
 
 const chooseRandomSongFromPlaylist = playlistId => {
+    const library = store.getState().library
     const playlist = library.playlists.find(playlist => playlist.id === playlistId)
 
     const pickedSong = playlist.songs[randomNumFromArr(playlist.songs.length)]
@@ -24,12 +31,15 @@ const chooseRandomSongFromPlaylist = playlistId => {
 }
 
 export const queueRandomSong = () => {
-    dispatch(stop())
+    const library = store.getState().library
+    // dispatch(stop())
 
     if (library.playlistPlaying) {
+        console.log('from playlist')
         const randomSong = chooseRandomSongFromPlaylist(library.playlistPlaying)
         dispatch(queueSong(randomSong))
     } else {
+        console.log('from songs')
         const randomSong = chooseRandomSongFromSongs()
         dispatch(queueSong(randomSong))
     }

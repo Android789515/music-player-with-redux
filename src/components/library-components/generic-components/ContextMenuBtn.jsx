@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useRef, useState } from 'react'
 
 import contextMenuBtn from '../../../img/dark-btns/context.svg'
 import ContextMenu from './ContextMenu'
@@ -7,14 +7,17 @@ const ContextMenuBtn = props => {
     const [ shouldShowContextMenu, isContextMenuShown ] = useState(false)
     const [ menuPos, setMenuPos ] = useState(0)
 
+    const contextMenuBtnRef = useRef(undefined)
+
     const openContextMenu = event => {
         event.stopPropagation()
 
         isContextMenuShown(true)
 
-        const targetPos = event.target.getBoundingClientRect()
+        const targetPos = contextMenuBtnRef.current.getBoundingClientRect()
         const positionForMenu = targetPos.x - 138
-        setMenuPos(positionForMenu)
+        console.log(targetPos)
+        setMenuPos(targetPos.x)
     }
 
     const closeContextMenu = event => {
@@ -30,6 +33,7 @@ const ContextMenuBtn = props => {
                 src={contextMenuBtn}
                 alt='Context menu button'
                 tabIndex={0}
+                ref={contextMenuBtnRef}
                 onClick={openContextMenu}
                 onKeyPress={event => event.key === 'Enter' && openContextMenu(event)}
             />

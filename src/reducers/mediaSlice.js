@@ -19,6 +19,7 @@ export const mediaSlice = createSlice({
             return {...state, paused: true}
         },
         play: state => {
+            console.log('should play')
             return {...state, paused: false, time: state.time === state.maxTime ? 0 : state.time}
         },
 

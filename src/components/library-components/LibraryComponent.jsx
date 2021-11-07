@@ -17,13 +17,14 @@ const LibraryComponent = () => {
     const library = useSelector(state => state['library'])
     const { openedPlaylist } = library
 
-    const isShuffleToggled = useSelector(state => state['media'].shuffle)
+    const media = useSelector(state => state['media'])
+    const isShuffleToggled = media.shuffle
     useEffect(() => {
-        const hasCurrentSongEnded = library.queuedSong.time === library.queuedSong.maxTime
+        const hasCurrentSongEnded = media.time === media.maxTime
         if (hasCurrentSongEnded && isShuffleToggled) {
             queueRandomSong()
         }
-    }, [])
+    }, [media.shuffle, media.time])
 
     return (
         <section className='library overlay-component library-open'>
