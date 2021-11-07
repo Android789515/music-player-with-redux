@@ -63,11 +63,11 @@
 
 .context-menu {
   position: absolute;
+  z-index: 1;
 
   width: max-content;
 
   padding: .5em .75em;
-  margin-left: 60%;
 
   background: #f0f0f0;
 }
@@ -101,6 +101,10 @@
   .context-menu-btn-area,
   .song-entry-title {
     grid-row: 1;
+  }
+
+  .context-menu {
+    margin-left: 60%;
   }
 
   .loading-song-entry {
@@ -138,7 +142,7 @@
 
 .playlists-directory {
   .directory-entry {
-    grid-template-columns: auto .25fr;
+    grid-template-columns: auto .5fr;
   }
 
   .directory-entry:not(.directory-entry:first-child) {
@@ -150,6 +154,10 @@
   .context-menu-btn {
     grid-row: 1;
     grid-column: 1;
+  }
+
+  .context-menu {
+    margin-left: 55%;
   }
 
   .playlist-entry-title {
