@@ -15,7 +15,7 @@ const ContextMenuBtn = props => {
         const contextBtnPos = event.target.getBoundingClientRect()
         const directoryEntryPos = event.target.parentElement.getBoundingClientRect()
 
-        const positionForMenu = contextBtnPos.x - directoryEntryPos.x - 55
+        const positionForMenu = contextBtnPos.x - directoryEntryPos.x - 52
         setMenuPos(positionForMenu)
     }
 
