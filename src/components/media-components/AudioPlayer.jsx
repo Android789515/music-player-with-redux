@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react'
 import { useSelector } from 'react-redux'
 
-import { pause, updateTime, setMaxTime, play, stop } from '../../reducers/mediaSlice'
+import { pause, updateTime, setMaxTime, play } from '../../reducers/mediaSlice'
 import { queueSong } from '../../reducers/librarySlice'
 
 function AudioPlayer(props) {
@@ -33,7 +33,6 @@ function AudioPlayer(props) {
 
         // If loop enabled (shuffle overrides loop), restart song
         if (props.media.shuffle) {
-            // props.dispatch(stop())
 
             if (library.playlistPlaying) {
                 const randomSong = chooseRandomSongFromPlaylist(library.playlistPlaying)
@@ -56,15 +55,24 @@ function AudioPlayer(props) {
         /* keeps from selecting index larger than arr */
         Math.round(Math.random() * (arrLen - 1) )
 
-    const chooseRandomSongFromSongs = () => library.songs[randomNumFromArr(library.songs.length)]
+    const chooseRandomSongFromSongs = () => {
+        const pickedSong = library.songs[randomNumFromArr(library.songs.length)]
+
+        return makeDifferentThanLastSong(pickedSong, chooseRandomSongFromSongs)
+    }
 
     const chooseRandomSongFromPlaylist = playlistId => {
         const playlist = library.playlists.find(playlist => playlist.id === playlistId)
 
         const pickedSong = playlist.songs[randomNumFromArr(playlist.songs.length)]
 
+        return makeDifferentThanLastSong(pickedSong, () =>
+            chooseRandomSongFromPlaylist(playlistId))
+    }
+
+    const makeDifferentThanLastSong = (pickedSong, chooserFunction) => {
         if (pickedSong.id === props.queuedSong.id) {
-            return chooseRandomSongFromPlaylist(playlistId)
+            return chooserFunction()
         } else {
             return pickedSong
         }
