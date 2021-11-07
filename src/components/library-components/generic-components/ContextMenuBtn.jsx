@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react'
+import React, { useState } from 'react'
 
 import contextMenuBtn from '../../../img/dark-btns/context.svg'
 import ContextMenu from './ContextMenu'
