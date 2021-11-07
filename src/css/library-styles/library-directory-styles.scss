@@ -23,9 +23,6 @@
 }
 
 .directory-entry {
-  // Keeps context menu where it should
-  // since it's absolutely positioned
-  position: relative;
   // Generic grid
   // each directory will style their
   // entries different
@@ -62,9 +59,6 @@
 }
 
 .context-menu {
-  position: absolute;
-  z-index: 1;
-
   width: max-content;
 
   padding: .5em .75em;
@@ -92,6 +86,10 @@
   }
 
   .directory-entry {
+    // Keeps context menu where it should
+    // since it's absolutely positioned
+    position: relative;
+
     // 2px for the mini song bar
     grid-template: 1fr auto 2px / auto .5fr;
 
@@ -104,7 +102,10 @@
   }
 
   .context-menu {
-    margin-left: 60%;
+    position: absolute;
+    right: auto;
+    left: auto;
+    z-index: 1;
   }
 
   .loading-song-entry {
@@ -142,7 +143,7 @@
 
 .playlists-directory {
   .directory-entry {
-    grid-template-columns: auto .5fr;
+    grid-template-columns: auto .25fr;
   }
 
   .directory-entry:not(.directory-entry:first-child) {
@@ -157,7 +158,10 @@
   }
 
   .context-menu {
-    margin-left: 55%;
+    grid-row: 1 / span 2;
+    grid-column: 1;
+
+    margin-left: auto;
   }
 
   .playlist-entry-title {

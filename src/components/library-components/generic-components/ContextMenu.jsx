@@ -85,6 +85,7 @@ const ContextMenu = props => {
         return (
             <ul
                 className='unstyled-ul context-menu hard-rounded-corners'
+                style={{ left: props.position }}
                 tabIndex={0}
                 ref={contextMenuRef}
                 onBlur={handleLoseFocus}
