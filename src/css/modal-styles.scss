@@ -105,12 +105,13 @@
   }
 
   .songs-in-library {
-    overflow-y: scroll;
+    overflow-y: auto;
 
     display: grid;
     grid-template-columns: 1fr;
     grid-row-gap: 1em;
 
+    min-height: 1vh;
     max-height: 75vh;
 
     padding-right: 1em;
