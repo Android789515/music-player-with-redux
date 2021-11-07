@@ -1,4 +1,5 @@
 import React from 'react'
+import { v4 as uuidv4 } from 'uuid'
 
 import { getFormattedSongTime } from '../../TimeFormatter'
 import useButtonToggle from '../../hooks/useButtonToggle'
@@ -25,8 +26,9 @@ const AddableSongEntry = ({ updateSongsToAdd, song }) => {
         updateSongsToAdd(prevSongs => prevSongs.filter(song => song.id !== unmarkSong.id))
     }
 
+    const id = uuidv4()
     return (
-        <div className={`addable-song hard-rounded-corners ${isToggled ? 'selected' : ''}`.trim()}>
+        <div className={`addable-song hard-rounded-corners ${isToggled ? 'selected' : ''}`.trim()} key={id}>
             <button className='btn entry-btn'>{isToggled ? '-' : '+'}</button>
 
             <DirectoryEntry

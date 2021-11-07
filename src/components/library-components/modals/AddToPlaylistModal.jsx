@@ -7,7 +7,6 @@ import { directories } from '../DirectoryList'
 
 import AddableSongEntry from '../AddableSongEntry'
 import ModalBtn from '../generic-components/ModalBtn'
-import Tooltip from '../generic-components/Tooltip'
 
 const AddToPlaylistModal = props => {
     const [ songsToAdd, updateSongsToAdd ] = useState([])
