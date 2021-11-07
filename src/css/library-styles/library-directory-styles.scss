@@ -104,10 +104,7 @@
   .context-menu {
     position: absolute;
     left: 0;
-    //right: 0;
     z-index: 1;
-
-    //margin-left: auto;
   }
 
   .loading-song-entry {
@@ -145,7 +142,7 @@
 
 .playlists-directory {
   .directory-entry {
-    grid-template-columns: auto .25fr;
+    grid-template-columns: auto max-content;
   }
 
   .directory-entry:not(.directory-entry:first-child) {
