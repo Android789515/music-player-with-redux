@@ -1,10 +1,9 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
 import '../../css/library-styles/music-library-styles.scss'
 
 import { directories } from './DirectoryList'
-import { queueRandomSong } from './LibraryComponentHelper'
 
 import DirectoryList from './DirectoryList'
 import CurrentDirectory from './CurrentDirectory'
@@ -16,15 +15,6 @@ const LibraryComponent = () => {
     const [ currentDirectory, setCurrentDirectory ] = useState(directories.songs)
     const library = useSelector(state => state['library'])
     const { openedPlaylist } = library
-
-    const media = useSelector(state => state['media'])
-    const isShuffleToggled = media.shuffle
-    useEffect(() => {
-        const hasCurrentSongEnded = media.time === media.maxTime
-        if (hasCurrentSongEnded && isShuffleToggled) {
-            queueRandomSong()
-        }
-    }, [media.shuffle, media.time])
 
     return (
         <section className='library overlay-component library-open'>
