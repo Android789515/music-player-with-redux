@@ -19,6 +19,12 @@ const ContextMenuBtn = props => {
         setMenuPos(positionForMenu)
     }
 
+    const openContextMenuOnEnter = event => {
+        if (event.key === 'Enter') {
+            openContextMenu(event)
+        }
+    }
+
     const closeContextMenu = event => {
         event.stopPropagation()
 
@@ -33,7 +39,7 @@ const ContextMenuBtn = props => {
                 alt='Context menu button'
                 tabIndex={0}
                 onClick={openContextMenu}
-                onKeyPress={event => event.key === 'Enter' && openContextMenu(event)}
+                onKeyPress={openContextMenuOnEnter}
             />
 
             <ContextMenu
