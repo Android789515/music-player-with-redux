@@ -48,19 +48,6 @@ img {
   max-height: 100vh;
 }
 
-.tooltip {
-  position: absolute;
-
-  padding: .5em .75em;
-  background: #282c34;
-}
-
-.tooltip-text {
-  color: #fff;
-
-  margin: 0;
-}
-
 @media (min-width: $first-media-breakpoint) {
   .main-layout {
     flex-direction: row;

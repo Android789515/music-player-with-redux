@@ -1,0 +1,30 @@
+@use '../variables';
+
+// For components with set width
+.softRoundedCorners {
+  border-radius: 25%;
+}
+
+// For component with padding
+.hardRoundedCorners {
+  border-radius: 15px;
+}
+
+.hidden {
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.invisible {
+  opacity: 0;
+}
+
+.fadingComponent {
+  transition: opacity 250ms;
+}
+
+@media (min-width: variables.$first-media-breakpoint) {
+  .overlayComponent {
+    background: variables.$overlay-component-bg;
+  }
+}
