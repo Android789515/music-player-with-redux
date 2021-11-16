@@ -1,6 +1,5 @@
 import React from 'react'
 
-import './App.css'
 import './css/main-styles.scss'
 import MediaPlayer from './components/media-components/MediaPlayer'
 import LibraryComponent from './components/library-components/LibraryComponent'
