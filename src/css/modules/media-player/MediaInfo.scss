@@ -1,0 +1,41 @@
+@use '../../variables';
+
+.mediaInfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.coverArt {
+  $image-size: 167.95px;
+  object-fit: cover;
+
+  min-width: $image-size;
+  max-width: $image-size;
+  min-height: $image-size;
+  max-height: $image-size;
+
+  margin: 2em auto;
+
+  transition: width 250ms, margin-right 250ms;
+}
+
+@media (min-width: variables.$first-media-breakpoint) {
+  .mediaInfo {
+    grid-row: 2;
+    grid-column: 1;
+
+    flex-direction: row;
+    align-items: center;
+
+    margin-left: 5%;
+  }
+
+  // resets the margin
+  .coverArt {
+    margin: revert;
+  }
+  .coverArt {
+    margin-right: 1.5em;
+  }
+}
