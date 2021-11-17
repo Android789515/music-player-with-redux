@@ -3,7 +3,7 @@ import React from 'react'
 import { softRoundedCorners, hidden } from '../../css/modules/GenericStyles.module.scss'
 import { mediaInfo, coverArt } from '../../css/modules/media-player/MediaInfo.scss'
 
-import SongInfoComponent from './SongInfoComponent'
+import SongInfo from './SongInfo'
 import fallBackImg from '../../img/cover-art-fallback.svg'
 
 const MediaInfo = ({ queuedSong, media }) => {
@@ -17,7 +17,7 @@ const MediaInfo = ({ queuedSong, media }) => {
                 alt='Song cover art'
             />
 
-            <SongInfoComponent queuedSong={queuedSong} media={media} />
+            <SongInfo queuedSong={queuedSong} media={media} />
         </section>
     )
 }

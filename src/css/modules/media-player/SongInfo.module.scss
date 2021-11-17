@@ -1,0 +1,43 @@
+@use '../../../css/variables';
+
+.songInfo {
+  font-size: 1rem;
+
+  transition: font-size 250ms;
+}
+
+$verySmallScreens: 375px;
+@media (max-width: $verySmallScreens) {
+  .songInfo {
+    text-align: center;
+  }
+}
+
+@media (min-width: variables.$first-media-breakpoint) {
+  .songInfo {
+    font-size: .85rem;
+
+    width: 100%;
+  }
+}
+
+@media (min-width: variables.$second-media-breakpoint) {
+  .songInfo {
+    font-size: 1rem;
+  }
+}
+
+.songTitle {
+  font-size: 1.5em;
+
+  margin: 0;
+}
+
+.songArtist,
+.songDuration {
+  font-size: 1em;
+}
+
+.songArtist {
+  margin-top: 0;
+}
