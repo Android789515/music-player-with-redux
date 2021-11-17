@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 
+import styles from '../../css/modules/media-player/MediaControls.module.scss'
 import '../../css/media-styles/media-controls-styles.scss'
 
 import { pause, play, toggleLoop, toggleShuffle, updateTime } from '../../reducers/mediaSlice'

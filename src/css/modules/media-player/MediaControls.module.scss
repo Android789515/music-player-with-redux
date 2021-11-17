@@ -1,0 +1,122 @@
+@use '../../variables';
+
+.mediaControls {
+  width: 90%;
+}
+
+.mediaControlBtns {
+  display: grid;
+  // Empty 1fr - to even things out
+  // On large screens the empty space will not be included
+  grid-template-columns: 1fr repeat(6, 1fr);
+  grid-column-gap: .5em;
+  justify-content: center;
+  // Padding instead of margin so the background will block
+  // overflowing content from the library
+  padding-bottom: .5em;
+}
+
+.mediaControlBtn {
+  // Keep media controls below volume bar
+  grid-row: 2;
+
+  width: 100%;
+  max-width: 60px;
+}
+
+.mediaControlBtn.toggled {
+  background: variables.$primary-accent-color;
+}
+
+.mediaControlBtn.dark-btn:focus:not(.vol-control-btn),
+.mediaControlBtn.dark-btn:hover:not(.vol-control-btn) {
+  background: variables.$primary-accent-color;
+}
+
+// On large screens all buttons shift left
+.shuffleBtn {
+  grid-column: 2;
+}
+
+.rewindBtn {
+  grid-column: 3;
+}
+
+.playBtn,
+.pauseBtn {
+  grid-column: 4;
+}
+
+.fastForwardBtn {
+  grid-column: 5;
+}
+
+.loopBtn {
+  grid-column: 6;
+}
+
+.volumeBarArea,
+.volControlBtn {
+  grid-column: 7;
+}
+
+.volumeBarArea {
+  grid-row: 1;
+}
+
+.volControlBtn {
+  width: 90%;
+  // Gives a little bit of space between it and the other media controls
+  margin: auto auto auto .25em;
+}
+
+@media (min-width: variables.$first-media-breakpoint) {
+  .mediaControls {
+    position: fixed;
+    z-index: 3;
+    bottom: 0;
+
+    width: 100%;
+
+    padding-bottom: 1em;
+  }
+
+  .mediaControls > * {
+    width: 96%;
+  }
+
+  .mediaControlBtns {
+    grid-template-columns: repeat(6, 1fr);
+
+    max-width: max-content;
+
+    padding-top: .25em;
+    margin-left: 2%;
+  }
+
+  .shuffleBtn {
+    grid-column: 1;
+  }
+
+  .rewindBtn {
+    grid-column: 2;
+  }
+
+  .playBtn,
+  .pauseBtn {
+    grid-column: 3;
+  }
+
+  .fastForwardBtn {
+    grid-column: 4;
+  }
+
+  .loopBtn {
+    grid-column: 5;
+  }
+
+  .volumeBarArea,
+  .volControlBtn {
+    grid-column: 6;
+  }
+}
