@@ -9,7 +9,7 @@ const MediaInfo = ({ queuedSong, media }) => {
     return (
         <section className='media-info'>
             <img
-                className={`cover-art soft-rounded-corners ${isSongQueued ? '' : 'hidden'}`.trim()}
+                className={`cover-art softRoundedCorners ${isSongQueued ? '' : 'hidden'}`.trim()}
                 src={queuedSong.coverArt || fallBackImg}
                 alt='Song cover art'
             />

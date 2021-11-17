@@ -34,7 +34,7 @@ const ContextMenuBtn = props => {
     return (
         <>
             <img
-                className='context-menu-btn overlay-component soft-rounded-corners'
+                className='context-menu-btn overlayComponent softRoundedCorners'
                 src={contextMenuBtn}
                 alt='Context menu button'
                 tabIndex={0}

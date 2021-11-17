@@ -29,8 +29,8 @@ const AddToPlaylistModal = () => {
 
     const areNoSongsInLibrary = songsToAdd.length < 1
     return (
-        <div className='add-to-playlist-modal modal-content overlay-component hard-rounded-corners'>
-            <ul className='unstyled-ul songs-in-library'>
+        <div className='add-to-playlist-modal modal-content overlayComponent hardRoundedCorners'>
+            <ul className='unstyledUl songs-in-library'>
                 {
                     songs.length > 0 ? songEntries :
                     <li className='fallback-text'>Add songs to your library first.</li>

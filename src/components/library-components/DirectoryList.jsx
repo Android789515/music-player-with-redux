@@ -79,7 +79,7 @@ const DirectoryList = ({ currentDirectory, ...props }) => {
     })
 
     return (
-        <ul className='unstyled-ul directory-names'>
+        <ul className='unstyledUl directory-names'>
             {directoryNames}
         </ul>
     )

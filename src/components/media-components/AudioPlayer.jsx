@@ -104,7 +104,6 @@ function AudioPlayer(props) {
     // }, [])
 
     return <audio
-        id='audio'
         muted={props.media.muted}
         src={props.queuedSong.src}
         autoPlay={true}

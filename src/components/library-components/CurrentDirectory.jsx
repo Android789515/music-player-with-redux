@@ -21,8 +21,8 @@ const CurrentDirectory = ({ identifier: directoryIdentifier, ...props }) => {
     }, '')
 
     return (
-        <div className={`directory ${classFormattedName}-directory hard-rounded-corners`}>
-            <ul className='unstyled-ul directory-entries'>
+        <div className={`directory ${classFormattedName}-directory hardRoundedCorners`}>
+            <ul className='unstyledUl directory-entries'>
                 <DirectoryEntries
                     entries={library[directoryIdentifier]}
                     directoryIdentifier={directoryIdentifier}

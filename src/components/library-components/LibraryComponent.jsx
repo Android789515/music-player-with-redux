@@ -17,7 +17,7 @@ const LibraryComponent = () => {
     const { openedPlaylist } = library
 
     return (
-        <section className='library overlay-component library-open'>
+        <section className='library overlayComponent library-open'>
             <DirectoryList
                 currentDirectory={currentDirectory}
                 setCurrentDirectory={setCurrentDirectory}

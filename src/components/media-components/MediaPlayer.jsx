@@ -1,7 +1,7 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
-import '../../css/media-styles/media-player-styles.scss'
+import { mediaPlayer } from '../../css/modules/MediaPlayer.module.scss'
 
 import AudioPlayer from './AudioPlayer'
 import MediaControls from './MediaControls'
@@ -15,7 +15,7 @@ function MediaPlayer() {
     const isSongQueued = queuedSong.src !== undefined
 
     return (
-        <section className='media-player'>
+        <section className={mediaPlayer}>
             <AudioPlayer queuedSong={queuedSong} media={media} dispatch={dispatch} />
 
             <MediaInfo queuedSong={queuedSong} media={media} />

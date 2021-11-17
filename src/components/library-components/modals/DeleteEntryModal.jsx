@@ -23,7 +23,7 @@ const DeleteEntryModal = ({ entry }) => {
     }
 
     return (
-        <div className='delete-entry-modal modal-content hard-rounded-corners'>
+        <div className='delete-entry-modal modal-content hardRoundedCorners'>
             <h2>Are you sure you would like to delete {entryName}?</h2>
 
             <p>

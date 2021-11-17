@@ -84,7 +84,7 @@ const ContextMenu = props => {
     if (props.shouldShow) {
         return (
             <ul
-                className='unstyled-ul context-menu hard-rounded-corners'
+                className='unstyledUl context-menu hardRoundedCorners'
                 style={{ left: props.position }}
                 tabIndex={0}
                 ref={contextMenuRef}

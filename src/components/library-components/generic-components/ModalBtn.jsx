@@ -2,9 +2,9 @@ import React from 'react'
 
 const ModalBtn = ({ doOnClick, btnText, ...props }) => {
     return (
-        <button className='modal-btn-base hard-rounded-corners' {...props} >
+        <button className='modal-btn-base hardRoundedCorners' {...props} >
             <span
-                className={`btn modal-btn hard-rounded-corners ${props.disabled ? 'disabled' : ''}`.trim()}
+                className={`btn modal-btn hardRoundedCorners ${props.disabled ? 'disabled' : ''}`.trim()}
                 onClick={doOnClick}
                 onMouseEnter={props.onMouseEnter}
                 onMouseLeave={props.onMouseLeave}

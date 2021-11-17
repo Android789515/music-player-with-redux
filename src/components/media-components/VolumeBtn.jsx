@@ -33,7 +33,7 @@ const VolumeBtn = props => {
                 <BarComponent
                     orientation='vertical'
                     name='volume'
-                    modifiers={['fading-component', `${isVolumeBarHidden ? 'invisible' : '' }`.trim()]}
+                    modifiers={['fadingComponent', `${isVolumeBarHidden ? 'invisible' : '' }`.trim()]}
                     dispatch={props.dispatch}
                     media={props.media}
                     onMouseEnter={() => setIsVolumeBarHidden(false)}
