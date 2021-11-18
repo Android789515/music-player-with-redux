@@ -37,7 +37,7 @@ function MediaControls(props) {
                 {props.media.paused ? playBtn : pauseBtn}
 
                 <MediaControlBtn
-                    name='fast-forward'
+                    name='fastForward'
                     btnTheme={btnTheme}
                     handleMediaBtnClick={fastForward}
                 />
