@@ -1,0 +1,31 @@
+@use '../../variables';
+
+.bar {
+  margin: auto;
+
+  background: variables.$bar-color;
+}
+
+.slider {
+  background: variables.$slider-color;
+  transition: width 30ms, height 30ms;
+}
+
+.bar:hover,
+.slider:hover {
+  cursor: pointer;
+}
+
+.songBar {
+  // height is set because there is no "content" in the bar
+  height: .6em;
+}
+
+.volumeBar {
+  width: .5em;
+  height: 2.2em;
+
+  // Must rotate 180 degrees as the y axis
+  // runs up -> down, not down -> up
+  transform: rotate(180deg);
+}

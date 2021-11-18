@@ -28,8 +28,8 @@
   background: variables.$primary-accent-color;
 }
 
-.mediaControlBtn.dark-btn:focus:not(.vol-control-btn),
-.mediaControlBtn.dark-btn:hover:not(.vol-control-btn) {
+.mediaControlBtn:focus:not(.vol-control-btn),
+.mediaControlBtn:hover:not(.vol-control-btn) {
   background: variables.$primary-accent-color;
 }
 
