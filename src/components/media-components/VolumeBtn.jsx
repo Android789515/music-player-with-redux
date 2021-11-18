@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
 
+import { fadingComponent, invisible } from '../../css/modules/GenericStyles.module.scss'
+import { volumeBarArea } from '../../css/modules/media-player/MediaControls.module.scss'
 import { toggleMute } from '../../reducers/mediaSlice'
 
 import MediaControlBtn from './MediaControlBtn'
@@ -27,13 +29,11 @@ const VolumeBtn = props => {
 
     return (
         <>
-            <div
-                className='volume-bar-area'
-            >
+            <div className={volumeBarArea}>
                 <BarComponent
                     orientation='vertical'
                     name='volume'
-                    modifiers={['fadingComponent', `${isVolumeBarHidden ? 'invisible' : '' }`.trim()]}
+                    modifiers={[fadingComponent, `${isVolumeBarHidden ? invisible : '' }`.trim()]}
                     dispatch={props.dispatch}
                     media={props.media}
                     onMouseEnter={() => setIsVolumeBarHidden(false)}

@@ -1,6 +1,7 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
 
+import styles from '../../css/modules/media-player/MediaControls.module.scss'
 import useButtonToggle from '../../hooks/useButtonToggle'
 
 function MediaControlBtn(props) {
@@ -19,21 +20,26 @@ function MediaControlBtn(props) {
 
     let className
     let src
+    const {
+        mediaControlBtn,
+        volControlBtn
+    } = styles
+    const buttonType = styles[`${name}Btn`]
     if (isVolumeBtn) {
-        className = `btn media-control-btn vol-control-btn ${name}-btn ${btnTheme}-btn`
+        className = `btn ${mediaControlBtn} ${volControlBtn} ${buttonType}`
         src = require(`../../img/${btnTheme}-btns/vol-btns/${name}-btn.svg`).default
 
     } else {
-        className = `btn media-control-btn ${name}-btn ${btnTheme}-btn`
+        className = `btn ${mediaControlBtn} ${buttonType}`
         src = require(`../../img/${btnTheme}-btns/media-btns/${name}-btn.svg`).default
     }
 
-    const getToggleBtnClassName = () => isToggled ? 'toggled' : ''
+    const getToggleBtnClassName = () => (isToggled ? styles.toggled : '').trim()
 
     return (
         <img
             name={name}
-            className={`${className} ${isToggleBtn ? getToggleBtnClassName() : ''}`.trim()}
+            className={`${className} ${isToggleBtn ? getToggleBtnClassName() : ''}`}
             src={src}
             alt={name}
             onClick={() => {

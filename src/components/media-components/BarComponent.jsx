@@ -124,7 +124,7 @@ function BarComponent(props) {
     const sliderPercent = getSliderPercent()
 
     const allComponentClasses = `bar ${props.name}-bar ${
-        props.modifiers ? props.modifiers.join(' ') : ''
+        {...props.modifiers}
     }`.trim()
     return (
         <div

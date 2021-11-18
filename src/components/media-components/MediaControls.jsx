@@ -18,9 +18,11 @@ function MediaControls(props) {
 
     const pauseBtn = <MediaControlBtn name='pause' btnTheme={btnTheme} handleMediaBtnClick={() => props.dispatch(pause())}/>
     const playBtn = <MediaControlBtn name='play' btnTheme={btnTheme} handleMediaBtnClick={() => props.dispatch(play())}/>
+    const { mediaControls, mediaControlBtns } = styles
+
     return (
-        <div className='media-controls'>
-            <div className='media-control-btns'>
+        <div className={mediaControls}>
+            <div className={mediaControlBtns}>
 
                 <MediaControlBtn name='shuffle' btnTheme={btnTheme} handleMediaBtnClick={
                     () => props.dispatch(toggleShuffle())
