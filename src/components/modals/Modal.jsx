@@ -1,12 +1,14 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
-import '../../../css/modal-styles.scss'
-import { clearModal } from '../../../reducers/modalSlice'
+import '../../css/modal-styles.scss'
+import { modal } from '../../css/modules/Modal.module.scss'
+import { hidden } from '../../css/modules/GenericStyles.module.scss'
+import { clearModal } from '../../reducers/modalSlice'
 
 // Modal renders a special prompt component that will vary
 const Modal = () => {
-    const modalContent = useSelector(state => state['modal'].modalContent)
+    const modalContent = useSelector(state => state.modal.modalContent)
     const dispatch = useDispatch()
 
     const handleKeyDown = ({ key }) => {
@@ -23,7 +25,7 @@ const Modal = () => {
 
     return (
         <div
-            className={`modal ${modalContent ? '' : 'hidden'}`.trim()}
+            className={`${modal} ${modalContent ? '' : hidden}`.trim()}
             onKeyDown={handleKeyDown}
         >
             {modalContent}

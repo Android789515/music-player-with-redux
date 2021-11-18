@@ -2,10 +2,10 @@ import React, { useEffect, useRef, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { v4 as uuidv4 } from 'uuid'
 
-import '../../../css/modal-styles.scss'
+import '../../css/modal-styles.scss'
 
-import { addPlaylist, renamePlaylist } from '../../../reducers/librarySlice'
-import { clearModal } from '../../../reducers/modalSlice'
+import { addPlaylist, renamePlaylist } from '../../reducers/librarySlice'
+import { clearModal } from '../../reducers/modalSlice'
 
 const PlaylistModal = props => {
     const [ modalText, updateModalText ] = useState(props.prevName || '')

@@ -3,8 +3,8 @@ import { useDispatch } from 'react-redux'
 import { v4 as uuidv4 } from 'uuid'
 
 import { setModalContent } from '../../../reducers/modalSlice'
-import PlaylistModal from '../modals/PlaylistModal'
-import DeleteEntryModal from '../modals/DeleteEntryModal'
+import PlaylistModal from '../../modals/PlaylistModal'
+import DeleteEntryModal from '../../modals/DeleteEntryModal'
 
 const capitalize = string => string.charAt(0).toUpperCase() + string.slice(1)
 

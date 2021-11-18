@@ -1,9 +1,9 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
-import { clearModal, setModalData } from '../../../reducers/modalSlice'
+import { clearModal, setModalData } from '../../reducers/modalSlice'
 
-import '../../../css/modal-styles.scss'
-import ModalBtn from '../generic-components/ModalBtn'
+import '../../css/modal-styles.scss'
+import ModalBtn from '../library-components/generic-components/ModalBtn'
 
 const DeleteEntryModal = ({ entry }) => {
     const entryName = entry.name || entry.title

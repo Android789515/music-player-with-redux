@@ -5,8 +5,8 @@ import '../../css/library-styles/add-entry-styles.scss'
 import { setModalContent } from '../../reducers/modalSlice'
 
 import SongUploader from './SongUploader'
-import PlaylistModal from './modals/PlaylistModal'
-import AddToPlaylistModal from './modals/AddToPlaylistModal'
+import PlaylistModal from '../modals/PlaylistModal'
+import AddToPlaylistModal from '../modals/AddToPlaylistModal'
 
 const AddEntryBtn = props => {
     const uploaderRef = useRef(undefined)

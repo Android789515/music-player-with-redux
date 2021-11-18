@@ -1,12 +1,12 @@
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
-import { addSongs } from '../../../reducers/librarySlice'
-import { clearModal } from '../../../reducers/modalSlice'
-import { directories } from '../DirectoryList'
+import { addSongs } from '../../reducers/librarySlice'
+import { clearModal } from '../../reducers/modalSlice'
+import { directories } from '../library-components/DirectoryList'
 
-import AddableSongEntry from '../AddableSongEntry'
-import ModalBtn from '../generic-components/ModalBtn'
+import AddableSongEntry from '../library-components/AddableSongEntry'
+import ModalBtn from '../library-components/generic-components/ModalBtn'
 
 const AddToPlaylistModal = () => {
     const [ songsToAdd, updateSongsToAdd ] = useState([])
