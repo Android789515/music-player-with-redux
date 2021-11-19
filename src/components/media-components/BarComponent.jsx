@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 
 import styles from '../../css/modules/media-player/Bar.module.scss'
+import genericStyles from '../../css/modules/GenericStyles.module.scss'
 import '../../css/media-styles/bar-styles.scss'
 
 import { setVolume, updateTime } from '../../reducers/mediaSlice'
@@ -125,9 +126,8 @@ function BarComponent(props) {
     const sliderPercent = getSliderPercent()
 
     const barType = styles[`${props.name}Bar`]
-    const allComponentClasses = `${styles.bar} ${barType} ${
-        {...props.modifiers}
-    }`.trim()
+
+    const allComponentClasses = `${styles.bar} ${barType} ${props.modifiers.join(' ')}`
     return (
         <div
             className={allComponentClasses}
@@ -161,6 +161,10 @@ function BarComponent(props) {
             />
         </div>
     )
+}
+
+BarComponent.defaultProps = {
+    modifiers: ['']
 }
 
 export default BarComponent
