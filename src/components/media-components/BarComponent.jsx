@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from 'react'
 
 import styles from '../../css/modules/media-player/Bar.module.scss'
-import genericStyles from '../../css/modules/GenericStyles.module.scss'
-import '../../css/media-styles/bar-styles.scss'
 
 import { setVolume, updateTime } from '../../reducers/mediaSlice'
 
