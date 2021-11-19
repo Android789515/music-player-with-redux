@@ -5,7 +5,7 @@ import { volumeBarArea } from '../../css/modules/media-player/MediaControls.modu
 import { toggleMute } from '../../reducers/mediaSlice'
 
 import MediaControlBtn from './MediaControlBtn'
-import BarComponent from './BarComponent'
+import Bar from './Bar'
 
 const VolumeBtn = props => {
     const { muted, volume } = props.media
@@ -30,7 +30,7 @@ const VolumeBtn = props => {
     return (
         <>
             <div className={volumeBarArea}>
-                <BarComponent
+                <Bar
                     orientation='vertical'
                     name='volume'
                     modifiers={[fadingComponent, `${isVolumeBarHidden ? invisible : '' }`.trim()]}

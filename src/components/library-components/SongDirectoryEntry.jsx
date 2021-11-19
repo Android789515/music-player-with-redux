@@ -9,7 +9,7 @@ import { queueSong, removeSong, setPlaylistPlaying, unqueueSong } from '../../re
 import { setModalData } from '../../reducers/modalSlice'
 
 import DirectoryEntry from './generic-components/DirectoryEntry'
-import SliderComponent from '../media-components/SliderComponent'
+import Slider from '../media-components/Slider'
 
 const SongDirectoryEntry = ({ currentDirectory, ...props }) => {
     const media = useSelector(state => state['media'])
@@ -72,7 +72,7 @@ const SongDirectoryEntry = ({ currentDirectory, ...props }) => {
                 <p className='song-entry-artist song-entry-info'>{props.song.artist}</p>
                 <p className='song-entry-duration'>{getFormattedSongTime(props.song.duration)}</p>
 
-                <SliderComponent
+                <Slider
                     name='mini-song-bar'
                     orientation='horizontal'
                     sliderPercent={(isThisSongQueued && sliderValueOfSongTime) || 0}

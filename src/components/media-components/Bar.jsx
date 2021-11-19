@@ -4,9 +4,9 @@ import styles from '../../css/modules/media-player/Bar.module.scss'
 
 import { setVolume, updateTime } from '../../reducers/mediaSlice'
 
-import SliderComponent from './SliderComponent'
+import Slider from './Slider'
 
-function BarComponent(props) {
+function Bar(props) {
     const [ canMoveBar, toggleBarMovement ] = useState(false)
     const [ isMouseDownOnBar, setMouseDownOnBar ] = useState(false)
 
@@ -152,7 +152,7 @@ function BarComponent(props) {
             onMouseEnter={props.onMouseEnter}
             onMouseLeave={props.onMouseLeave}
         >
-            <SliderComponent
+            <Slider
                 orientation={props.orientation}
                 name={props.name}
                 sliderPercent={sliderPercent}
@@ -161,8 +161,8 @@ function BarComponent(props) {
     )
 }
 
-BarComponent.defaultProps = {
+Bar.defaultProps = {
     modifiers: ['']
 }
 
-export default BarComponent
+export default Bar

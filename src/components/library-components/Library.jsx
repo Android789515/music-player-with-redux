@@ -8,7 +8,7 @@ import { directories } from './DirectoryList'
 import DirectoryList from './DirectoryList'
 import CurrentDirectory from './CurrentDirectory'
 
-const LibraryComponent = () => {
+const Library = () => {
     const dispatch = useDispatch()
 
     // Keeps track of what directory is open
@@ -37,4 +37,4 @@ const LibraryComponent = () => {
     )
 }
 
-export default LibraryComponent
+export default Library

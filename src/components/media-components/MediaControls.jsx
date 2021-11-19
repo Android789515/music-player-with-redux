@@ -5,7 +5,7 @@ import styles from '../../css/modules/media-player/MediaControls.module.scss'
 import { pause, play, toggleLoop, toggleShuffle, updateTime } from '../../reducers/mediaSlice'
 
 import MediaControlBtn from './MediaControlBtn'
-import BarComponent from './BarComponent'
+import Bar from './Bar'
 import VolumeBtn from './VolumeBtn'
 
 function MediaControls(props) {
@@ -49,7 +49,7 @@ function MediaControls(props) {
             </div>
 
 
-            <BarComponent
+            <Bar
                 orientation='horizontal'
                 name='song'
                 dispatch={props.dispatch}
