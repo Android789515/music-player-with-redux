@@ -10,7 +10,7 @@ import { directories } from './DirectoryList'
 import DirectoryList from './DirectoryList'
 import CurrentDirectory from './CurrentDirectory'
 
-const Library = () => {
+const Library = ({ isLibraryShown }) => {
     const dispatch = useDispatch()
 
     // Keeps track of what directory is open
@@ -19,7 +19,7 @@ const Library = () => {
     const { openedPlaylist } = library
 
     return (
-        <section className={`${libraryStyle} ${overlayComponent} ${libraryOpen}`}>
+        <section className={`${libraryStyle} ${overlayComponent} ${isLibraryShown ? libraryOpen : ''}`}>
             <DirectoryList
                 currentDirectory={currentDirectory}
                 setCurrentDirectory={setCurrentDirectory}
