@@ -1,0 +1,188 @@
+@use '../../variables';
+
+.directory {
+  width: 91%;
+  max-width: $max-component-width-small-screens;
+
+  padding: 0 .5em;
+  margin: auto;
+  border: solid;
+}
+
+.directoryEntries {
+  overflow-y: auto;
+
+  max-height: 35vh;
+
+  padding-right: 1em;
+}
+@media (min-width: 700px) {
+  .directoryEntries {
+    max-height: 45vh;
+  }
+}
+
+.directoryEntry {
+  // Generic grid
+  // each directory will style their
+  // entries different
+  display: grid;
+  grid-column-gap: 1em;
+}
+
+.directoryEntry > * {
+  margin: 0;
+}
+
+.contextMenuBtn {
+  visibility: hidden;
+
+  display: inline-block;
+
+  $btnSize: 30px;
+  width: $btnSize;
+  height: $btnSize;
+
+  margin-left: auto;
+
+  box-shadow: -3px 0 5px #fff;
+}
+
+.directoryEntry:hover {
+  .contextMenuBtn {
+    visibility: visible;
+  }
+
+  .contextMenuBtn:hover {
+    background: #f0f0f0;
+  }
+}
+
+.contextMenu {
+  width: max-content;
+
+  padding: .5em .75em;
+
+  background: #f0f0f0;
+}
+
+// TODO The options will have focus
+.contextMenu:focus {
+  outline: none;
+}
+
+.contextMenu > *:hover {
+  background: $grayed-out;
+}
+
+.contextMenuOption {
+  padding: .2em .4em;
+  border-radius: 5px;
+}
+
+.songsDirectory,
+.openedPlaylistDirectory {
+
+  .directoryEntry {
+    // Keeps context menu where it should
+    // since it's absolutely positioned
+    position: relative;
+
+    // 2px for the mini song bar
+    grid-template: 1fr auto 2px / auto .5fr;
+
+    margin-bottom: 1em;
+  }
+
+  .contextMenuBtnArea,
+  .song-entry-title {
+    grid-row: 1;
+  }
+
+  .contextMenu {
+    position: absolute;
+    left: 0;
+    z-index: 1;
+  }
+
+  .loadingSongEntry {
+    pointer-events: none;
+    opacity: .5;
+  }
+
+  .songEntryInfo,
+  .context-menu-btn {
+    grid-column: 1;
+  }
+
+  .contextMenuBtn {
+    grid-row: 1;
+  }
+
+  .songEntryDuration {
+    grid-row: 1;
+    grid-column: 2;
+
+    text-align: right;
+  }
+
+  .songEntryArtist {
+    grid-row: 2;
+  }
+
+  .mini-song-bar-slider {
+    grid-row: 3;
+    grid-column: span 2;
+
+    margin-top: .25em;
+  }
+}
+
+.playlists-directory {
+  .directory-entry {
+    grid-template-columns: auto max-content;
+  }
+
+  .directory-entry:not(.directory-entry:first-child) {
+    padding-top: .25em;
+    margin-top: .5em;
+  }
+
+  .playlist-entry-title,
+  .context-menu-btn {
+    grid-row: 1;
+    grid-column: 1;
+  }
+
+  .context-menu {
+    grid-row: 1 / span 2;
+    grid-column: 1;
+
+    margin-left: auto;
+  }
+
+  .playlist-entry-title {
+    word-break: break-word;
+  }
+
+  .playlist-entry-song-count {
+    text-align: right;
+
+    grid-column: 2;
+  }
+}
+
+.playlists-directory > * {
+  grid-row: 1;
+}
+
+.entry-btn {
+  font-weight: 700;
+
+  padding: .125em .35em;
+
+  border: solid 2px;
+  border-radius: 100%;
+
+  transition: transform 250ms;
+}

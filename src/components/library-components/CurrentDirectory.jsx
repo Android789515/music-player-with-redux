@@ -1,7 +1,8 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
 
-import '../../css/library-styles/library-directory-styles.scss'
+import styles from '../../css/modules/library/CurrentDirectory.module.scss'
+import { hardRoundedCorners } from '../../css/modules/GenericStyles.module.scss'
 
 import AddEntryBtn from './AddEntryBtn'
 import DirectoryEntries from './generic-components/DirectoryEntries'
@@ -9,20 +10,11 @@ import DirectoryEntries from './generic-components/DirectoryEntries'
 const CurrentDirectory = ({ identifier: directoryIdentifier, ...props }) => {
     const library = useSelector(state => state['library'])
 
-    // Converts the camel casing to hyphenated convention
-    const classFormattedName = directoryIdentifier.split('')
-        .reduce((formattedName, char) => {
-            const isLetterUppercase = /[A-Z]/.test(char)
-
-            if (isLetterUppercase) {
-                return `${formattedName}-${char.toLowerCase()}`
-            }
-            return formattedName + char
-    }, '')
-
+    const { directory, directoryEntries } = styles
+    const whichDirectory = styles[directoryIdentifier]
     return (
-        <div className={`directory ${classFormattedName}-directory hardRoundedCorners`}>
-            <ul className='unstyledUl directory-entries'>
+        <div className={`${directory} ${whichDirectory} ${hardRoundedCorners}`}>
+            <ul className={`unstyledUl ${directoryEntries}`}>
                 <DirectoryEntries
                     entries={library[directoryIdentifier]}
                     directoryIdentifier={directoryIdentifier}
