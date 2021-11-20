@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
+import { library as libraryStyle, libraryOpen } from '../../css/modules/library/Library.module.scss'
+import { overlayComponent } from '../../css/modules/GenericStyles.module.scss'
 import '../../css/library-styles/music-library-styles.scss'
 
 import { directories } from './DirectoryList'
@@ -17,7 +19,7 @@ const Library = () => {
     const { openedPlaylist } = library
 
     return (
-        <section className='library overlayComponent library-open'>
+        <section className={`${libraryStyle} ${overlayComponent} ${libraryOpen}`}>
             <DirectoryList
                 currentDirectory={currentDirectory}
                 setCurrentDirectory={setCurrentDirectory}

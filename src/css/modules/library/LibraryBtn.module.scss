@@ -1,0 +1,40 @@
+@use '../../variables';
+
+.library-panel-btn {
+  display: none;
+}
+
+
+@media (min-width: variables.$first-media-breakpoint) {
+  .library-panel-btn {
+    top: 10%;
+  }
+
+  .library-panel-btn {
+    display: block;
+    position: fixed;
+  }
+
+  $libraryButtonMinSize: 30px;
+  $libraryButtonMultiplier: 2;
+  .open-library-btn {
+    min-width: $libraryButtonMinSize * $libraryButtonMultiplier;
+    min-height: $libraryButtonMinSize * $libraryButtonMultiplier;
+    max-width: $libraryButtonMinSize * $libraryButtonMultiplier;
+    max-height: $libraryButtonMinSize * $libraryButtonMultiplier;
+
+    top: 15%;
+    right: 5%;
+  }
+
+  .close-library-btn {
+    right: 2%;
+    // Keeps the close button above the library and the open button behind it
+    z-index: 3;
+
+    min-width: $libraryButtonMinSize;
+    min-height: $libraryButtonMinSize;
+    max-width: $libraryButtonMinSize;
+    max-height: $libraryButtonMinSize;
+  }
+}
