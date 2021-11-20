@@ -14,7 +14,6 @@ const SongUploader = props => {
 
     return (
         <input
-            id='upload-song'
             style={{ display: 'none' }}
             type='file'
             multiple
