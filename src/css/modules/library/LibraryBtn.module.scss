@@ -1,23 +1,23 @@
 @use '../../variables';
 
-.library-panel-btn {
+.libraryPanelBtn {
   display: none;
 }
 
 
 @media (min-width: variables.$first-media-breakpoint) {
-  .library-panel-btn {
+  .libraryPanelBtn {
     top: 10%;
   }
 
-  .library-panel-btn {
+  .libraryPanelBtn {
     display: block;
     position: fixed;
   }
 
   $libraryButtonMinSize: 30px;
   $libraryButtonMultiplier: 2;
-  .open-library-btn {
+  .openLibraryBtn {
     min-width: $libraryButtonMinSize * $libraryButtonMultiplier;
     min-height: $libraryButtonMinSize * $libraryButtonMultiplier;
     max-width: $libraryButtonMinSize * $libraryButtonMultiplier;
@@ -27,7 +27,7 @@
     right: 5%;
   }
 
-  .close-library-btn {
+  .closeLibraryBtn {
     right: 2%;
     // Keeps the close button above the library and the open button behind it
     z-index: 3;
