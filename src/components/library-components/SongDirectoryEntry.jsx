@@ -1,6 +1,14 @@
 import React, { useEffect } from 'react'
 import { useSelector } from 'react-redux'
 
+import {
+    directoryEntry,
+    songEntryTitle,
+    songEntryArtist,
+    songEntryInfo,
+    songEntryDuration
+} from '../../css/modules/library/SongDirectoryEntry.module.scss'
+
 import { directories } from './DirectoryList'
 import { contextMenuOptions } from './generic-components/ContextMenu'
 import { getFormattedSongTime } from '../../TimeFormatter'
@@ -64,16 +72,16 @@ const SongDirectoryEntry = ({ currentDirectory, ...props }) => {
         (
             <DirectoryEntry
                 entry={props.song}
-                className='btn directory-entry'
+                className={`btn ${directoryEntry}`}
                 onClick={handleEntryClick}
                 contextoptions={[contextMenuOptions._queue, contextMenuOptions._delete]}
             >
-                <h4 className='song-entry-title song-entry-info'>{props.song.title}</h4>
-                <p className='song-entry-artist song-entry-info'>{props.song.artist}</p>
-                <p className='song-entry-duration'>{getFormattedSongTime(props.song.duration)}</p>
+                <h4 className={`${songEntryTitle} ${songEntryInfo}`}>{props.song.title}</h4>
+                <p className={`${songEntryArtist} ${songEntryInfo}`}>{props.song.artist}</p>
+                <p className={`${songEntryDuration}`}>{getFormattedSongTime(props.song.duration)}</p>
 
                 <Slider
-                    name='mini-song-bar'
+                    name='miniSongBar'
                     orientation='horizontal'
                     sliderPercent={(isThisSongQueued && sliderValueOfSongTime) || 0}
                 />

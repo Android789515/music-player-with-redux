@@ -7,13 +7,15 @@ function Slider(props) {
         { width: '100%', height: props.sliderPercent + '%' } :
         { width: props.sliderPercent + '%', height: '100%' }
 
+    const sliderType = styles[`${props.name}Slider`]
     return (
-        <div className={styles.slider} style={percent} />
+        <div className={`${styles.slider} ${sliderType}`} style={percent} />
     )
 }
 
 Slider.defaultProps = {
-    sliderPercent: '0'
+    sliderPercent: '0',
+    name: ''
 }
 
 export default Slider
