@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react'
+import React, { useState } from 'react'
 
 import './css/modules/globals.scss'
 import { mainLayout } from './css/modules/App.module.scss'
