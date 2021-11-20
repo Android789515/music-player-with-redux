@@ -1,0 +1,10 @@
+@use '../../variables';
+
+.addEntrySection {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 0 .25em;
+  border-top: solid 2px variables.$grayed-out;
+}

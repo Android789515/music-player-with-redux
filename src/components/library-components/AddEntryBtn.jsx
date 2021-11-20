@@ -1,6 +1,7 @@
 import React, { useRef } from 'react'
 
-import '../../css/library-styles/add-entry-styles.scss'
+import { addBtn } from '../../css/modules/AddBtn.module.scss'
+import { addEntrySection } from '../../css/modules/library/AddEntry.module.scss'
 
 import { setModalContent } from '../../reducers/modalSlice'
 
@@ -31,9 +32,9 @@ const AddEntryBtn = props => {
     }
 
     return (
-        <div className='btn add-entry-section' onClick={addEntry}>
-            <button className='btn entry-btn'>+</button>
-            <p className={`add-entry-text`}>{props.btnText}</p>
+        <div className={`btn ${addEntrySection}`} onClick={addEntry}>
+            <button className={`btn ${addBtn}`}>+</button>
+            <p>{props.btnText}</p>
 
             {props.hasInputComponent && (
                 <SongUploader

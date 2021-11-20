@@ -10,11 +10,19 @@
 
   transition: transform 250ms;
 }
-
+// TODO move addable song styles
 .addableSong.selected {
   background: variables.$grayed-out;
 
   .addBtn {
     padding: .125em .52em;
   }
+}
+
+.addEntrySection:hover .addBtn {
+  transform: scale(1.1);
+}
+
+.addEntrySection:active .addBtn {
+  transform: scale(1.05);
 }
