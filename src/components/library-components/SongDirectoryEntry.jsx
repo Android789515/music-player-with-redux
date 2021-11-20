@@ -2,12 +2,12 @@ import React, { useEffect } from 'react'
 import { useSelector } from 'react-redux'
 
 import {
-    directoryEntry,
     songEntryTitle,
     songEntryArtist,
     songEntryInfo,
     songEntryDuration
 } from '../../css/modules/library/SongDirectoryEntry.module.scss'
+import { directoryEntry } from '../../css/modules/library/DirectoryEntry.module.scss'
 
 import { directories } from './DirectoryList'
 import { contextMenuOptions } from './generic-components/ContextMenu'

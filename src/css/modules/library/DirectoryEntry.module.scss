@@ -1,0 +1,10 @@
+@use '../../variables';
+
+.directoryEntry {
+  display: grid;
+  grid-column-gap: 1em;
+}
+
+.directoryEntry > * {
+  margin: 0;
+}
