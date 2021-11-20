@@ -11,9 +11,11 @@ const CurrentDirectory = ({ identifier: directoryIdentifier, ...props }) => {
     const library = useSelector(state => state['library'])
 
     const { directory, directoryEntries } = styles
-    const whichDirectory = styles[directoryIdentifier]
+    const whichDirectory = directoryIdentifier
     return (
         <div className={`${directory} ${whichDirectory} ${hardRoundedCorners}`}>
+            {/* Directory entries component are the entries themselves */}
+            {/* The style is for the container */}
             <ul className={`unstyledUl ${directoryEntries}`}>
                 <DirectoryEntries
                     entries={library[directoryIdentifier]}

@@ -22,38 +22,6 @@
   }
 }
 
-.directoryEntry {
-  display: grid;
-  grid-column-gap: 1em;
-}
-
-.directoryEntry > * {
-  margin: 0;
-}
-
-.songsDirectory,
-.openedPlaylistDirectory {
-  .directoryEntry {
-    position: relative;
-
-    // 2px for the mini song bar
-    grid-template: 1fr auto 2px / auto .5fr;
-
-    margin-bottom: 1em;
-  }
-}
-
-.playlistsDirectory {
-  .directoryEntry {
-    grid-template-columns: auto max-content;
-  }
-
-  .directoryEntry:not(.directoryEntry:first-child) {
-    padding-top: .25em;
-    margin-top: .5em;
-  }
-}
-
 .playlistsDirectory > * {
   grid-row: 1;
 }
