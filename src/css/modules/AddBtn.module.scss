@@ -1,6 +1,6 @@
 @use '../variables';
 
-.entryBtn {
+.addBtn {
   font-weight: 700;
 
   padding: .125em .35em;
@@ -14,7 +14,7 @@
 .addableSong.selected {
   background: variables.$grayed-out;
 
-  .entryBtn {
+  .addBtn {
     padding: .125em .52em;
   }
 }
