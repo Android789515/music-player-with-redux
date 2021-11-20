@@ -2,8 +2,8 @@ import React from 'react'
 import { useSelector } from 'react-redux'
 import { v4 as uuidv4 } from 'uuid'
 
+import styles from '../../css/modules/library/DirectoryList.module.scss'
 import { setOpenedPlaylist } from '../../reducers/librarySlice'
-
 
 // Make it configurable in the app
 export const directories = {
@@ -42,16 +42,12 @@ const getClassModifiers = (identifier, currentDirectory) => {
     const isDirectoryCurrent = identifier === currentDirectory.identifier
     const isDirectoryOpenedPlaylist = identifier === directories.openedPlaylist.identifier
 
-    let modifiers = ''
     if (isDirectoryCurrent) {
-        modifiers = `${modifiers} active-directory`
-    }
+        return styles.activeDirectory
 
-    if (isDirectoryOpenedPlaylist) {
-        modifiers = `${modifiers} opened-playlist`
+    } else if (isDirectoryOpenedPlaylist) {
+        return styles.openedPlaylist
     }
-
-    return modifiers.trim()
 }
 
 const DirectoryList = ({ currentDirectory, ...props }) => {
@@ -70,16 +66,20 @@ const DirectoryList = ({ currentDirectory, ...props }) => {
         const modifierClasses = getClassModifiers(directory.identifier, currentDirectory)
 
         const uniqueKey = uuidv4()
+        // Using and underscore in the name for better name readability
+        const { directoryName: directoryName_Style } = styles
         return (
             <li key={uniqueKey} onClick={() => setDirectory(directory)}
-                className={`btn directory-name ${modifierClasses}`.trim()}>
+                className={`btn ${directoryName_Style} ${modifierClasses}`.trim()}>
                 {renderDirectoryName(directory.identifier, openedPlaylist)}
             </li>
         )
     })
 
+    // Using and underscore in the name for better name readability
+    const { directoryNames: directoryNames_Style } = styles
     return (
-        <ul className='unstyledUl directory-names'>
+        <ul className={`unstyledUl ${directoryNames_Style}`}>
             {directoryNames}
         </ul>
     )
