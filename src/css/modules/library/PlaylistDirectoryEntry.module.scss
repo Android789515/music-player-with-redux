@@ -1,0 +1,31 @@
+@use '../../variables';
+
+.playlistsDirectory {
+  .directoryEntry {
+    grid-template-columns: auto max-content;
+  }
+
+  .directoryEntry:not(.directoryEntry:first-child) {
+    padding-top: .25em;
+    margin-top: .5em;
+  }
+
+  .playlist-entry-title {
+    grid-row: 1;
+    grid-column: 1;
+  }
+
+  .playlistEntryTitle {
+    word-break: break-word;
+  }
+
+  .playlistEntrySongCount {
+    text-align: right;
+
+    grid-column: 2;
+  }
+}
+
+.playlistsDirectory > * {
+  grid-row: 1;
+}

@@ -1,6 +1,9 @@
 import React, { useEffect } from 'react'
 import { useSelector } from 'react-redux'
 
+import { directoryEntry } from '../../css/modules/library/DirectoryEntry.module.scss'
+import styles from '../../css/modules/library/PlaylistDirectoryEntry.module.scss'
+
 import { directories } from './DirectoryList'
 import { contextMenuOptions } from './generic-components/ContextMenu'
 import { stop } from '../../reducers/mediaSlice'
@@ -52,15 +55,16 @@ const PlaylistDirectoryEntry = props => {
 
     const { _open, _rename, _delete } = contextMenuOptions
 
+    const { playlistEntryTitle, playlistEntrySongCount } = styles
     return (
         <DirectoryEntry
-            className='btn directory-entry'
+            className={`btn ${directoryEntry}`}
             entry={props.playlist}
             onClick={openPlaylist}
             contextoptions={[_open, _rename,  _delete]}
         >
-            <h4 className='playlist-entry-title'>{cutPlaylistName()}</h4>
-            <p className='playlist-entry-song-count'>{props.playlist.songs.length} songs</p>
+            <h4 className={playlistEntryTitle}>{cutPlaylistName()}</h4>
+            <p className={playlistEntrySongCount}>{props.playlist.songs.length} songs</p>
         </DirectoryEntry>
     )
 }
