@@ -21,16 +21,4 @@
 
     padding-right: 1em;
   }
-
-  .addableSong {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-
-    padding: .5em .75em;
-  }
-
-  .addableSong.selected {
-    background: variables.$grayed-out;
-  }
 }
