@@ -1,0 +1,10 @@
+@use '../../variables';
+
+.playlistModal {
+  width: max-content;
+  height: max-content;
+
+  input {
+    display: block;
+  }
+}

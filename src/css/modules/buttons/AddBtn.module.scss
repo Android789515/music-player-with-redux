@@ -1,4 +1,4 @@
-@use '../variables';
+@use '../../variables';
 
 .addBtn {
   font-weight: 700;
@@ -10,10 +10,8 @@
 
   transition: transform 250ms;
 }
-// TODO move addable song styles
-.addableSong.selected {
-  background: variables.$grayed-out;
 
+.addableSong.selected {
   .addBtn {
     padding: .125em .52em;
   }

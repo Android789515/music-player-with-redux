@@ -2,7 +2,10 @@ import React from 'react'
 import { useDispatch } from 'react-redux'
 import { clearModal, setModalData } from '../../reducers/modalSlice'
 
-import '../../css/modal-styles.scss'
+import { hardRoundedCorners } from '../../css/modules/GenericStyles.module.scss'
+import { modalContent } from '../../css/modules/modals/Modal.module.scss'
+import { deleteEntryModal } from '../../css/modules/modals/DeleteEntryModal.module.scss'
+
 import ModalBtn from '../library-components/generic-components/ModalBtn'
 
 const DeleteEntryModal = ({ entry }) => {
@@ -23,7 +26,7 @@ const DeleteEntryModal = ({ entry }) => {
     }
 
     return (
-        <div className='delete-entry-modal modal-content hardRoundedCorners'>
+        <div className={`${deleteEntryModal} ${modalContent} ${hardRoundedCorners}`}>
             <h2>Are you sure you would like to delete {entryName}?</h2>
 
             <p>

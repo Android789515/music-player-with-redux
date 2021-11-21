@@ -2,7 +2,9 @@ import React, { useEffect, useRef, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { v4 as uuidv4 } from 'uuid'
 
-import '../../css/modal-styles.scss'
+import { hardRoundedCorners } from '../../css/modules/GenericStyles.module.scss'
+import { modalContent } from '../../css/modules/modals/Modal.module.scss'
+import { playlistModal } from '../../css/modules/modals/PlaylistModal.module.scss'
 
 import { addPlaylist, renamePlaylist } from '../../reducers/librarySlice'
 import { clearModal } from '../../reducers/modalSlice'
@@ -43,10 +45,9 @@ const PlaylistModal = props => {
     }, [])
 
     return (
-        <label className='create-playlist-modal modal-content hardRoundedCorners'>
+        <label className={`${playlistModal} ${modalContent} ${hardRoundedCorners}`}>
             Enter a playlist name:
             <input
-                id='create-playlist-input'
                 type='text'
                 onChange={event => updateModalText(() => event.target.value)}
                 value={modalText}

@@ -1,6 +1,6 @@
 import React, { useRef } from 'react'
 
-import { addBtn } from '../../css/modules/AddBtn.module.scss'
+import { addBtn } from '../../css/modules/buttons/AddBtn.module.scss'
 import { addEntrySection } from '../../css/modules/library/AddEntry.module.scss'
 
 import { setModalContent } from '../../reducers/modalSlice'
