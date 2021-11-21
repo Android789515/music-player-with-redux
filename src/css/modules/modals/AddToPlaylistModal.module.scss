@@ -28,26 +28,6 @@
     align-items: center;
 
     padding: .5em .75em;
-
-    .directoryEntry {
-      grid-template: 1fr auto / 1fr .5fr;
-
-      max-width: 370px;
-
-      margin-left: 1em;
-      margin-right: auto;
-
-      .songEntryInfo {
-        grid-column: 1;
-      }
-
-      .songEntryDuration {
-        text-align: right;
-
-        grid-row: 1;
-        grid-column: 2;
-      }
-    }
   }
 
   .addableSong.selected {
