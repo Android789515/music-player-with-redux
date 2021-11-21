@@ -11,16 +11,14 @@
   transition: transform 250ms;
 }
 
-.addableSong.selected {
-  .addBtn {
-    padding: .125em .52em;
-  }
-}
-
-.addEntrySection:hover .addBtn {
+.addBtnHover {
   transform: scale(1.1);
 }
 
-.addEntrySection:active .addBtn {
+.addBtnActive {
   transform: scale(1.05);
+}
+
+@mixin addableSongSelected {
+  padding: .125em .52em;
 }
