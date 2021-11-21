@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 
 import { overlayComponent, softRoundedCorners } from '../../../css/modules/GenericStyles.module.scss'
-import { contextMenuBtn } from '../../../css/modules/library/ContextMenuBtn.module.scss'
+import styles from '../../../css/modules/library/ContextMenuBtn.module.scss'
 import buttonImg from '../../../img/dark-btns/context.svg'
 
 import ContextMenu from './ContextMenu'
@@ -34,10 +34,12 @@ const ContextMenuBtn = props => {
         isContextMenuShown(false)
     }
 
+    const { contextMenuBtn } = styles
+    const entryTypeContextBtn = styles[`contextMenuBtn${props.entryType}`]
     return (
         <>
             <img
-                className={`${contextMenuBtn} ${overlayComponent} ${softRoundedCorners}`}
+                className={`${contextMenuBtn} ${entryTypeContextBtn} ${overlayComponent} ${softRoundedCorners}`}
                 src={buttonImg}
                 alt='Context menu button'
                 tabIndex={0}

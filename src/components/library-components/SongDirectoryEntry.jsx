@@ -73,6 +73,8 @@ const SongDirectoryEntry = ({ currentDirectory, ...props }) => {
             <DirectoryEntry
                 entry={props.song}
                 className={`btn ${directoryEntry}`}
+                // TODO Change to named constant
+                entryType='Songs'
                 onClick={handleEntryClick}
                 contextoptions={[contextMenuOptions._queue, contextMenuOptions._delete]}
             >

@@ -5,7 +5,7 @@ import { directoryEntry } from '../../../css/modules/library/DirectoryEntry.modu
 import ContextMenuBtn from './ContextMenuBtn'
 
 const DirectoryEntry = props => {
-    const { entry, className, ...restProps } = props
+    const { entry, entryType, className, ...restProps } = props
 
     const directoryEntryRef = useRef(undefined)
 
@@ -19,7 +19,13 @@ const DirectoryEntry = props => {
         >
             {props.children}
 
-            {props.contextoptions && <ContextMenuBtn entry={entry} contextoptions={props.contextoptions} />}
+            {props.contextoptions &&
+                <ContextMenuBtn
+                    entry={entry}
+                    entryType={entryType}
+                    contextoptions={props.contextoptions}
+                />
+            }
         </li>
     )
 }

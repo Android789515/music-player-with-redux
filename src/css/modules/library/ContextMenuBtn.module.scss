@@ -24,26 +24,12 @@
   }
 }
 
-.songsDirectory,
-.openedPlaylistDirectory {
-
-  // TODO remove if no usages found
-  .contextMenuBtnArea {
-    grid-row: 1;
-  }
-
-  .contextMenuBtn {
-    grid-column: 1;
-  }
-
-  .contextMenuBtn {
-    grid-row: 1;
-  }
+.contextMenuBtnSongs{
+  grid-row: 1;
+  grid-column: 1;
 }
 
-.playlistsDirectory {
-  .contextMenuBtn {
-    grid-row: 1;
-    grid-column: 1;
-  }
+.contextMenuBtnPlaylists {
+  grid-row: 1;
+  grid-column: 1;
 }
