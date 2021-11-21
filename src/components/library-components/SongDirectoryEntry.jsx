@@ -9,6 +9,7 @@ import {
     songEntryDuration
 } from '../../css/modules/library/SongDirectoryEntry.module.scss'
 
+import entryTypes from '../../entryTypes'
 import { directories } from './DirectoryList'
 import { contextMenuOptions } from './generic-components/ContextMenu'
 import { getFormattedSongTime } from '../../TimeFormatter'
@@ -73,8 +74,7 @@ const SongDirectoryEntry = ({ currentDirectory, ...props }) => {
             <DirectoryEntry
                 entry={props.song}
                 className={`btn ${directoryEntry}`}
-                // TODO Change to named constant
-                entryType='Songs'
+                entryType={entryTypes._SONGS}
                 onClick={handleEntryClick}
                 contextoptions={[contextMenuOptions._queue, contextMenuOptions._delete]}
             >
