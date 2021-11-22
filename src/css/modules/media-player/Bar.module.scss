@@ -11,14 +11,11 @@
   transition: width 30ms, height 30ms;
 }
 
-.songs-directory,
-.opened-playlist-directory {
-  .miniSongBarSlider {
-    grid-row: 3;
-    grid-column: span 2;
+.miniSongBarSlider {
+  grid-row: 3;
+  grid-column: span 2;
 
-    margin-top: .25em;
-  }
+  margin-top: .25em;
 }
 
 .bar:hover,
