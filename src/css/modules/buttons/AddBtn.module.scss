@@ -3,7 +3,7 @@
 .addBtn {
   font-weight: 700;
 
-  padding: .125em .35em;
+  padding: .125em .4em .125em .35em;
 
   border: solid 2px;
   border-radius: 100%;
@@ -11,11 +11,14 @@
   transition: transform 250ms;
 }
 
+$pseudoClassPadding: .125em .4em .2em .4em;
 .addBtnHover {
+  padding: $pseudoClassPadding;
   transform: scale(1.1);
 }
 
 .addBtnActive {
+  padding: $pseudoClassPadding;
   transform: scale(1.05);
 }
 
