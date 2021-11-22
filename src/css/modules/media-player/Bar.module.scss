@@ -11,13 +11,6 @@
   transition: width 30ms, height 30ms;
 }
 
-.miniSongBarSlider {
-  grid-row: 3;
-  grid-column: span 2;
-
-  margin-top: .25em;
-}
-
 .bar:hover,
 .slider:hover {
   cursor: pointer;
@@ -26,6 +19,13 @@
 .songBar {
   // height is set because there is no "content" in the bar
   height: .6em;
+}
+
+.miniSongBarSlider {
+  grid-row: 3;
+  grid-column: span 2;
+
+  margin-top: .25em;
 }
 
 .volumeBar {
