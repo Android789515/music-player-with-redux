@@ -1,4 +1,4 @@
-import React, { useRef } from 'react'
+import React, { useRef, useState } from 'react'
 
 import { directoryEntry } from '../../../css/modules/library/DirectoryEntry.module.scss'
 
@@ -8,6 +8,10 @@ const DirectoryEntry = props => {
     const { entry, entryType, className, ...restProps } = props
 
     const directoryEntryRef = useRef(undefined)
+    const [ isBtnShown, setIsBtnShown ] = useState(false)
+
+    const showContextMenuBtn = () => setIsBtnShown(true)
+    const hideContextMenuBtn = () => setIsBtnShown(false)
 
     return (
         <li
@@ -16,6 +20,8 @@ const DirectoryEntry = props => {
             className={`${className} ${directoryEntry}`}
             ref={directoryEntryRef}
             {...restProps}
+            onMouseEnter={showContextMenuBtn}
+            onMouseLeave={hideContextMenuBtn}
         >
             {props.children}
 
@@ -23,6 +29,7 @@ const DirectoryEntry = props => {
                 <ContextMenuBtn
                     entry={entry}
                     entryType={entryType}
+                    showBtn={isBtnShown}
                     contextoptions={props.contextoptions}
                 />
             }

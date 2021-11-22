@@ -14,14 +14,12 @@
   box-shadow: -3px 0 5px #fff;
 }
 
-.directoryEntry:hover {
-  .contextMenuBtn {
-    visibility: visible;
-  }
+.contextMenuBtnVisible {
+  visibility: visible;
+}
 
-  .contextMenuBtn:hover {
-    background: #f0f0f0;
-  }
+.contextMenuBtn:hover {
+  background: #f0f0f0;
 }
 
 .contextMenuBtnSongs{

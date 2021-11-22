@@ -34,12 +34,15 @@ const ContextMenuBtn = props => {
         isContextMenuShown(false)
     }
 
-    const { contextMenuBtn } = styles
+    const { contextMenuBtn, contextMenuBtnVisible } = styles
     const entryTypeContextBtn = styles[`contextMenuBtn${props.entryType}`]
     return (
         <>
             <img
-                className={`${contextMenuBtn} ${entryTypeContextBtn} ${overlayComponent} ${softRoundedCorners}`}
+                className={`
+                    ${contextMenuBtn} ${entryTypeContextBtn} ${props.showBtn ? contextMenuBtnVisible : ''}
+                    ${overlayComponent} ${softRoundedCorners}
+                `}
                 src={buttonImg}
                 alt='Context menu button'
                 tabIndex={0}
