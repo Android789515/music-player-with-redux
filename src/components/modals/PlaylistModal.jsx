@@ -4,7 +4,7 @@ import { v4 as uuidv4 } from 'uuid'
 
 import { hardRoundedCorners } from '../../css/GenericStyles.module.scss'
 import { modalContent } from '../../css/modals/Modal.module.scss'
-import { playlistModal } from '../../css/modals/PlaylistModal.module.scss'
+import { playlistModal, input } from '../../css/modals/PlaylistModal.module.scss'
 
 import { addPlaylist, renamePlaylist } from '../../reducers/librarySlice'
 import { clearModal } from '../../reducers/modalSlice'
@@ -48,6 +48,7 @@ const PlaylistModal = props => {
         <label className={`${playlistModal} ${modalContent} ${hardRoundedCorners}`}>
             Enter a playlist name:
             <input
+                className={input}
                 type='text'
                 onChange={event => updateModalText(() => event.target.value)}
                 value={modalText}

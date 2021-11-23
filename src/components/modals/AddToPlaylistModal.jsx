@@ -32,9 +32,9 @@ const AddToPlaylistModal = () => {
     const cancel = () => dispatch(clearModal())
 
     const areNoSongsInLibrary = songsToAdd.length < 1
-    const { addToPlaylistModal, songsInLibrary, fallbackText } = styles
+    const { songsInLibrary, fallbackText, modalBtns } = styles
     return (
-        <div className={`${addToPlaylistModal} ${modalContent} ${overlayComponent} ${hardRoundedCorners}`}>
+        <div className={`${modalContent} ${overlayComponent} ${hardRoundedCorners}`}>
             <ul className={`unstyledUl ${songsInLibrary}`}>
                 {
                     songs.length > 0 ? songEntries :
@@ -42,13 +42,15 @@ const AddToPlaylistModal = () => {
                 }
             </ul>
 
-            <ModalBtn doOnClick={cancel} btnText='Cancel' />
+            <div className={modalBtns}>
+                <ModalBtn doOnClick={cancel} btnText='Cancel' />
 
-            <ModalBtn
-                btnText='Add songs'
-                disabled={areNoSongsInLibrary}
-                doOnClick={addSongsToPlaylist}
-            />
+                <ModalBtn
+                    btnText='Add songs'
+                    disabled={areNoSongsInLibrary}
+                    doOnClick={addSongsToPlaylist}
+                />
+            </div>
         </div>
     )
 }

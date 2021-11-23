@@ -1,10 +1,13 @@
 @use '../variables';
 
 .playlistModal {
+  display: grid;
+  grid-row-gap: .5em;
+
   width: max-content;
   height: max-content;
 
-  input {
+  .input {
     display: block;
   }
 }

@@ -1,7 +1,7 @@
 import React from 'react'
 
 import { hardRoundedCorners } from '../../../css/GenericStyles.module.scss'
-import { modalBtnBase, modalBtn, disabled } from '../../../css/modals/Modal.module.scss'
+import { modalBtnBase, modalBtn, disabled } from '../../../css/buttons/ModalBtn.module.scss'
 
 const ModalBtn = ({ doOnClick, btnText, ...props }) => {
     return (

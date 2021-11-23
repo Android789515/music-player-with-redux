@@ -1,24 +1,30 @@
 @use '../variables';
 
-.addToPlaylistModal {
-  .fallbackText {
-    font-weight: 700;
-    text-align: center;
+.fallbackText {
+  font-size: 1.5rem;
+  font-weight: 700;
+  text-align: center;
 
-    margin-top: 0;
-    margin-bottom: 2em;
-  }
+  margin-top: 0;
+  margin-bottom: 2em;
+}
 
-  .songsInLibrary {
-    overflow-y: auto;
+.songsInLibrary {
+  overflow-y: auto;
 
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-row-gap: 1em;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-row-gap: 1em;
 
-    min-height: 1vh;
-    max-height: 75vh;
+  min-height: 1vh;
+  max-height: 75vh;
 
-    padding-right: 1em;
-  }
+  padding-right: 1em;
+}
+
+.modalBtns {
+  display: grid;
+  grid-template-columns: repeat(2, max-content);
+  grid-column-gap: 2em;
+  justify-content: center;
 }
