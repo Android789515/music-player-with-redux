@@ -5,7 +5,7 @@ import { directoryEntry } from '../../../css/modules/library/DirectoryEntry.modu
 import ContextMenuBtn from './ContextMenuBtn'
 
 const DirectoryEntry = props => {
-    const { entry, entryType, className, ...restProps } = props
+    const { entry, className, ...restProps } = props
 
     const directoryEntryRef = useRef(undefined)
     const [ isBtnShown, setIsBtnShown ] = useState(false)
@@ -28,7 +28,6 @@ const DirectoryEntry = props => {
             {props.contextoptions &&
                 <ContextMenuBtn
                     entry={entry}
-                    entryType={entryType}
                     showBtn={isBtnShown}
                     contextoptions={props.contextoptions}
                 />

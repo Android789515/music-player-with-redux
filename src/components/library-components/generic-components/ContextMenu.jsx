@@ -86,7 +86,6 @@ const ContextMenu = props => {
     }, [props.shouldShow])
 
     const { contextMenu } = styles
-    const entryTypeContextMenu = styles[`contextMenu${props.entryType}`]
     const { x, y } = props.position
     if (props.shouldShow) {
         return (

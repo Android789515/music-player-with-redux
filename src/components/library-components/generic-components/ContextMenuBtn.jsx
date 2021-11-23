@@ -35,7 +35,6 @@ const ContextMenuBtn = props => {
     }
 
     const { contextMenuBtn, contextMenuBtnVisible } = styles
-    const entryTypeContextBtn = styles[`contextMenuBtn${props.entryType}`]
     return (
         <>
             <img
