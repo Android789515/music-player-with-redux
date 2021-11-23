@@ -11,8 +11,8 @@ import useButtonToggle from '../../hooks/useButtonToggle'
 
 import DirectoryEntry from './generic-components/DirectoryEntry'
 
-const AddableSongEntry = ({ updateSongsToAdd, song }) => {
-    const { isToggled, toggle } = useButtonToggle()
+const AddableSongEntry = ({ updateSongsToAdd, song, isMarked = false }) => {
+    const { isToggled, toggle } = useButtonToggle(isMarked)
 
     const handleClick = () => {
         toggle()

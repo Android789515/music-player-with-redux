@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { v4 as uuid } from 'uuid'
 
 import { hardRoundedCorners, overlayComponent } from '../../css/GenericStyles.module.scss'
 import { modalContent } from '../../css/modals/Modal.module.scss'
@@ -18,7 +19,15 @@ const AddToPlaylistModal = () => {
     const songs = useSelector(state => state.library.songs)
 
     const songEntries = songs.map(song => {
-        return <AddableSongEntry updateSongsToAdd={updateSongsToAdd} song={song} />
+        const isSongMarked = songsToAdd.some(songsAdding => songsAdding.id === song.id)
+        return (
+            <AddableSongEntry
+                key={uuid()}
+                isMarked={isSongMarked}
+                updateSongsToAdd={updateSongsToAdd}
+                song={song}
+            />
+        )
     })
 
     const dispatch = useDispatch()
