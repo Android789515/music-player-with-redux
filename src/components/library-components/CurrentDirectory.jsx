@@ -1,8 +1,8 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
 
-import styles from '../../css/modules/library/CurrentDirectory.module.scss'
-import { hardRoundedCorners } from '../../css/modules/GenericStyles.module.scss'
+import styles from '../../css/library/CurrentDirectory.module.scss'
+import { hardRoundedCorners } from '../../css/GenericStyles.module.scss'
 
 import AddEntryBtn from './AddEntryBtn'
 import DirectoryEntries from './generic-components/DirectoryEntries'

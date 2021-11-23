@@ -1,7 +1,7 @@
-@use '../../variables';
+@use '../variables';
 
 .directoryEntry {
-  composes: directoryEntry from './DirectoryEntry.module.scss';
+  composes: directoryEntry from 'DirectoryEntry.module.scss';
 }
 
 .directoryEntry > * {

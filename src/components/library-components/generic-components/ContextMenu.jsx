@@ -2,8 +2,8 @@ import React, { useEffect, useRef } from 'react'
 import { useDispatch } from 'react-redux'
 import { v4 as uuidv4 } from 'uuid'
 
-import { hardRoundedCorners } from '../../../css/modules/GenericStyles.module.scss'
-import styles from '../../../css/modules/library/ContextMenu.module.scss'
+import { hardRoundedCorners } from '../../../css/GenericStyles.module.scss'
+import styles from '../../../css/library/ContextMenu.module.scss'
 import { setModalContent } from '../../../reducers/modalSlice'
 
 import PlaylistModal from '../../modals/PlaylistModal'

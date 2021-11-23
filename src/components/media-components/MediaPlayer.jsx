@@ -1,7 +1,7 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
-import { mediaPlayer } from '../../css/modules/media-player/MediaPlayer.module.scss'
+import { mediaPlayer } from '../../css/media-player/MediaPlayer.module.scss'
 
 import AudioPlayer from './AudioPlayer'
 import MediaControls from './MediaControls'

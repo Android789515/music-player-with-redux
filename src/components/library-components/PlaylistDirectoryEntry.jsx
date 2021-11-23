@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { useSelector } from 'react-redux'
 
-import styles from '../../css/modules/library/PlaylistDirectoryEntry.module.scss'
+import styles from '../../css/library/PlaylistDirectoryEntry.module.scss'
 
 import { directories } from './DirectoryList'
 import { contextMenuOptions } from './generic-components/ContextMenu'

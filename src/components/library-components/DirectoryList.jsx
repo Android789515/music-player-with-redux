@@ -2,7 +2,7 @@ import React from 'react'
 import { useSelector } from 'react-redux'
 import { v4 as uuidv4 } from 'uuid'
 
-import styles from '../../css/modules/library/DirectoryList.module.scss'
+import styles from '../../css/library/DirectoryList.module.scss'
 import { setOpenedPlaylist } from '../../reducers/librarySlice'
 
 // Make it configurable in the app

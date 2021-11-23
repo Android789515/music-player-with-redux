@@ -1,6 +1,6 @@
 import React from 'react'
 
-import styles from '../../css/modules/media-player/Bar.module.scss'
+import styles from '../../css/media-player/Bar.module.scss'
 
 function Slider(props) {
     const percent = props.orientation === 'vertical' ?

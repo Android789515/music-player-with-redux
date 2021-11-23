@@ -1,7 +1,7 @@
 import React from 'react'
 
-import { softRoundedCorners, hidden } from '../../css/modules/GenericStyles.module.scss'
-import { mediaInfo, coverArt } from '../../css/modules/media-player/MediaInfo.module.scss'
+import { softRoundedCorners, hidden } from '../../css/GenericStyles.module.scss'
+import { mediaInfo, coverArt } from '../../css/media-player/MediaInfo.module.scss'
 
 import SongInfo from './SongInfo'
 import fallBackImg from '../../img/cover-art-fallback.svg'

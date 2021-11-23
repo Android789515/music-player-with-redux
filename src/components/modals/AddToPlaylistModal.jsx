@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
-import { hardRoundedCorners, overlayComponent } from '../../css/modules/GenericStyles.module.scss'
-import { modalContent } from '../../css/modules/modals/Modal.module.scss'
-import styles from '../../css/modules/modals/AddToPlaylistModal.module.scss'
+import { hardRoundedCorners, overlayComponent } from '../../css/GenericStyles.module.scss'
+import { modalContent } from '../../css/modals/Modal.module.scss'
+import styles from '../../css/modals/AddToPlaylistModal.module.scss'
 
 import { addSongs } from '../../reducers/librarySlice'
 import { clearModal } from '../../reducers/modalSlice'

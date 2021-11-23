@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 
-import { overlayComponent, softRoundedCorners } from '../../../css/modules/GenericStyles.module.scss'
-import styles from '../../../css/modules/library/ContextMenuBtn.module.scss'
+import { overlayComponent, softRoundedCorners } from '../../../css/GenericStyles.module.scss'
+import styles from '../../../css/library/ContextMenuBtn.module.scss'
 import buttonImg from '../../../img/dark-btns/context.svg'
 
 import ContextMenu from './ContextMenu'

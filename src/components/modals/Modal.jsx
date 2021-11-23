@@ -2,8 +2,8 @@ import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
 import '../../css/modal-styles.scss'
-import { modal } from '../../css/modules/modals/Modal.module.scss'
-import { hidden } from '../../css/modules/GenericStyles.module.scss'
+import { modal } from '../../css/modals/Modal.module.scss'
+import { hidden } from '../../css/GenericStyles.module.scss'
 import { clearModal } from '../../reducers/modalSlice'
 
 // Modal renders a special prompt component that will vary

@@ -2,9 +2,9 @@ import React from 'react'
 import { useDispatch } from 'react-redux'
 import { clearModal, setModalData } from '../../reducers/modalSlice'
 
-import { hardRoundedCorners } from '../../css/modules/GenericStyles.module.scss'
-import { modalContent } from '../../css/modules/modals/Modal.module.scss'
-import { deleteEntryModal } from '../../css/modules/modals/DeleteEntryModal.module.scss'
+import { hardRoundedCorners } from '../../css/GenericStyles.module.scss'
+import { modalContent } from '../../css/modals/Modal.module.scss'
+import { deleteEntryModal } from '../../css/modals/DeleteEntryModal.module.scss'
 
 import ModalBtn from '../library-components/generic-components/ModalBtn'
 

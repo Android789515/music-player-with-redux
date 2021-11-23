@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 
-import { fadingComponent, invisible } from '../../css/modules/GenericStyles.module.scss'
-import { volumeBarArea } from '../../css/modules/media-player/MediaControls.module.scss'
+import { fadingComponent, invisible } from '../../css/GenericStyles.module.scss'
+import { volumeBarArea } from '../../css/media-player/MediaControls.module.scss'
 import { toggleMute } from '../../reducers/mediaSlice'
 
 import MediaControlBtn from './MediaControlBtn'

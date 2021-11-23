@@ -4,8 +4,8 @@ import {
     addBtn,
     addBtnHover as hover,
     addBtnActive as active
-} from '../../css/modules/buttons/AddBtn.module.scss'
-import { addEntrySection } from '../../css/modules/library/AddEntry.module.scss'
+} from '../../css/buttons/AddBtn.module.scss'
+import { addEntrySection } from '../../css/library/AddEntry.module.scss'
 
 import { setModalContent } from '../../reducers/modalSlice'
 

@@ -2,9 +2,9 @@ import React, { useEffect, useRef, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { v4 as uuidv4 } from 'uuid'
 
-import { hardRoundedCorners } from '../../css/modules/GenericStyles.module.scss'
-import { modalContent } from '../../css/modules/modals/Modal.module.scss'
-import { playlistModal } from '../../css/modules/modals/PlaylistModal.module.scss'
+import { hardRoundedCorners } from '../../css/GenericStyles.module.scss'
+import { modalContent } from '../../css/modals/Modal.module.scss'
+import { playlistModal } from '../../css/modals/PlaylistModal.module.scss'
 
 import { addPlaylist, renamePlaylist } from '../../reducers/librarySlice'
 import { clearModal } from '../../reducers/modalSlice'

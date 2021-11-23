@@ -1,6 +1,6 @@
 import React from 'react'
 
-import styles from '../../css/modules/library/LibraryBtn.module.scss'
+import styles from '../../css/library/LibraryBtn.module.scss'
 import libraryBtn from '../../img/dark-btns/library.svg'
 import closeBtn from '../../img/dark-btns/close.svg'
 

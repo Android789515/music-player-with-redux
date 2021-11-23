@@ -1,9 +1,8 @@
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
-import { library as libraryStyle, libraryOpen } from '../../css/modules/library/Library.module.scss'
-import { overlayComponent } from '../../css/modules/GenericStyles.module.scss'
-import '../../css/library-styles/music-library-styles.scss'
+import { library as libraryStyle, libraryOpen } from '../../css/library/Library.module.scss'
+import { overlayComponent } from '../../css/GenericStyles.module.scss'
 
 import { directories } from './DirectoryList'
 

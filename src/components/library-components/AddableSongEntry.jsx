@@ -1,10 +1,10 @@
 import React from 'react'
 import { v4 as uuidv4 } from 'uuid'
 
-import { hardRoundedCorners } from '../../css/modules/GenericStyles.module.scss'
-import { addBtn } from '../../css/modules/buttons/AddBtn.module.scss'
-import { songEntryTitle, songEntryArtist } from '../../css/modules/library/SongDirectoryEntry.module.scss'
-import styles from '../../css/modules/library/AddableSongEntry.module.scss'
+import { hardRoundedCorners } from '../../css/GenericStyles.module.scss'
+import { addBtn } from '../../css/buttons/AddBtn.module.scss'
+import { songEntryTitle, songEntryArtist } from '../../css/library/SongDirectoryEntry.module.scss'
+import styles from '../../css/library/AddableSongEntry.module.scss'
 
 import { getFormattedSongTime } from '../../TimeFormatter'
 import useButtonToggle from '../../hooks/useButtonToggle'

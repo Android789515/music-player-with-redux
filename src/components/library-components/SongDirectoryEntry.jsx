@@ -7,7 +7,7 @@ import {
     songEntryArtist,
     songEntryInfo,
     songEntryDuration
-} from '../../css/modules/library/SongDirectoryEntry.module.scss'
+} from '../../css/library/SongDirectoryEntry.module.scss'
 
 import { directories } from './DirectoryList'
 import { contextMenuOptions } from './generic-components/ContextMenu'

@@ -1,7 +1,7 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
 
-import styles from '../../css/modules/media-player/MediaControls.module.scss'
+import styles from '../../css/media-player/MediaControls.module.scss'
 import useButtonToggle from '../../hooks/useButtonToggle'
 
 function MediaControlBtn(props) {
