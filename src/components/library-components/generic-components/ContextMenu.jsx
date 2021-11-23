@@ -87,11 +87,12 @@ const ContextMenu = props => {
 
     const { contextMenu } = styles
     const entryTypeContextMenu = styles[`contextMenu${props.entryType}`]
+    const { x, y } = props.position
     if (props.shouldShow) {
         return (
             <ul
-                className={`unstyledUl ${contextMenu} ${entryTypeContextMenu} ${hardRoundedCorners}`}
-                style={{ left: props.position }}
+                className={`unstyledUl ${contextMenu} ${hardRoundedCorners}`}
+                style={{ left: x, top: y }}
                 tabIndex={0}
                 ref={contextMenuRef}
                 onBlur={handleLoseFocus}

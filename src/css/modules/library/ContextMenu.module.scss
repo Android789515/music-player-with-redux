@@ -22,6 +22,11 @@
   border-radius: 5px;
 }
 
+.contextMenu {
+  position: fixed;
+  z-index: 1;
+}
+
 .contextMenuSongs {
   position: absolute;
   left: 0;

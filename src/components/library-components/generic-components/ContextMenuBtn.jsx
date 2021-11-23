@@ -8,17 +8,17 @@ import ContextMenu from './ContextMenu'
 
 const ContextMenuBtn = props => {
     const [ shouldShowContextMenu, isContextMenuShown ] = useState(false)
-    const [ menuPos, setMenuPos ] = useState(0)
+    const [ menuPos, setMenuPos ] = useState({ x: 0, y: 0 })
 
     const openContextMenu = event => {
         event.stopPropagation()
 
         isContextMenuShown(true)
 
-        const contextBtnPos = event.target.getBoundingClientRect()
-        const directoryEntryPos = event.target.parentElement.getBoundingClientRect()
+        const xPosClicked = event.clientX
+        const yPosClicked = event.clientY
+        const positionForMenu = { x: xPosClicked, y: yPosClicked }
 
-        const positionForMenu = contextBtnPos.x - directoryEntryPos.x - 52
         setMenuPos(positionForMenu)
     }
 
@@ -40,7 +40,7 @@ const ContextMenuBtn = props => {
         <>
             <img
                 className={`
-                    ${contextMenuBtn} ${entryTypeContextBtn} ${props.showBtn ? contextMenuBtnVisible : ''}
+                    ${contextMenuBtn} ${props.showBtn ? contextMenuBtnVisible : ''}
                     ${overlayComponent} ${softRoundedCorners}
                 `}
                 src={buttonImg}

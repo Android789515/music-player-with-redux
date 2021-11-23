@@ -6,7 +6,7 @@
   position: relative;
 
   // 2px for the mini song bar
-  grid-template: 1fr auto 2px / auto .5fr;
+  grid-template-rows: 1fr auto 2px;
 
   margin-bottom: 1em;
 }

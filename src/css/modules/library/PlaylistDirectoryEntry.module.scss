@@ -2,8 +2,6 @@
 
 .directoryEntry {
   composes: directoryEntry from './DirectoryEntry.module.scss';
-
-  grid-template-columns: auto max-content;
 }
 
 .directoryEntry > * {
@@ -27,5 +25,5 @@
 .playlistEntrySongCount {
   text-align: right;
 
-  grid-column: -1;
+  grid-column: 2;
 }
