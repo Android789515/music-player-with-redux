@@ -11,8 +11,6 @@
 
 .addableSong.selected {
   background: variables.$grayed-out;
-
-  @include AddBtn.forAddableSong
 }
 
 .directoryEntry {
