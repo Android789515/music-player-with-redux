@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react'
 import { useSelector } from 'react-redux'
 
-import { directoryEntry } from '../../css/modules/library/DirectoryEntry.module.scss'
 import styles from '../../css/modules/library/PlaylistDirectoryEntry.module.scss'
 
 import { directories } from './DirectoryList'
@@ -55,6 +54,7 @@ const PlaylistDirectoryEntry = props => {
 
     const { _open, _rename, _delete } = contextMenuOptions
 
+    const { directoryEntry } = styles
     const { playlistEntryTitle, playlistEntrySongCount } = styles
     return (
         <DirectoryEntry

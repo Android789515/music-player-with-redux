@@ -1,6 +1,9 @@
 @use '../../variables';
+@use 'DirectoryEntry';
 
 .directoryEntry {
+  @include DirectoryEntry.grid;
+
   position: relative;
 
   // 2px for the mini song bar

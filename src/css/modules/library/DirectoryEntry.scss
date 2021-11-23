@@ -1,10 +1,14 @@
 @use '../../variables';
 
-.directoryEntry {
+%grid {
   display: grid;
   grid-column-gap: 1em;
 }
 
-.directoryEntry > * {
+%grid > * {
   margin: 0;
+}
+
+@mixin grid {
+  @extend %grid;
 }

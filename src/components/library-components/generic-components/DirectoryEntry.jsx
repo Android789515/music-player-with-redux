@@ -1,6 +1,6 @@
 import React, { useRef, useState } from 'react'
 
-import { directoryEntry } from '../../../css/modules/library/DirectoryEntry.module.scss'
+import { directoryEntry } from '../../../css/modules/library/DirectoryEntry.scss'
 
 import ContextMenuBtn from './ContextMenuBtn'
 

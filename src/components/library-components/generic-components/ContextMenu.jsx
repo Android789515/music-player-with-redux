@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux'
 import { v4 as uuidv4 } from 'uuid'
 
 import { hardRoundedCorners } from '../../../css/modules/GenericStyles.module.scss'
-import { contextMenu, contextMenuOption } from '../../../css/modules/library/ContextMenu.module.scss'
+import styles from '../../../css/modules/library/ContextMenu.module.scss'
 import { setModalContent } from '../../../reducers/modalSlice'
 
 import PlaylistModal from '../../modals/PlaylistModal'
@@ -62,6 +62,7 @@ const ContextMenu = props => {
         }
     }
 
+    const { contextMenuOption } = styles
     const contextMenuList = props.contextoptions.map(option => {
         const uuid = uuidv4()
         return (
@@ -84,10 +85,12 @@ const ContextMenu = props => {
         }
     }, [props.shouldShow])
 
+    const { contextMenu } = styles
+    const entryTypeContextMenu = styles[`contextMenu${props.entryType}`]
     if (props.shouldShow) {
         return (
             <ul
-                className={`unstyledUl ${contextMenu} ${hardRoundedCorners}`}
+                className={`unstyledUl ${contextMenu} ${entryTypeContextMenu} ${hardRoundedCorners}`}
                 style={{ left: props.position }}
                 tabIndex={0}
                 ref={contextMenuRef}

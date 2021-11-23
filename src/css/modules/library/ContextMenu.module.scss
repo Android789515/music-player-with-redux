@@ -1,6 +1,6 @@
 @use '../../variables';
 
-.context-menu {
+.contextMenu {
   width: max-content;
 
   padding: .5em .75em;
@@ -9,35 +9,28 @@
 }
 
 // TODO The options will have focus
-.context-menu:focus {
+.contextMenu:focus {
   outline: none;
 }
 
-.context-menu > *:hover {
+.contextMenu > *:hover {
   background: variables.$grayed-out;
 }
 
-.context-menu-option {
+.contextMenuOption {
   padding: .2em .4em;
   border-radius: 5px;
 }
 
-.songs-directory,
-.opened-playlist-directory {
-
-  .context-menu {
-    position: absolute;
-    left: 0;
-    z-index: 1;
-  }
+.contextMenuSongs {
+  position: absolute;
+  left: 0;
+  z-index: 1;
 }
 
-.playlists-directory {
+.contextMenuPlaylists {
+  grid-row: 1 / span 2;
+  grid-column: 1;
 
-  .context-menu {
-    grid-row: 1 / span 2;
-    grid-column: 1;
-
-    margin-left: auto;
-  }
+  margin-left: auto;
 }
