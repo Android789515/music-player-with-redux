@@ -1,8 +1,7 @@
 @use '../../variables';
-@use 'DirectoryEntry';
 
 .directoryEntry {
-  @include DirectoryEntry.grid;
+  composes: directoryEntry from './DirectoryEntry.module.scss';
 
   position: relative;
 
