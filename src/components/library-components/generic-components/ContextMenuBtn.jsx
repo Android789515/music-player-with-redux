@@ -8,16 +8,16 @@ import ContextMenu from './ContextMenu'
 
 const ContextMenuBtn = props => {
     const [ shouldShowContextMenu, isContextMenuShown ] = useState(false)
-    const [ menuPos, setMenuPos ] = useState({ x: 0, y: 0 })
+    const [ menuPos, setMenuPos ] = useState(0)
 
     const openContextMenu = event => {
         event.stopPropagation()
 
         isContextMenuShown(true)
 
-        const xPosClicked = event.clientX
-        const yPosClicked = event.clientY
-        const positionForMenu = { x: xPosClicked, y: yPosClicked }
+        const contextBtnPos = event.target.getBoundingClientRect()
+
+        const positionForMenu = contextBtnPos.x
 
         setMenuPos(positionForMenu)
     }
