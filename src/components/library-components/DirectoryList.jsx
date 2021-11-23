@@ -42,12 +42,15 @@ const getClassModifiers = (identifier, currentDirectory) => {
     const isDirectoryCurrent = identifier === currentDirectory.identifier
     const isDirectoryOpenedPlaylist = identifier === directories.openedPlaylist.identifier
 
+    let classes = ``
     if (isDirectoryCurrent) {
-        return styles.activeDirectory
+        classes = `${styles.activeDirectory}`
 
-    } else if (isDirectoryOpenedPlaylist) {
-        return styles.openedPlaylist
+    } if (isDirectoryOpenedPlaylist) {
+        classes = `${classes} ${styles.openedPlaylist}`
     }
+
+    return classes
 }
 
 const DirectoryList = ({ currentDirectory, ...props }) => {
