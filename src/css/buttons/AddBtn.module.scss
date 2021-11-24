@@ -22,6 +22,13 @@ $pseudoClassPadding: .125em .4em .2em .4em;
   transform: scale(1.05);
 }
 
-@mixin forAddableSong {
-  padding: .125em .52em;
+.forAddableSong {
+  padding: .125em .4em .125em .39em;
+}
+
+.removeBtn {
+  @extend .addBtn;
+  @extend .forAddableSong;
+
+  padding: .125em .58em;
 }
