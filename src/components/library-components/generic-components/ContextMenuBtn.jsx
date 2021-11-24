@@ -51,6 +51,7 @@ const ContextMenuBtn = props => {
 
             <ContextMenu
                 entryType={props.entryType}
+                entryRef={props.entryRef}
                 shouldShow={shouldShowContextMenu}
                 position={menuPos}
                 contextoptions={props.contextoptions}

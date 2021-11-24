@@ -26,7 +26,7 @@ const ContextMenu = props => {
 
         const { target } = event
         const optionClicked = target.textContent.toLowerCase()
-        const closestEntry = target.closest('.directory-entry')
+        const closestEntry = props.entryRef.current
         props.closeContextMenu(event)
 
         switch (optionClicked) {

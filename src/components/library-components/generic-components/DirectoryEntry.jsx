@@ -28,6 +28,7 @@ const DirectoryEntry = props => {
             {props.contextoptions &&
                 <ContextMenuBtn
                     entry={entry}
+                    entryRef={directoryEntryRef}
                     showBtn={isBtnShown}
                     contextoptions={props.contextoptions}
                 />
