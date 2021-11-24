@@ -8,7 +8,7 @@
   max-height: 100vh;
 }
 
-@media (min-width: variables.$first-media-breakpoint) {
+@media (min-width: variables.$layoutBreakpoint) {
   .mainLayout {
     flex-direction: row;
   }

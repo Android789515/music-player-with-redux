@@ -23,7 +23,7 @@
   transition: opacity 250ms;
 }
 
-@media (min-width: variables.$first-media-breakpoint) {
+@media (min-width: variables.$layoutBreakpoint) {
   .overlayComponent {
     background: variables.$overlay-component-bg;
   }

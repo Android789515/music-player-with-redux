@@ -13,7 +13,7 @@
   margin: auto;
 }
 
-@media (min-width: variables.$first-media-breakpoint) {
+@media (min-width: variables.$layoutBreakpoint) {
 
   .mediaPlayer {
     grid-template: .5fr auto 1fr / 1fr 1fr;

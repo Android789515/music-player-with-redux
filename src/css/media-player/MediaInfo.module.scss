@@ -20,7 +20,7 @@
   transition: width 250ms, margin-right 250ms;
 }
 
-@media (min-width: variables.$first-media-breakpoint) {
+@media (min-width: variables.$layoutBreakpoint) {
   .mediaInfo {
     grid-row: 2;
     grid-column: 1;

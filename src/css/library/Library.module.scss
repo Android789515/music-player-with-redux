@@ -6,7 +6,7 @@
   grid-row-gap: 1em;
 }
 
-@media (min-width: variables.$first-media-breakpoint) {
+@media (min-width: variables.$layoutBreakpoint) {
   .library {
     top: 10%;
   }

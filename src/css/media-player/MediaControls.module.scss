@@ -4,11 +4,12 @@
   width: 90%;
 }
 
+$minBtnSize: 30px;
 .mediaControlBtns {
   display: grid;
   // Empty 1fr - to even things out
   // On large screens the empty space will not be included
-  grid-template-columns: 1fr repeat(6, 1fr);
+  grid-template-columns: minmax($minBtnSize, 1fr) repeat(6, 1fr);
   grid-column-gap: .5em;
   justify-content: center;
   // Padding instead of margin so the background will block
@@ -20,8 +21,23 @@
   // Keep media controls below volume bar
   grid-row: 2;
 
-  width: 100%;
+  width: $minBtnSize;
   max-width: 60px;
+}
+@media (min-width: variables.$firstMediaControlsBreakpoint) {
+  .mediaControlBtn {
+    width: $minBtnSize * 1.25;
+  }
+}
+@media (min-width: variables.$secondMediaControlsBreakpoint) {
+  .mediaControlBtn {
+    width: $minBtnSize * 1.5;
+  }
+}
+@media (min-width: variables.$layoutBreakpoint) {
+  .mediaControlBtn {
+    width: 100%;
+  }
 }
 
 .mediaControlBtn.toggled {
@@ -64,13 +80,29 @@
   grid-row: 1;
 }
 
+$volBtnSize: $minBtnSize - 2;
 .volControlBtn {
-  width: 90%;
+  width: $volBtnSize - 2;
   // Gives a little bit of space between it and the other media controls
   margin: auto auto auto .25em;
 }
+@media (min-width: variables.$firstMediaControlsBreakpoint) {
+  .volControlBtn {
+    width: $volBtnSize * 1.25;
+  }
+}
+@media (min-width: variables.$secondMediaControlsBreakpoint) {
+  .volControlBtn {
+    width: $volBtnSize * 1.5;
+  }
+}
+@media (min-width: variables.$layoutBreakpoint) {
+  .volControlBtn {
+    width: 90%;
+  }
+}
 
-@media (min-width: variables.$first-media-breakpoint) {
+@media (min-width: variables.$layoutBreakpoint) {
   .mediaControls {
     position: fixed;
     z-index: 3;

@@ -5,7 +5,7 @@
 }
 
 
-@media (min-width: variables.$first-media-breakpoint) {
+@media (min-width: variables.$layoutBreakpoint) {
   .libraryPanelBtn {
     top: 10%;
   }

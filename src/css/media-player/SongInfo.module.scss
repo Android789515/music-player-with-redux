@@ -14,7 +14,7 @@ $verySmallScreens: 375px;
   }
 }
 
-@media (min-width: variables.$first-media-breakpoint) {
+@media (min-width: variables.$layoutBreakpoint) {
   .songInfo {
     font-size: .85rem;
     text-align: left;
@@ -23,7 +23,7 @@ $verySmallScreens: 375px;
   }
 }
 
-@media (min-width: variables.$second-media-breakpoint) {
+@media (min-width: variables.$secondLayoutBreakpoint) {
   .songInfo {
     font-size: 1rem;
   }
@@ -37,7 +37,7 @@ $verySmallScreens: 375px;
   margin: 0;
 }
 
-@media (min-width: variables.$first-media-breakpoint) {
+@media (min-width: variables.$layoutBreakpoint) {
   .songTitle {
     font-size: 1.5em;
   }
