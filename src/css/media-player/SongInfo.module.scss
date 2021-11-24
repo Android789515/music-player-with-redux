@@ -2,6 +2,7 @@
 
 .songInfo {
   font-size: 1rem;
+  text-align: center;
 
   transition: font-size 250ms;
 }
@@ -16,6 +17,7 @@ $verySmallScreens: 375px;
 @media (min-width: variables.$first-media-breakpoint) {
   .songInfo {
     font-size: .85rem;
+    text-align: left;
 
     width: 100%;
   }
@@ -28,9 +30,17 @@ $verySmallScreens: 375px;
 }
 
 .songTitle {
-  font-size: 1.5em;
+  font-size: 1.25em;
+
+  max-width: 420px;
 
   margin: 0;
+}
+
+@media (min-width: variables.$first-media-breakpoint) {
+  .songTitle {
+    font-size: 1.5em;
+  }
 }
 
 .songArtist,
@@ -39,5 +49,5 @@ $verySmallScreens: 375px;
 }
 
 .songArtist {
-  margin-top: 0;
+  margin: 0;
 }
