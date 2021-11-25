@@ -7,7 +7,7 @@ import { addBtn, removeBtn, forAddableSong } from '../../css/buttons/AddBtn.modu
 import { songEntryTitle, songEntryArtist } from '../../css/library/SongDirectoryEntry.module.scss'
 import styles from '../../css/library/AddableSongEntry.module.scss'
 
-import { getFormattedSongTime } from '../../utils/TimeFormatter'
+import { getFormattedSongTime } from '../../utils/timeFormatter'
 import useButtonToggle from '../../hooks/useButtonToggle'
 
 import DirectoryEntry from './generic-components/DirectoryEntry'

@@ -1,15 +1,15 @@
-import React, { MutableRefObject, RefObject, useEffect, useRef } from 'react'
+import React, { MutableRefObject, useEffect, useRef } from 'react'
 import { useDispatch } from 'react-redux'
 import { v4 as uuidv4 } from 'uuid'
 
 import genericStyles from '../../../css/GenericStyles.module.scss'
 import styles from '../../../css/library/ContextMenu.module.scss'
 import { setModalContent } from '../../../reducers/modalSlice'
+import { Song, Playlist } from '../../../utils/entryTypes'
+import { capitalize } from '../../../utils/stringManipulation'
 
 import PlaylistModal from '../../modals/PlaylistModal'
 import DeleteEntryModal from '../../modals/DeleteEntryModal'
-
-const capitalize = (string: string) => string.charAt(0).toUpperCase() + string.slice(1)
 
 export const contextMenuOptions = {
     _queue: 'queue',
@@ -21,16 +21,15 @@ export const contextMenuOptions = {
 interface Props {
     openContextMenu: (event: React.SyntheticEvent) => void,
     closeContextMenu: (event: React.SyntheticEvent) => void,
-    entry: {
-        id: number
-    },
+    entry: Song | Playlist,
     entryRef: MutableRefObject<HTMLLIElement>,
     shouldShow: boolean,
     position: number,
     contextoptions: string[]
 }
 
-const ContextMenu = ({ closeContextMenu, entry, entryRef, shouldShow, position, contextoptions }: Props) => {
+const ContextMenu =
+    ({ closeContextMenu, entry, entryRef, shouldShow, position, contextoptions }: Props) => {
     const dispatch = useDispatch()
 
     const handleContextOptionClick = (event: React.MouseEvent) => {
@@ -70,7 +69,8 @@ const ContextMenu = ({ closeContextMenu, entry, entryRef, shouldShow, position, 
     const handleLoseFocus = (event: React.FocusEvent) => {
         const { target: contextMenu, relatedTarget } = event
         if (contextMenu) {
-            const isContextOptionFocused = (contextMenu as HTMLUListElement).contains(relatedTarget as Node)
+            const isContextOptionFocused =
+                (contextMenu as HTMLUListElement).contains(relatedTarget as Node)
 
             if (!isContextOptionFocused) {
                 closeContextMenu(event)
