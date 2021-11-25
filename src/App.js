@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 
-import './css/globals.scss'
 import { mainLayout } from './css/App.module.scss'
 
 import MediaPlayer from './components/media-components/MediaPlayer'
