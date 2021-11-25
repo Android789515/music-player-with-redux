@@ -1,4 +1,4 @@
-const getFormattedSongTime = (rawSongTime) => {
+const getFormattedSongTime = (rawSongTime: number) => {
     if (rawSongTime === undefined) {
         return undefined
     }
