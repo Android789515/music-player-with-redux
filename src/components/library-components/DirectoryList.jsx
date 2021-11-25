@@ -84,7 +84,7 @@ const DirectoryList = ({ currentDirectory, ...props }) => {
     // Using and underscore in the name for better name readability
     const { directoryNames: directoryNames_Style } = styles
     return (
-        <ul className={`unstyledUl ${directoryNames_Style}`}>
+        <ul className={directoryNames_Style}>
             {directoryNames}
         </ul>
     )

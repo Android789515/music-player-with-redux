@@ -44,7 +44,7 @@ const AddToPlaylistModal = () => {
     const { songsInLibrary, fallbackText, modalBtns } = styles
     return (
         <div className={`${modalContent} ${overlayComponent} ${hardRoundedCorners}`}>
-            <ul className={`unstyledUl ${songsInLibrary}`}>
+            <ul className={`${songsInLibrary}`}>
                 {
                     songs.length > 0 ? songEntries :
                     <li className={`${fallbackText}`}>Add songs to your library first.</li>

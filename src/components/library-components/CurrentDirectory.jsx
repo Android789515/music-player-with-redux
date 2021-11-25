@@ -16,7 +16,7 @@ const CurrentDirectory = ({ identifier: directoryIdentifier, ...props }) => {
         <div className={`${directory} ${whichDirectory} ${hardRoundedCorners}`}>
             {/* Directory entries component are the entries themselves */}
             {/* The style is for the container */}
-            <ul className={`unstyledUl ${directoryEntries}`}>
+            <ul className={directoryEntries}>
                 <DirectoryEntries
                     entries={library[directoryIdentifier]}
                     directoryIdentifier={directoryIdentifier}

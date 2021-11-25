@@ -1,6 +1,9 @@
 @use '../variables';
+@use '../mixins';
 
 .directoryNames {
+  @include mixins.unstyledUl;
+
   display: grid;
   grid-row-gap: 1em;
   grid-column-gap: 1em;
