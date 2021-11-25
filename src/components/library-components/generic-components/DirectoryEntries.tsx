@@ -1,27 +1,23 @@
 import React from 'react'
 
 import { directories } from '../DirectoryList'
+import { Song, Playlist } from '../../../utils/entryTypes'
+
 import SongDirectoryEntry from '../SongDirectoryEntry'
 import PlaylistDirectoryEntry from '../PlaylistDirectoryEntry'
 
-interface OpenedPlaylistEntries {
-    songs: []
-}
 interface Props {
     directoryIdentifier: string,
-    entries: [] | OpenedPlaylistEntries,
+    entries: Song[] | Playlist[] | Playlist,
     setCurrentDirectory: (newDirectory: string) => string,
     dispatch: () => void
 }
 
 const DirectoryEntries = ({ directoryIdentifier, entries, ...props }: Props) => {
 
-    interface Song {
-        id: number
-    }
     switch (directoryIdentifier) {
         case directories.songs.identifier:
-            return (entries as []).map((song: Song) => (
+            return (entries as Song[]).map((song: Song) => (
                 <SongDirectoryEntry
                     key={song.id}
                     currentDirectory={directoryIdentifier}
@@ -30,10 +26,7 @@ const DirectoryEntries = ({ directoryIdentifier, entries, ...props }: Props) => 
                 />
             ))
         case directories.playlists.identifier:
-            interface Playlist {
-                id: number
-            }
-            return (entries as []).map((playlist: Playlist) => (
+            return (entries as Playlist[]).map((playlist: Playlist) => (
                 <PlaylistDirectoryEntry
                     key={playlist.id}
                     currentDirectory={directoryIdentifier}
@@ -43,7 +36,7 @@ const DirectoryEntries = ({ directoryIdentifier, entries, ...props }: Props) => 
                 />
             ))
         case directories.openedPlaylist.identifier:
-            return (entries as OpenedPlaylistEntries).songs.map((song: Song) => (
+            return (entries as Playlist).songs.map((song: Song) => (
                 <SongDirectoryEntry
                     key={song.id}
                     currentDirectory={directoryIdentifier}

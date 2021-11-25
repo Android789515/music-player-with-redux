@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react'
+import React, { MutableRefObject, RefObject, useEffect, useRef } from 'react'
 import { useDispatch } from 'react-redux'
 import { v4 as uuidv4 } from 'uuid'
 
@@ -24,9 +24,7 @@ interface Props {
     entry: {
         id: number
     },
-    entryRef: {
-        current: HTMLLIElement
-    },
+    entryRef: MutableRefObject<HTMLLIElement>,
     shouldShow: boolean,
     position: number,
     contextoptions: string[]

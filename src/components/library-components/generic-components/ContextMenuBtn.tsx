@@ -1,17 +1,17 @@
-import React, { useState } from 'react'
+import React, { MutableRefObject, RefObject, useState } from 'react'
 
 import genericStyles from '../../../css/GenericStyles.module.scss'
 import styles from '../../../css/library/ContextMenuBtn.module.scss'
 import buttonImg from '../../../img/dark-btns/context.svg'
 
+import { Song, Playlist } from '../../../utils/entryTypes'
+
 import ContextMenu from './ContextMenu'
 
 interface Props {
     showBtn: boolean,
-    entry: any,
-    entryRef: {
-        current: HTMLLIElement
-    },
+    entry: Song | Playlist,
+    entryRef: MutableRefObject<HTMLLIElement>,
     contextoptions: string[]
 }
 

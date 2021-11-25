@@ -1,25 +1,33 @@
-import React, { useRef, useState } from 'react'
+import React, { MutableRefObject, useRef, useState } from 'react'
 
-import { directoryEntry } from '../../../css/library/DirectoryEntry.module.scss'
+import styles from '../../../css/library/DirectoryEntry.module.scss'
+
+import { Song, Playlist } from '../../../utils/entryTypes'
 
 import ContextMenuBtn from './ContextMenuBtn'
 
-const DirectoryEntry = props => {
-    const { entry, className, ...restProps } = props
+interface Props {
+    entry: Song | Playlist,
+    className: string,
+    contextoptions: string[]
+}
 
-    const directoryEntryRef = useRef(undefined)
+const DirectoryEntry: React.FC<Props> = ({ entry, className, ...props }) => {
+    const directoryEntryRef = useRef<HTMLLIElement>(null) as MutableRefObject<HTMLLIElement>
     const [ isBtnShown, setIsBtnShown ] = useState(false)
 
     const showContextMenuBtn = () => setIsBtnShown(true)
     const hideContextMenuBtn = () => setIsBtnShown(false)
 
+    const { directoryEntry } = styles
     return (
         <li
             key={entry.id}
-            entryid={entry.id}
+            // TODO delete if safe to do so
+            // entryid={entry.id}
             className={`${className} ${directoryEntry}`}
             ref={directoryEntryRef}
-            {...restProps}
+            {...props}
             onMouseEnter={showContextMenuBtn}
             onMouseLeave={hideContextMenuBtn}
         >
