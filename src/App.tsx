@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-import { mainLayout } from './css/App.module.scss'
+import styles from './css/App.module.scss'
 
 import MediaPlayer from './components/media-components/MediaPlayer'
 import Library from './components/library-components/Library'
@@ -12,6 +12,7 @@ function App() {
     const libraryToggle = useState(true)
     const [ isLibraryShown ] = libraryToggle
 
+    const { mainLayout } = styles
     return (
         <main className={mainLayout}>
             <MediaPlayer />
