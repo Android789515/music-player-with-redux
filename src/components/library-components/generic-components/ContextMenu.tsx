@@ -19,7 +19,8 @@ export const contextMenuOptions = {
 }
 
 interface Props {
-    closeContextMenu: (event: React.FocusEvent) => void,
+    openContextMenu: (event: React.SyntheticEvent) => void,
+    closeContextMenu: (event: React.SyntheticEvent) => void,
     entry: {
         id: number
     },
@@ -40,7 +41,7 @@ const ContextMenu = ({ closeContextMenu, entry, entryRef, shouldShow, position, 
         const { target } = event
         const optionClicked = (target as HTMLLIElement).textContent?.toLowerCase()
         const closestEntry = entryRef.current
-        closeContextMenu((event as unknown) as React.FocusEvent)
+        closeContextMenu(event)
 
         switch (optionClicked) {
             case contextMenuOptions._queue:

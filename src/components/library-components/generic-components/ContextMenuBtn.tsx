@@ -1,45 +1,55 @@
 import React, { useState } from 'react'
 
-import { overlayComponent, softRoundedCorners } from '../../../css/GenericStyles.module.scss'
+import genericStyles from '../../../css/GenericStyles.module.scss'
 import styles from '../../../css/library/ContextMenuBtn.module.scss'
 import buttonImg from '../../../img/dark-btns/context.svg'
 
 import ContextMenu from './ContextMenu'
 
-const ContextMenuBtn = props => {
+interface Props {
+    showBtn: boolean,
+    entry: any,
+    entryRef: {
+        current: HTMLLIElement
+    },
+    contextoptions: string[]
+}
+
+const ContextMenuBtn = ({ showBtn, entry, entryRef, contextoptions }: Props) => {
     const [ shouldShowContextMenu, isContextMenuShown ] = useState(false)
     const [ menuPos, setMenuPos ] = useState(0)
 
-    const openContextMenu = event => {
+    const openContextMenu = (event: React.SyntheticEvent) => {
         event.stopPropagation()
 
         isContextMenuShown(true)
 
-        const contextBtnPos = event.target.getBoundingClientRect()
+        const contextBtnPos = (event.target as HTMLElement).getBoundingClientRect()
 
         const positionForMenu = contextBtnPos.x
 
         setMenuPos(positionForMenu)
     }
 
-    const openContextMenuOnEnter = event => {
+    const openContextMenuOnEnter = (event: React.KeyboardEvent) => {
         if (event.key === 'Enter') {
             openContextMenu(event)
         }
     }
 
-    const closeContextMenu = event => {
+    const closeContextMenu = (event: React.SyntheticEvent) => {
         event.stopPropagation()
 
         isContextMenuShown(false)
     }
 
+    const { overlayComponent, softRoundedCorners } = genericStyles
     const { contextMenuBtn, contextMenuBtnVisible } = styles
     return (
         <>
             <img
                 className={`
-                    ${contextMenuBtn} ${props.showBtn ? contextMenuBtnVisible : ''}
+                    ${contextMenuBtn} ${showBtn ? contextMenuBtnVisible : ''}
                     ${overlayComponent} ${softRoundedCorners}
                 `}
                 src={buttonImg}
@@ -50,12 +60,11 @@ const ContextMenuBtn = props => {
             />
 
             <ContextMenu
-                entryType={props.entryType}
-                entryRef={props.entryRef}
+                entryRef={entryRef}
                 shouldShow={shouldShowContextMenu}
                 position={menuPos}
-                contextoptions={props.contextoptions}
-                entry={props.entry}
+                contextoptions={contextoptions}
+                entry={entry}
                 openContextMenu={openContextMenu}
                 closeContextMenu={closeContextMenu}
             />
