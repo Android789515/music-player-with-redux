@@ -5,6 +5,7 @@ import {
     addBtnHover as hover,
     addBtnActive as active
 } from '../../css/buttons/AddBtn.module.scss'
+import { btn } from '../../css/buttons/Btn.module.scss'
 import { addEntrySection } from '../../css/library/AddEntry.module.scss'
 
 import { setModalContent } from '../../reducers/modalSlice'
@@ -50,14 +51,14 @@ const AddEntryBtn = props => {
 
     return (
         <div
-            className={`btn ${addEntrySection}`}
+            className={`${btn} ${addEntrySection}`}
             onClick={addEntry}
             onMouseDown={setActiveClass}
             onMouseUp={clearActiveClass}
             onMouseEnter={setHoverClass}
             onMouseLeave={clearPseudoClasses}
         >
-            <button className={`btn ${addBtn} ${isClicked ? active : ''} ${isHovered ? hover : ''}`}>+</button>
+            <button className={`${addBtn} ${isClicked ? active : ''} ${isHovered ? hover : ''}`}>+</button>
             <p>{props.btnText}</p>
 
             {props.hasInputComponent && (

@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import { useSelector } from 'react-redux'
 
 import styles from '../../css/library/PlaylistDirectoryEntry.module.scss'
+import { btn } from '../../css/buttons/Btn.module.scss'
 
 import { directories } from './DirectoryList'
 import { contextMenuOptions } from './generic-components/ContextMenu'
@@ -58,7 +59,7 @@ const PlaylistDirectoryEntry = props => {
     const { playlistEntryTitle, playlistEntrySongCount } = styles
     return (
         <DirectoryEntry
-            className={`btn ${directoryEntry}`}
+            className={`${btn} ${directoryEntry}`}
             entry={props.playlist}
             onClick={openPlaylist}
             contextoptions={[_open, _rename,  _delete]}

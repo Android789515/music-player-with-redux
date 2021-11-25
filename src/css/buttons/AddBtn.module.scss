@@ -1,6 +1,8 @@
 @use '../variables';
 
 .addBtn {
+  composes: btn from 'Btn.module.scss';
+
   font-weight: 700;
 
   padding: .125em .4em .125em .35em;

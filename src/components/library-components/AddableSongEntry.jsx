@@ -2,6 +2,7 @@ import React from 'react'
 import { v4 as uuidv4 } from 'uuid'
 
 import { hardRoundedCorners } from '../../css/GenericStyles.module.scss'
+import { btn } from '../../css/buttons/Btn.module.scss'
 import { addBtn, removeBtn, forAddableSong } from '../../css/buttons/AddBtn.module.scss'
 import { songEntryTitle, songEntryArtist } from '../../css/library/SongDirectoryEntry.module.scss'
 import styles from '../../css/library/AddableSongEntry.module.scss'
@@ -53,7 +54,7 @@ const AddableSongEntry = ({ updateSongsToAdd, song, isMarked = false }) => {
 
             <DirectoryEntry
                 entry={song}
-                className={`btn ${directoryEntry}`}
+                className={`${btn} ${directoryEntry}`}
                 id={song.id}
             >
                 <h4 className={`${songEntryTitle} ${songEntryInfo}`}>{song.title}</h4>

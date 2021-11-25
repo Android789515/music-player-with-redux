@@ -8,6 +8,7 @@ import {
     songEntryInfo,
     songEntryDuration
 } from '../../css/library/SongDirectoryEntry.module.scss'
+import { btn } from '../../css/buttons/Btn.module.scss'
 
 import { directories } from './DirectoryList'
 import { contextMenuOptions } from './generic-components/ContextMenu'
@@ -72,7 +73,7 @@ const SongDirectoryEntry = ({ currentDirectory, ...props }) => {
         (
             <DirectoryEntry
                 entry={props.song}
-                className={`btn ${directoryEntry}`}
+                className={`${btn} ${directoryEntry}`}
                 onClick={handleEntryClick}
                 contextoptions={[contextMenuOptions._queue, contextMenuOptions._delete]}
             >

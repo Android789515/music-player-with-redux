@@ -2,6 +2,7 @@ import React from 'react'
 import { useSelector } from 'react-redux'
 
 import styles from '../../css/media-player/MediaControls.module.scss'
+import { btn } from '../../css/buttons/Btn.module.scss'
 import useButtonToggle from '../../hooks/useButtonToggle'
 
 function MediaControlBtn(props) {
@@ -26,11 +27,11 @@ function MediaControlBtn(props) {
     } = styles
     const buttonType = styles[`${name}Btn`]
     if (isVolumeBtn) {
-        className = `btn ${mediaControlBtn} ${volControlBtn} ${buttonType}`
+        className = `${btn} ${mediaControlBtn} ${volControlBtn} ${buttonType}`
         src = require(`../../img/${btnTheme}-btns/vol-btns/${name}-btn.svg`).default
 
     } else {
-        className = `btn ${mediaControlBtn} ${buttonType}`
+        className = `${btn} ${mediaControlBtn} ${buttonType}`
         src = require(`../../img/${btnTheme}-btns/media-btns/${name}-btn.svg`).default
     }
 

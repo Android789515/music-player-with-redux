@@ -1,6 +1,8 @@
 @use '../variables';
 
 .modalBtn {
+  composes: btn from 'Btn.module.scss';
+
   font-size: 1rem;
   font-weight: 700;
   color: #fff;
