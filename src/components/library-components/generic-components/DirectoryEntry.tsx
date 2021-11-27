@@ -1,6 +1,7 @@
 import React, { MutableRefObject, useRef, useState } from 'react'
 
-import styles from '../../../css/library/DirectoryEntry.module.scss'
+// @ts-ignore
+import { directoryEntry } from '../../../css/library/DirectoryEntry.module.scss'
 
 import { Song, Playlist } from '../../../utils/entryTypes'
 
@@ -19,7 +20,6 @@ const DirectoryEntry: React.FC<Props> = ({ entry, className, ...props }) => {
     const showContextMenuBtn = () => setIsBtnShown(true)
     const hideContextMenuBtn = () => setIsBtnShown(false)
 
-    const { directoryEntry } = styles
     return (
         <li
             key={entry.id}

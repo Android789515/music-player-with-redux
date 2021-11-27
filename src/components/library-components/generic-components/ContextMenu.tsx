@@ -2,8 +2,10 @@ import React, { MutableRefObject, useEffect, useRef } from 'react'
 import { useDispatch } from 'react-redux'
 import { v4 as uuidv4 } from 'uuid'
 
-import genericStyles from '../../../css/GenericStyles.module.scss'
-import styles from '../../../css/library/ContextMenu.module.scss'
+// @ts-ignore
+import { hardRoundedCorners } from '../../../css/GenericStyles.module.scss'
+// @ts-ignore
+import { contextMenu, contextMenuOption } from '../../../css/library/ContextMenu.module.scss'
 import { setModalContent } from '../../../reducers/modalSlice'
 import { Song, Playlist } from '../../../utils/entryTypes'
 import { capitalize } from '../../../utils/stringManipulation'
@@ -78,7 +80,6 @@ const ContextMenu =
         }
     }
 
-    const { contextMenuOption } = styles
     const contextMenuList = contextoptions.map(option => {
         const uuid = uuidv4()
         return (
@@ -101,9 +102,7 @@ const ContextMenu =
         }
     }, [shouldShow])
 
-    const { contextMenu } = styles
     if (shouldShow) {
-        const { hardRoundedCorners } = genericStyles
         return (
             <ul
                 className={`${contextMenu} ${hardRoundedCorners}`}

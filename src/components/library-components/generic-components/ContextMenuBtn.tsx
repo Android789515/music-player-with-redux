@@ -1,7 +1,9 @@
 import React, { MutableRefObject, useState } from 'react'
 
-import genericStyles from '../../../css/GenericStyles.module.scss'
-import styles from '../../../css/library/ContextMenuBtn.module.scss'
+// @ts-ignore
+import { overlayComponent, softRoundedCorners } from '../../../css/GenericStyles.module.scss'
+// @ts-ignore
+import { contextMenuBtn, contextMenuBtnVisible } from '../../../css/library/ContextMenuBtn.module.scss'
 import buttonImg from '../../../img/dark-btns/context.svg'
 
 import { Song, Playlist } from '../../../utils/entryTypes'
@@ -43,8 +45,6 @@ const ContextMenuBtn = ({ showBtn, entry, entryRef, contextoptions }: Props) => 
         isContextMenuShown(false)
     }
 
-    const { overlayComponent, softRoundedCorners } = genericStyles
-    const { contextMenuBtn, contextMenuBtnVisible } = styles
     return (
         <>
             <img
