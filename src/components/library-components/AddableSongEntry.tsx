@@ -1,16 +1,35 @@
 import React from 'react'
 import { v4 as uuidv4 } from 'uuid'
 
+// @ts-ignore
 import { hardRoundedCorners } from '../../css/GenericStyles.module.scss'
+// @ts-ignore
 import { btn } from '../../css/buttons/Btn.module.scss'
+// @ts-ignore
 import { addBtn, removeBtn, forAddableSong } from '../../css/buttons/AddBtn.module.scss'
+// @ts-ignore
 import { songEntryTitle, songEntryArtist } from '../../css/library/SongDirectoryEntry.module.scss'
-import styles from '../../css/library/AddableSongEntry.module.scss'
+import {
+    // @ts-ignore
+    addableSong,
+    // @ts-ignore
+    selected,
+    // @ts-ignore
+    directoryEntry,
+    // @ts-ignore
+    songEntryInfo,
+    // @ts-ignore
+    songEntryDuration
+} from '../../css/library/AddableSongEntry.module.scss'
 
 import { getFormattedSongTime } from '../../utils/timeFormatter'
 import useButtonToggle from '../../hooks/useButtonToggle'
 
 import DirectoryEntry from './generic-components/DirectoryEntry'
+
+interface Props {
+
+}
 
 const AddableSongEntry = ({ updateSongsToAdd, song, isMarked = false }) => {
     const { isToggled, toggle } = useButtonToggle(isMarked)
@@ -33,13 +52,6 @@ const AddableSongEntry = ({ updateSongsToAdd, song, isMarked = false }) => {
     }
 
     const id = uuidv4()
-    const {
-        addableSong,
-        selected,
-        directoryEntry,
-        songEntryInfo,
-        songEntryDuration
-    } = styles
     return (
         <div
             className={`${addableSong} ${hardRoundedCorners} ${isToggled ? selected : ''}`.trim()}

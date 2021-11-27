@@ -21,12 +21,12 @@ export const contextMenuOptions = {
 }
 
 interface Props {
-    openContextMenu: (event: React.SyntheticEvent) => void,
-    closeContextMenu: (event: React.SyntheticEvent) => void,
-    entry: Song | Playlist,
-    entryRef: MutableRefObject<HTMLLIElement>,
-    shouldShow: boolean,
-    position: number,
+    openContextMenu: (event: React.SyntheticEvent) => void
+    closeContextMenu: (event: React.SyntheticEvent) => void
+    entry: Song | Playlist
+    entryRef: MutableRefObject<HTMLLIElement>
+    shouldShow: boolean
+    position: number
     contextoptions: string[]
 }
 

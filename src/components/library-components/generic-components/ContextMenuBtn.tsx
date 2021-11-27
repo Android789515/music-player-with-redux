@@ -11,9 +11,9 @@ import { Song, Playlist } from '../../../utils/entryTypes'
 import ContextMenu from './ContextMenu'
 
 interface Props {
-    showBtn: boolean,
-    entry: Song | Playlist,
-    entryRef: MutableRefObject<HTMLLIElement>,
+    showBtn: boolean
+    entry: Song | Playlist
+    entryRef: MutableRefObject<HTMLLIElement>
     contextoptions: string[]
 }
 

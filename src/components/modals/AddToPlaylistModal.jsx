@@ -52,7 +52,7 @@ const AddToPlaylistModal = () => {
             </ul>
 
             <div className={modalBtns}>
-                <ModalBtn doOnClick={cancel} btnText='Cancel' />
+                <ModalBtn btnText='Cancel' doOnClick={cancel} />
 
                 <ModalBtn
                     btnText='Add songs'

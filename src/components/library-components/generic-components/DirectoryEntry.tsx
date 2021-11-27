@@ -8,8 +8,8 @@ import { Song, Playlist } from '../../../utils/entryTypes'
 import ContextMenuBtn from './ContextMenuBtn'
 
 interface Props {
-    entry: Song | Playlist,
-    className: string,
+    entry: Song | Playlist
+    className: string
     contextoptions: string[]
 }
 

@@ -7,9 +7,9 @@ import SongDirectoryEntry from '../SongDirectoryEntry'
 import PlaylistDirectoryEntry from '../PlaylistDirectoryEntry'
 
 interface Props {
-    directoryIdentifier: string,
-    entries: Song[] | Playlist[] | Playlist,
-    setCurrentDirectory: (newDirectory: string) => string,
+    directoryIdentifier: string
+    entries: Song[] | Playlist[] | Playlist
+    setCurrentDirectory: (newDirectory: string) => string
     dispatch: () => void
 }
 

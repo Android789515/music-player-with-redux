@@ -11,23 +11,23 @@ interface Props {
     btnText: string
     disabled: boolean
     doOnClick: () => void
-    onMouseEnter: () => void
-    onMouseLeave: () => void
 }
 
-const ModalBtn = ({ btnText, disabled, doOnClick, onMouseEnter, onMouseLeave }: Props) => {
+const ModalBtn = ({ btnText, disabled, doOnClick }: Props) => {
     return (
         <button className={`${modalBtnBase} ${hardRoundedCorners}`} disabled={disabled}>
             <span
                 className={`${btn} ${modalBtn} ${hardRoundedCorners} ${disabled ? disabledStyle : ''}`.trim()}
                 onClick={doOnClick}
-                onMouseEnter={onMouseEnter}
-                onMouseLeave={onMouseLeave}
             >
                 {btnText}
             </span>
         </button>
     )
+}
+
+ModalBtn.defaultProps = {
+    disabled: false
 }
 
 export default ModalBtn
