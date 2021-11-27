@@ -20,7 +20,7 @@ const DirectoryEntry: React.FC<Props> = ({ entry, className, ...props }) => {
     const showContextMenuBtn = () => setIsBtnShown(true)
     const hideContextMenuBtn = () => setIsBtnShown(false)
 
-    const entryHasContextOptions = props.contextoptions.every(arrItem => arrItem)
+    const entryHasContextOptions = props.contextoptions.length > 0
 
     return (
         <li
