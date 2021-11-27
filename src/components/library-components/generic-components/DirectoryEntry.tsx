@@ -20,6 +20,8 @@ const DirectoryEntry: React.FC<Props> = ({ entry, className, ...props }) => {
     const showContextMenuBtn = () => setIsBtnShown(true)
     const hideContextMenuBtn = () => setIsBtnShown(false)
 
+    const entryHasContextOptions = props.contextoptions.every(arrItem => arrItem)
+
     return (
         <li
             key={entry.id}
@@ -31,7 +33,7 @@ const DirectoryEntry: React.FC<Props> = ({ entry, className, ...props }) => {
         >
             {props.children}
 
-            {props.contextoptions &&
+            {entryHasContextOptions &&
                 <ContextMenuBtn
                     entry={entry}
                     entryRef={directoryEntryRef}
@@ -41,10 +43,6 @@ const DirectoryEntry: React.FC<Props> = ({ entry, className, ...props }) => {
             }
         </li>
     )
-}
-
-DirectoryEntry.defaultProps = {
-    contextoptions: undefined
 }
 
 export default DirectoryEntry

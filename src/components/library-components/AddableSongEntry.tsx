@@ -70,6 +70,7 @@ const AddableSongEntry = ({ updateSongsToAdd, song, isMarked = false }: Props) =
             <DirectoryEntry
                 entry={song}
                 className={`${btn} ${directoryEntry}`}
+                contextoptions={['']}
             >
                 <h4 className={`${songEntryTitle} ${songEntryInfo}`}>{song.title}</h4>
                 <p className={`${songEntryArtist} ${songEntryInfo}`}>{song.artist}</p>
