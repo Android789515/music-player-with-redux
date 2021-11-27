@@ -23,8 +23,6 @@ const DirectoryEntry: React.FC<Props> = ({ entry, className, ...props }) => {
     return (
         <li
             key={entry.id}
-            // TODO delete if safe to do so
-            // entryid={entry.id}
             className={`${className} ${directoryEntry}`}
             ref={directoryEntryRef}
             {...props}
@@ -43,6 +41,10 @@ const DirectoryEntry: React.FC<Props> = ({ entry, className, ...props }) => {
             }
         </li>
     )
+}
+
+DirectoryEntry.defaultProps = {
+    contextoptions: undefined
 }
 
 export default DirectoryEntry

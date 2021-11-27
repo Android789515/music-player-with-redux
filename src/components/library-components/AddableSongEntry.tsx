@@ -23,15 +23,18 @@ import {
 } from '../../css/library/AddableSongEntry.module.scss'
 
 import { getFormattedSongTime } from '../../utils/timeFormatter'
+import { Song } from '../../utils/entryTypes'
 import useButtonToggle from '../../hooks/useButtonToggle'
 
 import DirectoryEntry from './generic-components/DirectoryEntry'
 
 interface Props {
-
+    updateSongsToAdd: (fn: (prevState: Song[]) => Song[]) => void
+    song: Song
+    isMarked: boolean
 }
 
-const AddableSongEntry = ({ updateSongsToAdd, song, isMarked = false }) => {
+const AddableSongEntry = ({ updateSongsToAdd, song, isMarked = false }: Props) => {
     const { isToggled, toggle } = useButtonToggle(isMarked)
 
     const handleClick = () => {
@@ -43,11 +46,11 @@ const AddableSongEntry = ({ updateSongsToAdd, song, isMarked = false }) => {
         }
     }
 
-    const markSongToBeAdded = song => {
+    const markSongToBeAdded = (song: Song) => {
         updateSongsToAdd(prevSongs => [...prevSongs, song])
     }
 
-    const unmarkSongToBeAdded = unmarkSong => {
+    const unmarkSongToBeAdded = (unmarkSong: Song) => {
         updateSongsToAdd(prevSongs => prevSongs.filter(song => song.id !== unmarkSong.id))
     }
 
@@ -67,7 +70,6 @@ const AddableSongEntry = ({ updateSongsToAdd, song, isMarked = false }) => {
             <DirectoryEntry
                 entry={song}
                 className={`${btn} ${directoryEntry}`}
-                id={song.id}
             >
                 <h4 className={`${songEntryTitle} ${songEntryInfo}`}>{song.title}</h4>
                 <p className={`${songEntryArtist} ${songEntryInfo}`}>{song.artist}</p>
