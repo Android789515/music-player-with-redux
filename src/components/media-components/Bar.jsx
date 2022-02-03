@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 
 import styles from '../../css/media-player/Bar.module.scss'
 
@@ -18,12 +18,6 @@ function Bar(props) {
     const orientations = {
         _VERTICAL: 'vertical',
         _HORIZONTAL: 'horizontal'
-    }
-
-    const getBarElementOfClickedBar = ({ target }) => {
-        const isClickedElementBar = target.classList.contains(`${props.name}-bar`)
-
-        return isClickedElementBar ? target : target.parentElement
     }
 
     const setBarPercent = (pos, size) => {
@@ -54,14 +48,14 @@ function Bar(props) {
 
         const isBarVertical = props.orientation === orientations._VERTICAL
 
-        const bar = getBarElementOfClickedBar(event)
+        const bar = event.target
 
         const barSize = isBarVertical ? bar.clientHeight : bar.clientWidth
 
         // Margins screw with this so the posOfBar must be subtracted
         // from the rawPos
         const rawPosClickedInBar = isBarVertical ? event.clientY : event.clientX
-        const barBoundingRect = event.target.getBoundingClientRect()
+        const barBoundingRect = bar.getBoundingClientRect()
         const posOfBar = isBarVertical ? barBoundingRect.bottom : barBoundingRect.left
 
         // calculatedPos accurately calculates where in the actual bar was clicked
@@ -126,6 +120,7 @@ function Bar(props) {
     const barType = styles[`${props.name}Bar`]
 
     const allComponentClasses = `${styles.bar} ${barType} ${props.modifiers.join(' ')}`
+
     return (
         <div
             className={allComponentClasses}

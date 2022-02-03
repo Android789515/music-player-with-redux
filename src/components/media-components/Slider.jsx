@@ -8,8 +8,12 @@ function Slider(props) {
         { width: props.sliderPercent + '%', height: '100%' }
 
     const sliderType = styles[`${props.name}Slider`]
+
     return (
-        <div className={`${styles.slider} ${sliderType}`} style={percent} />
+        <div
+            className={`${styles.slider} ${sliderType}`}
+            style={percent}
+        />
     )
 }
 
