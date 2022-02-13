@@ -1,25 +1,27 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { directories } from '../components/library-components/DirectoryList'
+import { Library } from '../../types/library'
+
+const libraryState: Library = {
+    songs: [],
+    queuedSong: {
+        id: undefined,
+        src: undefined,
+        coverArt: undefined,
+        title: undefined,
+        artist: undefined,
+        duration: undefined
+    },
+    // Playlist is an array containing arrays where
+    // first items are an obj of id and values
+    // and second are arrays of songs
+    playlists: [],
+    openedPlaylist: undefined,
+    playlistPlaying: undefined
+}
 
 export const librarySlice = createSlice({
     name: 'library',
-    initialState: {
-        songs: [],
-        queuedSong: {
-            id: undefined,
-            src: undefined,
-            coverArt: undefined,
-            title: undefined,
-            artist: undefined,
-            duration: undefined
-        },
-        // Playlist is an array containing arrays where
-        // first items are an obj of id and values
-        // and second are arrays of songs
-        playlists: [],
-        openedPlaylist: undefined,
-        playlistPlaying: undefined
-    },
+    initialState: libraryState,
 
     reducers: {
         addSongs: (state, action) => {
@@ -29,7 +31,7 @@ export const librarySlice = createSlice({
 
                 case 'openedPlaylist':
                     const updatedPlaylists = [...state.playlists].map(playlist => {
-                        if (playlist.id === state.openedPlaylist.id) {
+                        if (playlist.id === state.openedPlaylist?.id) {
                             return {
                                 ...playlist,
                                 songs: [...playlist.songs, ...action.payload.songs]
@@ -41,7 +43,12 @@ export const librarySlice = createSlice({
                     return {
                         ...state,
                         playlists: updatedPlaylists,
-                        openedPlaylist: updatedPlaylists.find(playlist => playlist.id === state.openedPlaylist.id)
+                        openedPlaylist: updatedPlaylists.find(playlist => {
+                            if (playlist.id === state.openedPlaylist?.id) {
+                                return playlist
+                            }
+                            return undefined
+                        })
                     }
 
                 default:
@@ -55,7 +62,7 @@ export const librarySlice = createSlice({
 
                 case 'openedPlaylist':
                     const updatedPlaylists = [...state.playlists].map(playlist => {
-                        if (playlist.id === state.openedPlaylist.id) {
+                        if (playlist.id === state.openedPlaylist?.id) {
                             return {
                                 ...playlist,
                                 songs: playlist.songs.filter(song => song.id !== action.payload.songId)
@@ -67,7 +74,12 @@ export const librarySlice = createSlice({
                     return {
                         ...state,
                         playlists: updatedPlaylists,
-                        openedPlaylist: updatedPlaylists.find(playlist => playlist.id === state.openedPlaylist.id)
+                        openedPlaylist: updatedPlaylists.find(playlist => {
+                            if (playlist.id === state.openedPlaylist?.id) {
+                                return playlist
+                            }
+                            return undefined
+                        })
                     }
 
                 default:
@@ -80,7 +92,7 @@ export const librarySlice = createSlice({
         },
         unqueueSong: state => {
             const unqueuedSong = {...state.queuedSong}
-            Object.keys(unqueuedSong).forEach(key => unqueuedSong[key] = undefined)
+            Object.values(unqueuedSong).forEach(() => undefined)
 
             return {...state, queuedSong: unqueuedSong}
         },

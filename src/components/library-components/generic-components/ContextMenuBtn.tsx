@@ -6,7 +6,7 @@ import { overlayComponent, softRoundedCorners } from '../../../css/GenericStyles
 import { contextMenuBtn, contextMenuBtnVisible } from '../../../css/library/ContextMenuBtn.module.scss'
 import buttonImg from '../../../img/dark-btns/context.svg'
 
-import { Song, Playlist } from '../../../utils/entryTypes'
+import { Song, Playlist } from '../../../../types/entryTypes'
 
 import ContextMenu from './ContextMenu'
 

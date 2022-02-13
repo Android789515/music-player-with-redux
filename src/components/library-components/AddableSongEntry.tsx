@@ -23,7 +23,7 @@ import {
 } from '../../css/library/AddableSongEntry.module.scss'
 
 import formatTime from '../../utils/formatTime'
-import { Song } from '../../utils/entryTypes'
+import { Song } from '../../../types/entryTypes'
 import useButtonToggle from '../../hooks/useButtonToggle'
 
 import DirectoryEntry from './generic-components/DirectoryEntry'

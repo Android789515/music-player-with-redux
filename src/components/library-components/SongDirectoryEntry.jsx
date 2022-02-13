@@ -12,7 +12,7 @@ import { btn } from '../../css/buttons/Btn.module.scss'
 
 import { directories } from './DirectoryList'
 import { contextMenuOptions } from './generic-components/ContextMenu'
-import formatTime from 'src/utils/formatTime'
+import formatTime from '../../utils/formatTime'
 import { play, stop } from '../../reducers/mediaSlice'
 import { queueSong, removeSong, setPlaylistPlaying, unqueueSong } from '../../reducers/librarySlice'
 import { setModalData } from '../../reducers/modalSlice'

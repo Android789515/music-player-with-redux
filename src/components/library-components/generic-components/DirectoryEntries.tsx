@@ -1,7 +1,7 @@
 import React from 'react'
 
 import { directories } from '../DirectoryList'
-import { Song, Playlist } from '../../../utils/entryTypes'
+import { Song, Playlist } from '../../../../types/entryTypes'
 
 import SongDirectoryEntry from '../SongDirectoryEntry'
 import PlaylistDirectoryEntry from '../PlaylistDirectoryEntry'

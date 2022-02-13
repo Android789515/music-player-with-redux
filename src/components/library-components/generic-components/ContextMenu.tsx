@@ -7,7 +7,7 @@ import { hardRoundedCorners } from '../../../css/GenericStyles.module.scss'
 // @ts-ignore
 import { contextMenu, contextMenuOption } from '../../../css/library/ContextMenu.module.scss'
 import { setModalContent } from '../../../reducers/modalSlice'
-import { Song, Playlist } from '../../../utils/entryTypes'
+import { Song, Playlist } from '../../../../types/entryTypes'
 import { capitalize } from '../../../utils/stringManipulation'
 
 import PlaylistModal from '../../modals/PlaylistModal'

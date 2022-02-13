@@ -3,7 +3,7 @@ import React, { MutableRefObject, useRef, useState } from 'react'
 // @ts-ignore
 import { directoryEntry } from '../../../css/library/DirectoryEntry.module.scss'
 
-import { Song, Playlist } from '../../../utils/entryTypes'
+import { Song, Playlist } from '../../../../types/entryTypes'
 
 import ContextMenuBtn from './ContextMenuBtn'
 

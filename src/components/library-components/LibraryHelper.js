@@ -1,5 +1,5 @@
 import { play, stop } from '../../reducers/mediaSlice'
-import { queueSong } from '../../reducers/librarySlice'
+import { queueSong } from 'src/reducers/librarySlice'
 
 const randomNumFromArr = arrLen => {
     /* keeps from selecting index larger than arr */

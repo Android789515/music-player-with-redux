@@ -28,11 +28,11 @@ function MediaControlBtn(props) {
     const buttonType = styles[`${name}Btn`]
     if (isVolumeBtn) {
         className = `${btn} ${mediaControlBtn} ${volControlBtn} ${buttonType}`
-        src = require(`../../img/${btnTheme}-btns/vol-btns/${name}-btn.svg`).default
+        src = `../../img/${btnTheme}-btns/vol-btns/${name}-btn.svg`
 
     } else {
         className = `${btn} ${mediaControlBtn} ${buttonType}`
-        src = require(`../../img/${btnTheme}-btns/media-btns/${name}-btn.svg`).default
+        src = `../../img/${btnTheme}-btns/media-btns/${name}-btn.svg`
     }
 
     const getToggleBtnClassName = () => (isToggled ? styles.toggled : '').trim()
