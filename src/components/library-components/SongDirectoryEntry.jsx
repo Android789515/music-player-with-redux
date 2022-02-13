@@ -12,7 +12,7 @@ import { btn } from '../../css/buttons/Btn.module.scss'
 
 import { directories } from './DirectoryList'
 import { contextMenuOptions } from './generic-components/ContextMenu'
-import { getFormattedSongTime } from '../../utils/timeFormatter'
+import formatTime from 'src/utils/formatTime'
 import { play, stop } from '../../reducers/mediaSlice'
 import { queueSong, removeSong, setPlaylistPlaying, unqueueSong } from '../../reducers/librarySlice'
 import { setModalData } from '../../reducers/modalSlice'
@@ -79,7 +79,7 @@ const SongDirectoryEntry = ({ currentDirectory, ...props }) => {
             >
                 <h4 className={`${songEntryTitle} ${songEntryInfo}`}>{props.song.title}</h4>
                 <p className={`${songEntryArtist} ${songEntryInfo}`}>{props.song.artist}</p>
-                <p className={`${songEntryDuration}`}>{getFormattedSongTime(props.song.duration)}</p>
+                <p className={`${songEntryDuration}`}>{formatTime(props.song.duration)}</p>
 
                 <Slider
                     name='miniSongBar'

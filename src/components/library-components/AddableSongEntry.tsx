@@ -22,7 +22,7 @@ import {
     songEntryDuration
 } from '../../css/library/AddableSongEntry.module.scss'
 
-import { getFormattedSongTime } from '../../utils/timeFormatter'
+import formatTime from '../../utils/formatTime'
 import { Song } from '../../utils/entryTypes'
 import useButtonToggle from '../../hooks/useButtonToggle'
 
@@ -74,7 +74,7 @@ const AddableSongEntry = ({ updateSongsToAdd, song, isMarked = false }: Props) =
             >
                 <h4 className={`${songEntryTitle} ${songEntryInfo}`}>{song.title}</h4>
                 <p className={`${songEntryArtist} ${songEntryInfo}`}>{song.artist}</p>
-                <p className={`${songEntryDuration}`}>{getFormattedSongTime(song.duration)}</p>
+                <p className={`${songEntryDuration}`}>{formatTime(song.duration)}</p>
             </DirectoryEntry>
         </div>
     )

@@ -1,12 +1,13 @@
 import React from 'react'
 
+import formatTime from 'src/utils/formatTime'
+
 import styles from '../../css/media-player/SongInfo.module.scss'
-import { getFormattedSongTime } from '../../utils/timeFormatter'
 
 const SongInfo = ({ queuedSong: { src, title, artist }, ...props }) => {
     const isSongQueued = src !== undefined
     const currentSongTime =
-        getFormattedSongTime(isSongQueued ? props.media.time : undefined)
+        formatTime(isSongQueued ? props.media.time : undefined)
 
     const { songInfo, songTitle, songArtist, songDuration } = styles
     return (

@@ -10,5 +10,5 @@ export interface Song {
 export interface Playlist {
     id: number
     name: string
-    songs: []
+    songs: Song[]
 }
